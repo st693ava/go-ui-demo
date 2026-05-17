@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pagination — go-ui</title>
+    <title>Kbd — go-ui</title>
     <link rel="icon" href="/dist/favicon.svg" />
     <script>
       window.__SITE_BASE__ = '../'
@@ -28,7 +28,7 @@
       <div class="docs">
         <go-sidebar
           mode="nav"
-          active="pagination.html"
+          active="kbd.html"
           class="docs-nav"
           aria-label="Navegação de componentes"
         >
@@ -114,17 +114,17 @@
             <span aria-hidden="true">/</span>
             <a href="../components.html">Componentes</a>
             <span aria-hidden="true">/</span>
-            <b>Pagination</b>
+            <b>Kbd</b>
           </p>
-          <h1 class="doc-h1">Pagination</h1>
+          <h1 class="doc-h1">Kbd</h1>
           <p class="doc-lead">
-            Paginação com navegação de páginas e ligações anterior e seguinte.
+            Mostra entrada textual do utilizador a partir do teclado.
           </p>
           <div class="docs-actions">
             <button type="button" data-copy-page>Copiar página</button>
             <span class="sp"></span>
-            <a href="command.html"><span>Anterior</span> Command</a>
-            <a href="carousel.html">Seguinte <span>Carousel</span></a>
+            <a href="breadcrumb.html"><span>Anterior</span> Breadcrumb</a>
+            <a href="dropdown-menu.html">Seguinte <span>Dropdown Menu</span></a>
           </div>
 
           <!-- ── Preview/Code principal ──────────────────────────────── -->
@@ -135,18 +135,20 @@
             </div>
             <div class="pc-panels">
               <div class="pc-preview">
-                <go-pagination
-                  total="30"
-                  items-per-page="10"
-                  default-page="2"
-                ></go-pagination>
+                <go-kbd group>
+                  <go-kbd>⌘</go-kbd>
+                  <go-kbd>⇧</go-kbd>
+                  <go-kbd>⌥</go-kbd>
+                  <go-kbd>⌃</go-kbd>
+                </go-kbd>
               </div>
               <div class="pc-code">
-                <pre class="code" data-lang="html">&lt;go-pagination
-  total="30"
-  items-per-page="10"
-  default-page="2"
-&gt;&lt;/go-pagination&gt;</pre>
+                <pre class="code" data-lang="html">&lt;go-kbd group&gt;
+  &lt;go-kbd&gt;⌘&lt;/go-kbd&gt;
+  &lt;go-kbd&gt;⇧&lt;/go-kbd&gt;
+  &lt;go-kbd&gt;⌥&lt;/go-kbd&gt;
+  &lt;go-kbd&gt;⌃&lt;/go-kbd&gt;
+&lt;/go-kbd&gt;</pre>
               </div>
             </div>
           </div>
@@ -176,7 +178,7 @@
             <div class="tabs-panel" data-panel="manual">
               <p class="tx">
                 Importa o registo uma vez no teu entry-point — regista todos os
-                Custom Elements, <code>&lt;go-pagination&gt;</code> incluído:
+                Custom Elements, <code>&lt;go-kbd&gt;</code> incluído:
               </p>
               <pre class="code" data-lang="ts">// main.ts / app.js
 import '@st693ava/go-ui'
@@ -187,32 +189,35 @@ import '@st693ava/go-ui/style.css'</pre>
           <!-- ── Uso ─────────────────────────────────────────────────── -->
           <h2 id="uso">Uso</h2>
           <p class="tx">
-            A composição (botões, números e reticências) é resolvida
-            internamente: declara apenas os atributos
-            <code>total</code> (número de itens),
-            <code>items-per-page</code> (itens por página) e
-            <code>default-page</code> (página inicial). Ao mudar de página, o
-            elemento dispara um evento <code>change</code> com
-            <code>detail.page</code>.
+            Cada <code>&lt;go-kbd&gt;Tecla&lt;/go-kbd&gt;</code> representa uma
+            tecla do teclado. O conteúdo projetado pode ser texto
+            (<code>Ctrl</code>, <code>Esc</code>) ou um símbolo
+            (<code>⌘</code>, <code>⏎</code>).
           </p>
-          <pre class="code" data-lang="html">&lt;go-pagination
-  total="100"
-  items-per-page="10"
-  default-page="1"
-&gt;&lt;/go-pagination&gt;</pre>
-          <pre class="code" data-lang="ts">document
-  .querySelector('go-pagination')
-  .addEventListener('change', (e) =&gt; {
-    console.log(e.detail.page) // 1, 2, 3, ...
-  })</pre>
+          <pre class="code" data-lang="html">&lt;go-kbd&gt;Ctrl&lt;/go-kbd&gt;</pre>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <go-kbd>Ctrl</go-kbd>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-kbd&gt;Ctrl&lt;/go-kbd&gt;</pre>
+              </div>
+            </div>
+          </div>
 
           <!-- ── Exemplos ────────────────────────────────────────────── -->
           <h2 id="exemplos">Exemplos</h2>
 
-          <h3 id="muitas-paginas">Muitas páginas</h3>
+          <h3 id="grupo">Grupo</h3>
           <p class="tx">
-            Com muitos itens, a lista de páginas colapsa automaticamente em
-            reticências, mantendo a primeira, a última e as vizinhas da atual.
+            Usa o atributo <code>group</code> para agrupar teclas. O próprio
+            <code>&lt;go-kbd group&gt;</code> torna-se o contentor e projeta os
+            <code>&lt;go-kbd&gt;</code> internos lado a lado.
           </p>
           <div class="pc" data-view="preview">
             <div class="pc-bar">
@@ -221,26 +226,38 @@ import '@st693ava/go-ui/style.css'</pre>
             </div>
             <div class="pc-panels">
               <div class="pc-preview">
-                <go-pagination
-                  total="500"
-                  items-per-page="10"
-                  default-page="5"
-                ></go-pagination>
+                <p
+                  style="
+                    font-size: 0.875rem;
+                    color: var(--muted-foreground, #6b7280);
+                  "
+                >
+                  Usa
+                  <go-kbd group>
+                    <go-kbd>Ctrl + B</go-kbd>
+                    <go-kbd>Ctrl + K</go-kbd>
+                  </go-kbd>
+                  para abrir a paleta de comandos
+                </p>
               </div>
               <div class="pc-code">
-                <pre class="code" data-lang="html">&lt;go-pagination
-  total="500"
-  items-per-page="10"
-  default-page="5"
-&gt;&lt;/go-pagination&gt;</pre>
+                <pre class="code" data-lang="html">&lt;p&gt;
+  Usa
+  &lt;go-kbd group&gt;
+    &lt;go-kbd&gt;Ctrl + B&lt;/go-kbd&gt;
+    &lt;go-kbd&gt;Ctrl + K&lt;/go-kbd&gt;
+  &lt;/go-kbd&gt;
+  para abrir a paleta de comandos
+&lt;/p&gt;</pre>
               </div>
             </div>
           </div>
 
-          <h3 id="poucas-paginas">Poucas páginas</h3>
+          <h3 id="botao">Botão</h3>
           <p class="tx">
-            Quando o total cabe em poucas páginas, todas são mostradas sem
-            reticências.
+            Usa o <code>&lt;go-kbd&gt;</code> dentro de um
+            <code>&lt;go-button&gt;</code> para mostrar a tecla de atalho dentro
+            do botão.
           </p>
           <div class="pc" data-view="preview">
             <div class="pc-bar">
@@ -249,26 +266,31 @@ import '@st693ava/go-ui/style.css'</pre>
             </div>
             <div class="pc-panels">
               <div class="pc-preview">
-                <go-pagination
-                  total="30"
-                  items-per-page="10"
-                  default-page="2"
-                ></go-pagination>
+                <div style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: center;">
+                  <go-button variant="outline" size="sm">
+                    Aceitar <go-kbd>⏎</go-kbd>
+                  </go-button>
+                  <go-button variant="outline" size="sm">
+                    Cancelar <go-kbd>Esc</go-kbd>
+                  </go-button>
+                </div>
               </div>
               <div class="pc-code">
-                <pre class="code" data-lang="html">&lt;go-pagination
-  total="30"
-  items-per-page="10"
-  default-page="2"
-&gt;&lt;/go-pagination&gt;</pre>
+                <pre class="code" data-lang="html">&lt;go-button variant="outline" size="sm"&gt;
+  Aceitar &lt;go-kbd&gt;⏎&lt;/go-kbd&gt;
+&lt;/go-button&gt;
+&lt;go-button variant="outline" size="sm"&gt;
+  Cancelar &lt;go-kbd&gt;Esc&lt;/go-kbd&gt;
+&lt;/go-button&gt;</pre>
               </div>
             </div>
           </div>
 
-          <h3 id="por-pagina">Itens por página</h3>
+          <h3 id="tooltip">Tooltip</h3>
           <p class="tx">
-            Ajusta <code>items-per-page</code> para alterar quantos itens cada
-            página comporta — o número total de páginas recalcula-se.
+            Podes usar o <code>&lt;go-kbd&gt;</code> dentro de um
+            <code>&lt;go-tooltip&gt;</code> para mostrar a tecla de atalho na
+            dica.
           </p>
           <div class="pc" data-view="preview">
             <div class="pc-bar">
@@ -277,28 +299,124 @@ import '@st693ava/go-ui/style.css'</pre>
             </div>
             <div class="pc-panels">
               <div class="pc-preview">
-                <go-pagination
-                  total="200"
-                  items-per-page="25"
-                  default-page="1"
-                ></go-pagination>
+                <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
+                  <go-tooltip>
+                    <go-button slot="trigger" variant="outline" size="sm"
+                      >Guardar</go-button
+                    >
+                    <div slot="content">
+                      Guardar alterações <go-kbd>S</go-kbd>
+                    </div>
+                  </go-tooltip>
+                  <go-tooltip>
+                    <go-button slot="trigger" variant="outline" size="sm"
+                      >Imprimir</go-button
+                    >
+                    <div slot="content">
+                      Imprimir documento
+                      <go-kbd group>
+                        <go-kbd>Ctrl</go-kbd>
+                        <go-kbd>P</go-kbd>
+                      </go-kbd>
+                    </div>
+                  </go-tooltip>
+                </div>
               </div>
               <div class="pc-code">
-                <pre class="code" data-lang="html">&lt;go-pagination
-  total="200"
-  items-per-page="25"
-  default-page="1"
-&gt;&lt;/go-pagination&gt;</pre>
+                <pre class="code" data-lang="html">&lt;go-tooltip&gt;
+  &lt;go-button slot="trigger" variant="outline" size="sm"&gt;Guardar&lt;/go-button&gt;
+  &lt;div slot="content"&gt;Guardar alterações &lt;go-kbd&gt;S&lt;/go-kbd&gt;&lt;/div&gt;
+&lt;/go-tooltip&gt;
+
+&lt;go-tooltip&gt;
+  &lt;go-button slot="trigger" variant="outline" size="sm"&gt;Imprimir&lt;/go-button&gt;
+  &lt;div slot="content"&gt;
+    Imprimir documento
+    &lt;go-kbd group&gt;
+      &lt;go-kbd&gt;Ctrl&lt;/go-kbd&gt;
+      &lt;go-kbd&gt;P&lt;/go-kbd&gt;
+    &lt;/go-kbd&gt;
+  &lt;/div&gt;
+&lt;/go-tooltip&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <h3 id="input-group">Input Group</h3>
+          <p class="tx">
+            Podes usar o <code>&lt;go-kbd&gt;</code> dentro de um
+            <code>&lt;go-input-group&gt;</code> para mostrar a tecla de atalho
+            dentro do campo.
+          </p>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <div style="width: 100%; max-width: 20rem;">
+                  <go-input-group>
+                    <input
+                      data-slot="input-group-control"
+                      class="ig-control"
+                      placeholder="Pesquisar..."
+                      aria-label="Pesquisar"
+                    />
+                    <div
+                      role="group"
+                      data-slot="input-group-addon"
+                      data-align="inline-start"
+                      class="ig-addon ig-addon-start"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="ig-icon"
+                        aria-hidden="true"
+                      >
+                        <circle cx="11" cy="11" r="8" />
+                        <path d="m21 21-4.3-4.3" />
+                      </svg>
+                    </div>
+                    <div
+                      role="group"
+                      data-slot="input-group-addon"
+                      data-align="inline-end"
+                      class="ig-addon ig-addon-end"
+                    >
+                      <go-kbd>⌘</go-kbd>
+                      <go-kbd>K</go-kbd>
+                    </div>
+                  </go-input-group>
+                </div>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-input-group&gt;
+  &lt;input data-slot="input-group-control" placeholder="Pesquisar..." /&gt;
+  &lt;div data-slot="input-group-addon" data-align="inline-start"&gt;
+    &lt;svg&gt;&lt;!-- ícone lucide search --&gt;&lt;/svg&gt;
+  &lt;/div&gt;
+  &lt;div data-slot="input-group-addon" data-align="inline-end"&gt;
+    &lt;go-kbd&gt;⌘&lt;/go-kbd&gt;
+    &lt;go-kbd&gt;K&lt;/go-kbd&gt;
+  &lt;/div&gt;
+&lt;/go-input-group&gt;</pre>
               </div>
             </div>
           </div>
 
           <nav class="docs-pager">
-            <a class="prev" href="command.html"
-              ><span>Anterior</span>Command</a
+            <a class="prev" href="breadcrumb.html"
+              ><span>Anterior</span>Breadcrumb</a
             >
-            <a class="next" href="carousel.html"
-              ><span>Seguinte</span>Carousel</a
+            <a class="next" href="dropdown-menu.html"
+              ><span>Seguinte</span>Dropdown Menu</a
             >
           </nav>
         </div>

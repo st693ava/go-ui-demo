@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Toggle Group — go-ui</title>
+    <title>Native Select — go-ui</title>
     <link rel="icon" href="/dist/favicon.svg" />
     <script>
       window.__SITE_BASE__ = '../'
@@ -28,7 +28,7 @@
       <div class="docs">
         <go-sidebar
           mode="nav"
-          active="toggle-group.html"
+          active="native-select.html"
           class="docs-nav"
           aria-label="Navegação de componentes"
         >
@@ -114,18 +114,18 @@
             <span aria-hidden="true">/</span>
             <a href="../components.html">Componentes</a>
             <span aria-hidden="true">/</span>
-            <b>Toggle Group</b>
+            <b>Native Select</b>
           </p>
-          <h1 class="doc-h1">Toggle Group</h1>
+          <h1 class="doc-h1">Native Select</h1>
           <p class="doc-lead">
-            Um conjunto de botões de dois estados que podem ser ligados ou
-            desligados.
+            Um <code>&lt;select&gt;</code> nativo do browser estilizado, com
+            integração consistente no sistema de design.
           </p>
           <div class="docs-actions">
             <button type="button" data-copy-page>Copiar página</button>
             <span class="sp"></span>
-            <a href="toggle.html"><span>Anterior</span> Toggle</a>
-            <a href="toaster.html">Seguinte <span>Toaster</span></a>
+            <a href="tags-input.html"><span>Anterior</span> Tags Input</a>
+            <a href="number-field.html">Seguinte <span>Number Field</span></a>
           </div>
 
           <!-- ── Preview/Code principal ──────────────────────────────── -->
@@ -136,18 +136,24 @@
             </div>
             <div class="pc-panels">
               <div class="pc-preview">
-                <go-toggle-group type="multiple">
-                  <option value="bold">B</option>
-                  <option value="italic">I</option>
-                  <option value="underline">U</option>
-                </go-toggle-group>
+                <go-native-select aria-label="Escolha uma fruta">
+                  <option value="">Escolha uma fruta</option>
+                  <option value="apple">Maçã</option>
+                  <option value="banana">Banana</option>
+                  <option value="blueberry">Mirtilo</option>
+                  <option value="grapes" disabled>Uvas</option>
+                  <option value="pineapple">Ananás</option>
+                </go-native-select>
               </div>
               <div class="pc-code">
-                <pre class="code" data-lang="html">&lt;go-toggle-group type="multiple"&gt;
-  &lt;option value="bold"&gt;B&lt;/option&gt;
-  &lt;option value="italic"&gt;I&lt;/option&gt;
-  &lt;option value="underline"&gt;U&lt;/option&gt;
-&lt;/go-toggle-group&gt;</pre>
+                <pre class="code" data-lang="html">&lt;go-native-select aria-label="Escolha uma fruta"&gt;
+  &lt;option value=""&gt;Escolha uma fruta&lt;/option&gt;
+  &lt;option value="apple"&gt;Maçã&lt;/option&gt;
+  &lt;option value="banana"&gt;Banana&lt;/option&gt;
+  &lt;option value="blueberry"&gt;Mirtilo&lt;/option&gt;
+  &lt;option value="grapes" disabled&gt;Uvas&lt;/option&gt;
+  &lt;option value="pineapple"&gt;Ananás&lt;/option&gt;
+&lt;/go-native-select&gt;</pre>
               </div>
             </div>
           </div>
@@ -177,7 +183,7 @@
             <div class="tabs-panel" data-panel="manual">
               <p class="tx">
                 Importa o registo uma vez no teu entry-point — regista todos os
-                Custom Elements, <code>&lt;go-toggle-group&gt;</code> incluído:
+                Custom Elements, <code>&lt;go-native-select&gt;</code> incluído:
               </p>
               <pre class="code" data-lang="ts">// main.ts / app.js
 import '@st693ava/go-ui'
@@ -188,49 +194,48 @@ import '@st693ava/go-ui/style.css'</pre>
           <!-- ── Uso ─────────────────────────────────────────────────── -->
           <h2 id="uso">Uso</h2>
           <p class="tx">
-            Cada <code>&lt;option value="..."&gt;</code> é um item. Usa
-            <code>type="single"</code> ou <code>type="multiple"</code>; o evento
-            <code>change</code> traz <code>detail.value</code> (string em
-            single, array em multiple). <code>value</code> define a seleção
-            inicial (lista separada por vírgulas em multiple).
+            Declara cada
+            <code>&lt;option value="…"&gt;Etiqueta&lt;/option&gt;</code> no
+            light-DOM. O <code>&lt;go-native-select&gt;</code> projeta-os para um
+            <code>&lt;select&gt;</code> nativo estilizado e, como Custom Element
+            Form-Associated, submete o valor em qualquer
+            <code>&lt;form&gt;</code> através do atributo <code>name</code>.
           </p>
-          <pre class="code" data-lang="html">&lt;go-toggle-group type="multiple"&gt;
-  &lt;option value="a"&gt;A&lt;/option&gt;
-  &lt;option value="b"&gt;B&lt;/option&gt;
-  &lt;option value="c"&gt;C&lt;/option&gt;
-&lt;/go-toggle-group&gt;</pre>
+          <pre class="code" data-lang="html">&lt;go-native-select name="fruit"&gt;
+  &lt;option value=""&gt;Escolha uma fruta&lt;/option&gt;
+  &lt;option value="apple"&gt;Maçã&lt;/option&gt;
+  &lt;option value="banana"&gt;Banana&lt;/option&gt;
+&lt;/go-native-select&gt;</pre>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <go-native-select aria-label="Escolha uma fruta">
+                  <option value="">Escolha uma fruta</option>
+                  <option value="apple">Maçã</option>
+                  <option value="banana">Banana</option>
+                </go-native-select>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-native-select&gt;
+  &lt;option value=""&gt;Escolha uma fruta&lt;/option&gt;
+  &lt;option value="apple"&gt;Maçã&lt;/option&gt;
+  &lt;option value="banana"&gt;Banana&lt;/option&gt;
+&lt;/go-native-select&gt;</pre>
+              </div>
+            </div>
+          </div>
 
           <!-- ── Exemplos ────────────────────────────────────────────── -->
           <h2 id="exemplos">Exemplos</h2>
 
-          <h3 id="default">Default</h3>
-          <p class="tx">Grupo de seleção múltipla, variante por defeito.</p>
-          <div class="pc" data-view="preview">
-            <div class="pc-bar">
-              <button data-view="preview" aria-selected="true">Preview</button>
-              <button data-view="code" aria-selected="false">Code</button>
-            </div>
-            <div class="pc-panels">
-              <div class="pc-preview">
-                <go-toggle-group type="multiple">
-                  <option value="bold">B</option>
-                  <option value="italic">I</option>
-                  <option value="underline">U</option>
-                </go-toggle-group>
-              </div>
-              <div class="pc-code">
-                <pre class="code" data-lang="html">&lt;go-toggle-group type="multiple"&gt;
-  &lt;option value="bold"&gt;B&lt;/option&gt;
-  &lt;option value="italic"&gt;I&lt;/option&gt;
-  &lt;option value="underline"&gt;U&lt;/option&gt;
-&lt;/go-toggle-group&gt;</pre>
-              </div>
-            </div>
-          </div>
-
-          <h3 id="contorno">Contorno</h3>
+          <h3 id="com-grupos">Com grupos</h3>
           <p class="tx">
-            Usa <code>variant="outline"</code> para itens com contorno.
+            Organiza as opções com <code>&lt;optgroup label="…"&gt;</code> para
+            uma melhor categorização.
           </p>
           <div class="pc" data-view="preview">
             <div class="pc-bar">
@@ -239,26 +244,42 @@ import '@st693ava/go-ui/style.css'</pre>
             </div>
             <div class="pc-panels">
               <div class="pc-preview">
-                <go-toggle-group type="multiple" variant="outline">
-                  <option value="bold">B</option>
-                  <option value="italic">I</option>
-                  <option value="underline">U</option>
-                </go-toggle-group>
+                <go-native-select aria-label="Escolha um alimento">
+                  <option value="">Escolha um alimento</option>
+                  <optgroup label="Frutas">
+                    <option value="apple">Maçã</option>
+                    <option value="banana">Banana</option>
+                    <option value="blueberry">Mirtilo</option>
+                  </optgroup>
+                  <optgroup label="Legumes">
+                    <option value="carrot">Cenoura</option>
+                    <option value="broccoli">Brócolos</option>
+                    <option value="spinach">Espinafres</option>
+                  </optgroup>
+                </go-native-select>
               </div>
               <div class="pc-code">
-                <pre class="code" data-lang="html">&lt;go-toggle-group type="multiple" variant="outline"&gt;
-  &lt;option value="bold"&gt;B&lt;/option&gt;
-  &lt;option value="italic"&gt;I&lt;/option&gt;
-  &lt;option value="underline"&gt;U&lt;/option&gt;
-&lt;/go-toggle-group&gt;</pre>
+                <pre class="code" data-lang="html">&lt;go-native-select&gt;
+  &lt;option value=""&gt;Escolha um alimento&lt;/option&gt;
+  &lt;optgroup label="Frutas"&gt;
+    &lt;option value="apple"&gt;Maçã&lt;/option&gt;
+    &lt;option value="banana"&gt;Banana&lt;/option&gt;
+    &lt;option value="blueberry"&gt;Mirtilo&lt;/option&gt;
+  &lt;/optgroup&gt;
+  &lt;optgroup label="Legumes"&gt;
+    &lt;option value="carrot"&gt;Cenoura&lt;/option&gt;
+    &lt;option value="broccoli"&gt;Brócolos&lt;/option&gt;
+    &lt;option value="spinach"&gt;Espinafres&lt;/option&gt;
+  &lt;/optgroup&gt;
+&lt;/go-native-select&gt;</pre>
               </div>
             </div>
           </div>
 
-          <h3 id="single">Single</h3>
+          <h3 id="estado-desativado">Estado desativado</h3>
           <p class="tx">
-            Com <code>type="single"</code> apenas um item pode estar ativo de
-            cada vez.
+            Desativa opções individuais ou o componente inteiro com o atributo
+            <code>disabled</code>.
           </p>
           <div class="pc" data-view="preview">
             <div class="pc-bar">
@@ -267,76 +288,26 @@ import '@st693ava/go-ui/style.css'</pre>
             </div>
             <div class="pc-panels">
               <div class="pc-preview">
-                <go-toggle-group type="single" value="center">
-                  <option value="left">Esquerda</option>
-                  <option value="center">Centro</option>
-                  <option value="right">Direita</option>
-                </go-toggle-group>
+                <go-native-select disabled aria-label="Escolha uma fruta">
+                  <option value="">Escolha uma fruta</option>
+                  <option value="apple">Maçã</option>
+                  <option value="banana">Banana</option>
+                </go-native-select>
               </div>
               <div class="pc-code">
-                <pre class="code" data-lang="html">&lt;go-toggle-group type="single" value="center"&gt;
-  &lt;option value="left"&gt;Esquerda&lt;/option&gt;
-  &lt;option value="center"&gt;Centro&lt;/option&gt;
-  &lt;option value="right"&gt;Direita&lt;/option&gt;
-&lt;/go-toggle-group&gt;</pre>
+                <pre class="code" data-lang="html">&lt;go-native-select disabled&gt;
+  &lt;option value=""&gt;Escolha uma fruta&lt;/option&gt;
+  &lt;option value="apple"&gt;Maçã&lt;/option&gt;
+  &lt;option value="banana"&gt;Banana&lt;/option&gt;
+&lt;/go-native-select&gt;</pre>
               </div>
             </div>
           </div>
 
-          <h3 id="pequeno">Pequeno</h3>
-          <p class="tx">Usa <code>size="sm"</code> para um grupo pequeno.</p>
-          <div class="pc" data-view="preview">
-            <div class="pc-bar">
-              <button data-view="preview" aria-selected="true">Preview</button>
-              <button data-view="code" aria-selected="false">Code</button>
-            </div>
-            <div class="pc-panels">
-              <div class="pc-preview">
-                <go-toggle-group type="multiple" size="sm">
-                  <option value="bold">B</option>
-                  <option value="italic">I</option>
-                  <option value="underline">U</option>
-                </go-toggle-group>
-              </div>
-              <div class="pc-code">
-                <pre class="code" data-lang="html">&lt;go-toggle-group type="multiple" size="sm"&gt;
-  &lt;option value="bold"&gt;B&lt;/option&gt;
-  &lt;option value="italic"&gt;I&lt;/option&gt;
-  &lt;option value="underline"&gt;U&lt;/option&gt;
-&lt;/go-toggle-group&gt;</pre>
-              </div>
-            </div>
-          </div>
-
-          <h3 id="grande">Grande</h3>
-          <p class="tx">Usa <code>size="lg"</code> para um grupo grande.</p>
-          <div class="pc" data-view="preview">
-            <div class="pc-bar">
-              <button data-view="preview" aria-selected="true">Preview</button>
-              <button data-view="code" aria-selected="false">Code</button>
-            </div>
-            <div class="pc-panels">
-              <div class="pc-preview">
-                <go-toggle-group type="multiple" size="lg">
-                  <option value="bold">B</option>
-                  <option value="italic">I</option>
-                  <option value="underline">U</option>
-                </go-toggle-group>
-              </div>
-              <div class="pc-code">
-                <pre class="code" data-lang="html">&lt;go-toggle-group type="multiple" size="lg"&gt;
-  &lt;option value="bold"&gt;B&lt;/option&gt;
-  &lt;option value="italic"&gt;I&lt;/option&gt;
-  &lt;option value="underline"&gt;U&lt;/option&gt;
-&lt;/go-toggle-group&gt;</pre>
-              </div>
-            </div>
-          </div>
-
-          <h3 id="desativado">Desativado</h3>
+          <h3 id="estado-invalido">Estado inválido</h3>
           <p class="tx">
-            Marca um item com <code>disabled</code> para o tornar não
-            interativo.
+            Mostra erros de validação com o atributo
+            <code>aria-invalid</code> e o estilo de erro associado.
           </p>
           <div class="pc" data-view="preview">
             <div class="pc-bar">
@@ -345,34 +316,130 @@ import '@st693ava/go-ui/style.css'</pre>
             </div>
             <div class="pc-panels">
               <div class="pc-preview">
-                <go-toggle-group type="multiple">
-                  <option value="bold">B</option>
-                  <option value="italic" disabled>I</option>
-                  <option value="underline">U</option>
-                </go-toggle-group>
+                <go-native-select aria-invalid="true" aria-label="Escolha um país">
+                  <option value="">Escolha um país</option>
+                  <option value="pt">Portugal</option>
+                  <option value="us">Estados Unidos</option>
+                  <option value="uk">Reino Unido</option>
+                  <option value="ca">Canadá</option>
+                </go-native-select>
               </div>
               <div class="pc-code">
-                <pre class="code" data-lang="html">&lt;go-toggle-group type="multiple"&gt;
-  &lt;option value="bold"&gt;B&lt;/option&gt;
-  &lt;option value="italic" disabled&gt;I&lt;/option&gt;
-  &lt;option value="underline"&gt;U&lt;/option&gt;
-&lt;/go-toggle-group&gt;</pre>
+                <pre class="code" data-lang="html">&lt;go-native-select aria-invalid="true"&gt;
+  &lt;option value=""&gt;Escolha um país&lt;/option&gt;
+  &lt;option value="pt"&gt;Portugal&lt;/option&gt;
+  &lt;option value="us"&gt;Estados Unidos&lt;/option&gt;
+  &lt;option value="uk"&gt;Reino Unido&lt;/option&gt;
+  &lt;option value="ca"&gt;Canadá&lt;/option&gt;
+&lt;/go-native-select&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <h3 id="integracao-em-formulario">Integração em formulário</h3>
+          <p class="tx">
+            Como Custom Element Form-Associated, integra-se num
+            <code>&lt;form&gt;</code> nativo. Com <code>required</code>, o submit
+            é bloqueado até haver uma escolha; o valor é submetido via
+            <code>FormData</code> através do <code>name</code>.
+          </p>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <form
+                  class="ns-form"
+                  onsubmit="event.preventDefault();this.querySelector('.ns-out').textContent='country='+new FormData(this).get('country')"
+                >
+                  <go-native-select name="country" required aria-label="Escolha um país">
+                    <option value="">Escolha um país</option>
+                    <option value="pt">Portugal</option>
+                    <option value="us">Estados Unidos</option>
+                    <option value="uk">Reino Unido</option>
+                  </go-native-select>
+                  <go-button type="submit" size="sm">Submeter</go-button>
+                  <output class="ns-out"></output>
+                </form>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;form&gt;
+  &lt;go-native-select name="country" required&gt;
+    &lt;option value=""&gt;Escolha um país&lt;/option&gt;
+    &lt;option value="pt"&gt;Portugal&lt;/option&gt;
+    &lt;option value="us"&gt;Estados Unidos&lt;/option&gt;
+    &lt;option value="uk"&gt;Reino Unido&lt;/option&gt;
+  &lt;/go-native-select&gt;
+  &lt;go-button type="submit"&gt;Submeter&lt;/go-button&gt;
+&lt;/form&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <h3 id="acessibilidade">Acessibilidade</h3>
+          <p class="tx">
+            O componente mantém todas as funcionalidades de acessibilidade
+            nativas do <code>&lt;select&gt;</code>. Usa
+            <code>aria-label</code> ou <code>aria-labelledby</code> para
+            contexto adicional quando necessário; o chevron está marcado como
+            <code>aria-hidden</code> para não duplicar leitura.
+          </p>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <go-native-select aria-label="Escolha o idioma preferido">
+                  <option value="pt">Português</option>
+                  <option value="en">Inglês</option>
+                  <option value="es">Espanhol</option>
+                  <option value="fr">Francês</option>
+                </go-native-select>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-native-select aria-label="Escolha o idioma preferido"&gt;
+  &lt;option value="pt"&gt;Português&lt;/option&gt;
+  &lt;option value="en"&gt;Inglês&lt;/option&gt;
+  &lt;option value="es"&gt;Espanhol&lt;/option&gt;
+  &lt;option value="fr"&gt;Francês&lt;/option&gt;
+&lt;/go-native-select&gt;</pre>
               </div>
             </div>
           </div>
 
           <nav class="docs-pager">
-            <a class="prev" href="toggle.html"
-              ><span>Anterior</span>Toggle</a
+            <a class="prev" href="tags-input.html"
+              ><span>Anterior</span>Tags Input</a
             >
-            <a class="next" href="toaster.html"
-              ><span>Seguinte</span>Toaster</a
+            <a class="next" href="number-field.html"
+              ><span>Seguinte</span>Number Field</a
             >
           </nav>
         </div>
 
         <aside class="docs-toc" id="toc" aria-label="Nesta página"></aside>
       </div>
+
+      <style>
+        /* Composição local: o exemplo "Integração em formulário" agrupa o
+           go-native-select real com um go-button real e mostra o valor
+           submetido via FormData. Só esta página precisa deste layout. */
+        .ns-form {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 1rem;
+        }
+        .ns-out {
+          font-size: 0.875rem;
+          color: var(--muted-foreground, #6b7280);
+          font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        }
+      </style>
     </main>
   </body>
 </html>

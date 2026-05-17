@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pagination — go-ui</title>
+    <title>Button Group — go-ui</title>
     <link rel="icon" href="/dist/favicon.svg" />
     <script>
       window.__SITE_BASE__ = '../'
@@ -28,7 +28,7 @@
       <div class="docs">
         <go-sidebar
           mode="nav"
-          active="pagination.html"
+          active="button-group.html"
           class="docs-nav"
           aria-label="Navegação de componentes"
         >
@@ -114,17 +114,18 @@
             <span aria-hidden="true">/</span>
             <a href="../components.html">Componentes</a>
             <span aria-hidden="true">/</span>
-            <b>Pagination</b>
+            <b>Button Group</b>
           </p>
-          <h1 class="doc-h1">Pagination</h1>
+          <h1 class="doc-h1">Button Group</h1>
           <p class="doc-lead">
-            Paginação com navegação de páginas e ligações anterior e seguinte.
+            Um contentor que agrupa botões relacionados com estilo
+            consistente.
           </p>
           <div class="docs-actions">
             <button type="button" data-copy-page>Copiar página</button>
             <span class="sp"></span>
-            <a href="command.html"><span>Anterior</span> Command</a>
-            <a href="carousel.html">Seguinte <span>Carousel</span></a>
+            <a href="button.html"><span>Anterior</span> Button</a>
+            <a href="label.html">Seguinte <span>Label</span></a>
           </div>
 
           <!-- ── Preview/Code principal ──────────────────────────────── -->
@@ -135,18 +136,18 @@
             </div>
             <div class="pc-panels">
               <div class="pc-preview">
-                <go-pagination
-                  total="30"
-                  items-per-page="10"
-                  default-page="2"
-                ></go-pagination>
+                <go-button-group aria-label="Ações de email">
+                  <go-button variant="outline">Arquivar</go-button>
+                  <go-button variant="outline">Reportar</go-button>
+                  <go-button variant="outline">Adiar</go-button>
+                </go-button-group>
               </div>
               <div class="pc-code">
-                <pre class="code" data-lang="html">&lt;go-pagination
-  total="30"
-  items-per-page="10"
-  default-page="2"
-&gt;&lt;/go-pagination&gt;</pre>
+                <pre class="code" data-lang="html">&lt;go-button-group aria-label="Ações de email"&gt;
+  &lt;go-button variant="outline"&gt;Arquivar&lt;/go-button&gt;
+  &lt;go-button variant="outline"&gt;Reportar&lt;/go-button&gt;
+  &lt;go-button variant="outline"&gt;Adiar&lt;/go-button&gt;
+&lt;/go-button-group&gt;</pre>
               </div>
             </div>
           </div>
@@ -176,7 +177,7 @@
             <div class="tabs-panel" data-panel="manual">
               <p class="tx">
                 Importa o registo uma vez no teu entry-point — regista todos os
-                Custom Elements, <code>&lt;go-pagination&gt;</code> incluído:
+                Custom Elements, <code>&lt;go-button-group&gt;</code> incluído:
               </p>
               <pre class="code" data-lang="ts">// main.ts / app.js
 import '@st693ava/go-ui'
@@ -187,32 +188,42 @@ import '@st693ava/go-ui/style.css'</pre>
           <!-- ── Uso ─────────────────────────────────────────────────── -->
           <h2 id="uso">Uso</h2>
           <p class="tx">
-            A composição (botões, números e reticências) é resolvida
-            internamente: declara apenas os atributos
-            <code>total</code> (número de itens),
-            <code>items-per-page</code> (itens por página) e
-            <code>default-page</code> (página inicial). Ao mudar de página, o
-            elemento dispara um evento <code>change</code> com
-            <code>detail.page</code>.
+            Coloca os teus <code>&lt;go-button&gt;</code> directamente dentro
+            de <code>&lt;go-button-group&gt;</code>. O contentor cola as bordas
+            e os cantos dos botões adjacentes para formar um grupo coeso.
           </p>
-          <pre class="code" data-lang="html">&lt;go-pagination
-  total="100"
-  items-per-page="10"
-  default-page="1"
-&gt;&lt;/go-pagination&gt;</pre>
-          <pre class="code" data-lang="ts">document
-  .querySelector('go-pagination')
-  .addEventListener('change', (e) =&gt; {
-    console.log(e.detail.page) // 1, 2, 3, ...
-  })</pre>
+          <pre class="code" data-lang="html">&lt;go-button-group&gt;
+  &lt;go-button&gt;Botão 1&lt;/go-button&gt;
+  &lt;go-button&gt;Botão 2&lt;/go-button&gt;
+&lt;/go-button-group&gt;</pre>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <go-button-group>
+                  <go-button variant="outline">Botão 1</go-button>
+                  <go-button variant="outline">Botão 2</go-button>
+                </go-button-group>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-button-group&gt;
+  &lt;go-button&gt;Botão 1&lt;/go-button&gt;
+  &lt;go-button&gt;Botão 2&lt;/go-button&gt;
+&lt;/go-button-group&gt;</pre>
+              </div>
+            </div>
+          </div>
 
           <!-- ── Exemplos ────────────────────────────────────────────── -->
           <h2 id="exemplos">Exemplos</h2>
 
-          <h3 id="muitas-paginas">Muitas páginas</h3>
+          <h3 id="orientacao">Orientação</h3>
           <p class="tx">
-            Com muitos itens, a lista de páginas colapsa automaticamente em
-            reticências, mantendo a primeira, a última e as vizinhas da atual.
+            Define a prop <code>orientation</code> para mudar o eixo do grupo
+            de botões para vertical.
           </p>
           <div class="pc" data-view="preview">
             <div class="pc-bar">
@@ -221,26 +232,28 @@ import '@st693ava/go-ui/style.css'</pre>
             </div>
             <div class="pc-panels">
               <div class="pc-preview">
-                <go-pagination
-                  total="500"
-                  items-per-page="10"
-                  default-page="5"
-                ></go-pagination>
+                <go-button-group
+                  orientation="vertical"
+                  aria-label="Controlos de média"
+                  class="h-fit"
+                >
+                  <go-button variant="outline" size="icon">+</go-button>
+                  <go-button variant="outline" size="icon">−</go-button>
+                </go-button-group>
               </div>
               <div class="pc-code">
-                <pre class="code" data-lang="html">&lt;go-pagination
-  total="500"
-  items-per-page="10"
-  default-page="5"
-&gt;&lt;/go-pagination&gt;</pre>
+                <pre class="code" data-lang="html">&lt;go-button-group orientation="vertical" aria-label="Controlos de média"&gt;
+  &lt;go-button variant="outline" size="icon"&gt;+&lt;/go-button&gt;
+  &lt;go-button variant="outline" size="icon"&gt;−&lt;/go-button&gt;
+&lt;/go-button-group&gt;</pre>
               </div>
             </div>
           </div>
 
-          <h3 id="poucas-paginas">Poucas páginas</h3>
+          <h3 id="tamanho">Tamanho</h3>
           <p class="tx">
-            Quando o total cabe em poucas páginas, todas são mostradas sem
-            reticências.
+            Controla o tamanho dos botões através da prop <code>size</code> em
+            cada <code>&lt;go-button&gt;</code> individual.
           </p>
           <div class="pc" data-view="preview">
             <div class="pc-bar">
@@ -249,26 +262,50 @@ import '@st693ava/go-ui/style.css'</pre>
             </div>
             <div class="pc-panels">
               <div class="pc-preview">
-                <go-pagination
-                  total="30"
-                  items-per-page="10"
-                  default-page="2"
-                ></go-pagination>
+                <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 2rem;">
+                  <go-button-group>
+                    <go-button variant="outline" size="sm">Pequeno</go-button>
+                    <go-button variant="outline" size="sm">Botão</go-button>
+                    <go-button variant="outline" size="sm">Grupo</go-button>
+                  </go-button-group>
+                  <go-button-group>
+                    <go-button variant="outline">Default</go-button>
+                    <go-button variant="outline">Botão</go-button>
+                    <go-button variant="outline">Grupo</go-button>
+                  </go-button-group>
+                  <go-button-group>
+                    <go-button variant="outline" size="lg">Grande</go-button>
+                    <go-button variant="outline" size="lg">Botão</go-button>
+                    <go-button variant="outline" size="lg">Grupo</go-button>
+                  </go-button-group>
+                </div>
               </div>
               <div class="pc-code">
-                <pre class="code" data-lang="html">&lt;go-pagination
-  total="30"
-  items-per-page="10"
-  default-page="2"
-&gt;&lt;/go-pagination&gt;</pre>
+                <pre class="code" data-lang="html">&lt;go-button-group&gt;
+  &lt;go-button variant="outline" size="sm"&gt;Pequeno&lt;/go-button&gt;
+  &lt;go-button variant="outline" size="sm"&gt;Botão&lt;/go-button&gt;
+  &lt;go-button variant="outline" size="sm"&gt;Grupo&lt;/go-button&gt;
+&lt;/go-button-group&gt;
+
+&lt;go-button-group&gt;
+  &lt;go-button variant="outline"&gt;Default&lt;/go-button&gt;
+  &lt;go-button variant="outline"&gt;Botão&lt;/go-button&gt;
+  &lt;go-button variant="outline"&gt;Grupo&lt;/go-button&gt;
+&lt;/go-button-group&gt;
+
+&lt;go-button-group&gt;
+  &lt;go-button variant="outline" size="lg"&gt;Grande&lt;/go-button&gt;
+  &lt;go-button variant="outline" size="lg"&gt;Botão&lt;/go-button&gt;
+  &lt;go-button variant="outline" size="lg"&gt;Grupo&lt;/go-button&gt;
+&lt;/go-button-group&gt;</pre>
               </div>
             </div>
           </div>
 
-          <h3 id="por-pagina">Itens por página</h3>
+          <h3 id="aninhado">Aninhado</h3>
           <p class="tx">
-            Ajusta <code>items-per-page</code> para alterar quantos itens cada
-            página comporta — o número total de páginas recalcula-se.
+            Aninha vários <code>&lt;go-button-group&gt;</code> para criar grupos
+            de botões com espaçamento entre os subgrupos.
           </p>
           <div class="pc" data-view="preview">
             <div class="pc-bar">
@@ -277,28 +314,99 @@ import '@st693ava/go-ui/style.css'</pre>
             </div>
             <div class="pc-panels">
               <div class="pc-preview">
-                <go-pagination
-                  total="200"
-                  items-per-page="25"
-                  default-page="1"
-                ></go-pagination>
+                <go-button-group>
+                  <go-button-group>
+                    <go-button variant="outline" size="sm">1</go-button>
+                    <go-button variant="outline" size="sm">2</go-button>
+                    <go-button variant="outline" size="sm">3</go-button>
+                    <go-button variant="outline" size="sm">4</go-button>
+                    <go-button variant="outline" size="sm">5</go-button>
+                  </go-button-group>
+                  <go-button-group>
+                    <go-button variant="outline" size="icon" aria-label="Anterior">‹</go-button>
+                    <go-button variant="outline" size="icon" aria-label="Seguinte">›</go-button>
+                  </go-button-group>
+                </go-button-group>
               </div>
               <div class="pc-code">
-                <pre class="code" data-lang="html">&lt;go-pagination
-  total="200"
-  items-per-page="25"
-  default-page="1"
-&gt;&lt;/go-pagination&gt;</pre>
+                <pre class="code" data-lang="html">&lt;go-button-group&gt;
+  &lt;go-button-group&gt;
+    &lt;go-button variant="outline" size="sm"&gt;1&lt;/go-button&gt;
+    &lt;go-button variant="outline" size="sm"&gt;2&lt;/go-button&gt;
+    &lt;go-button variant="outline" size="sm"&gt;3&lt;/go-button&gt;
+  &lt;/go-button-group&gt;
+  &lt;go-button-group&gt;
+    &lt;go-button variant="outline" size="icon" aria-label="Anterior"&gt;‹&lt;/go-button&gt;
+    &lt;go-button variant="outline" size="icon" aria-label="Seguinte"&gt;›&lt;/go-button&gt;
+  &lt;/go-button-group&gt;
+&lt;/go-button-group&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <h3 id="separador">Separador</h3>
+          <p class="tx">
+            Botões com variante <code>outline</code> não precisam de separador,
+            pois já têm borda. Para outras variantes, intercala um divisor para
+            melhorar a hierarquia visual.
+          </p>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <go-button-group>
+                  <go-button variant="secondary" size="sm">Copiar</go-button>
+                  <go-separator orientation="vertical"></go-separator>
+                  <go-button variant="secondary" size="sm">Colar</go-button>
+                </go-button-group>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-button-group&gt;
+  &lt;go-button variant="secondary" size="sm"&gt;Copiar&lt;/go-button&gt;
+  &lt;go-separator orientation="vertical"&gt;&lt;/go-separator&gt;
+  &lt;go-button variant="secondary" size="sm"&gt;Colar&lt;/go-button&gt;
+&lt;/go-button-group&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <h3 id="split">Split</h3>
+          <p class="tx">
+            Cria um botão dividido (split) adicionando dois botões separados
+            por um divisor — uma ação principal e uma ação secundária.
+          </p>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <go-button-group>
+                  <go-button variant="secondary">Botão</go-button>
+                  <go-separator orientation="vertical"></go-separator>
+                  <go-button variant="secondary" size="icon">+</go-button>
+                </go-button-group>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-button-group&gt;
+  &lt;go-button variant="secondary"&gt;Botão&lt;/go-button&gt;
+  &lt;go-separator orientation="vertical"&gt;&lt;/go-separator&gt;
+  &lt;go-button variant="secondary" size="icon"&gt;+&lt;/go-button&gt;
+&lt;/go-button-group&gt;</pre>
               </div>
             </div>
           </div>
 
           <nav class="docs-pager">
-            <a class="prev" href="command.html"
-              ><span>Anterior</span>Command</a
+            <a class="prev" href="button.html"
+              ><span>Anterior</span>Button</a
             >
-            <a class="next" href="carousel.html"
-              ><span>Seguinte</span>Carousel</a
+            <a class="next" href="label.html"
+              ><span>Seguinte</span>Label</a
             >
           </nav>
         </div>

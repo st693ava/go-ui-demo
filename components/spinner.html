@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Toggle Group — go-ui</title>
+    <title>Spinner — go-ui</title>
     <link rel="icon" href="/dist/favicon.svg" />
     <script>
       window.__SITE_BASE__ = '../'
@@ -28,7 +28,7 @@
       <div class="docs">
         <go-sidebar
           mode="nav"
-          active="toggle-group.html"
+          active="spinner.html"
           class="docs-nav"
           aria-label="Navegação de componentes"
         >
@@ -114,18 +114,18 @@
             <span aria-hidden="true">/</span>
             <a href="../components.html">Componentes</a>
             <span aria-hidden="true">/</span>
-            <b>Toggle Group</b>
+            <b>Spinner</b>
           </p>
-          <h1 class="doc-h1">Toggle Group</h1>
+          <h1 class="doc-h1">Spinner</h1>
           <p class="doc-lead">
-            Um conjunto de botões de dois estados que podem ser ligados ou
-            desligados.
+            Um indicador que pode ser usado para mostrar um estado de
+            carregamento.
           </p>
           <div class="docs-actions">
             <button type="button" data-copy-page>Copiar página</button>
             <span class="sp"></span>
-            <a href="toggle.html"><span>Anterior</span> Toggle</a>
-            <a href="toaster.html">Seguinte <span>Toaster</span></a>
+            <a href="skeleton.html"><span>Anterior</span> Skeleton</a>
+            <a href="progress.html">Seguinte <span>Progress</span></a>
           </div>
 
           <!-- ── Preview/Code principal ──────────────────────────────── -->
@@ -136,18 +136,16 @@
             </div>
             <div class="pc-panels">
               <div class="pc-preview">
-                <go-toggle-group type="multiple">
-                  <option value="bold">B</option>
-                  <option value="italic">I</option>
-                  <option value="underline">U</option>
-                </go-toggle-group>
+                <go-button disabled>
+                  <go-spinner></go-spinner>
+                  A processar pagamento
+                </go-button>
               </div>
               <div class="pc-code">
-                <pre class="code" data-lang="html">&lt;go-toggle-group type="multiple"&gt;
-  &lt;option value="bold"&gt;B&lt;/option&gt;
-  &lt;option value="italic"&gt;I&lt;/option&gt;
-  &lt;option value="underline"&gt;U&lt;/option&gt;
-&lt;/go-toggle-group&gt;</pre>
+                <pre class="code" data-lang="html">&lt;go-button disabled&gt;
+  &lt;go-spinner&gt;&lt;/go-spinner&gt;
+  A processar pagamento
+&lt;/go-button&gt;</pre>
               </div>
             </div>
           </div>
@@ -177,7 +175,7 @@
             <div class="tabs-panel" data-panel="manual">
               <p class="tx">
                 Importa o registo uma vez no teu entry-point — regista todos os
-                Custom Elements, <code>&lt;go-toggle-group&gt;</code> incluído:
+                Custom Elements, <code>&lt;go-spinner&gt;</code> incluído:
               </p>
               <pre class="code" data-lang="ts">// main.ts / app.js
 import '@st693ava/go-ui'
@@ -188,49 +186,36 @@ import '@st693ava/go-ui/style.css'</pre>
           <!-- ── Uso ─────────────────────────────────────────────────── -->
           <h2 id="uso">Uso</h2>
           <p class="tx">
-            Cada <code>&lt;option value="..."&gt;</code> é um item. Usa
-            <code>type="single"</code> ou <code>type="multiple"</code>; o evento
-            <code>change</code> traz <code>detail.value</code> (string em
-            single, array em multiple). <code>value</code> define a seleção
-            inicial (lista separada por vírgulas em multiple).
+            Coloca <code>&lt;go-spinner&gt;</code> em qualquer sítio onde
+            precises de sinalizar atividade. Por defeito tem o tamanho
+            <code>size-4</code> e herda a cor do texto via
+            <code>currentColor</code>.
           </p>
-          <pre class="code" data-lang="html">&lt;go-toggle-group type="multiple"&gt;
-  &lt;option value="a"&gt;A&lt;/option&gt;
-  &lt;option value="b"&gt;B&lt;/option&gt;
-  &lt;option value="c"&gt;C&lt;/option&gt;
-&lt;/go-toggle-group&gt;</pre>
+          <pre class="code" data-lang="html">&lt;go-spinner&gt;&lt;/go-spinner&gt;</pre>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <go-spinner></go-spinner>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-spinner&gt;&lt;/go-spinner&gt;</pre>
+              </div>
+            </div>
+          </div>
 
           <!-- ── Exemplos ────────────────────────────────────────────── -->
           <h2 id="exemplos">Exemplos</h2>
 
-          <h3 id="default">Default</h3>
-          <p class="tx">Grupo de seleção múltipla, variante por defeito.</p>
-          <div class="pc" data-view="preview">
-            <div class="pc-bar">
-              <button data-view="preview" aria-selected="true">Preview</button>
-              <button data-view="code" aria-selected="false">Code</button>
-            </div>
-            <div class="pc-panels">
-              <div class="pc-preview">
-                <go-toggle-group type="multiple">
-                  <option value="bold">B</option>
-                  <option value="italic">I</option>
-                  <option value="underline">U</option>
-                </go-toggle-group>
-              </div>
-              <div class="pc-code">
-                <pre class="code" data-lang="html">&lt;go-toggle-group type="multiple"&gt;
-  &lt;option value="bold"&gt;B&lt;/option&gt;
-  &lt;option value="italic"&gt;I&lt;/option&gt;
-  &lt;option value="underline"&gt;U&lt;/option&gt;
-&lt;/go-toggle-group&gt;</pre>
-              </div>
-            </div>
-          </div>
-
-          <h3 id="contorno">Contorno</h3>
+          <h3 id="tamanho">Tamanho</h3>
           <p class="tx">
-            Usa <code>variant="outline"</code> para itens com contorno.
+            Usa o atributo <code>size</code>
+            (<code>xs</code>, <code>sm</code>, <code>md</code>,
+            <code>lg</code>, <code>xl</code>) para alterar a dimensão do
+            spinner.
           </p>
           <div class="pc" data-view="preview">
             <div class="pc-bar">
@@ -239,26 +224,26 @@ import '@st693ava/go-ui/style.css'</pre>
             </div>
             <div class="pc-panels">
               <div class="pc-preview">
-                <go-toggle-group type="multiple" variant="outline">
-                  <option value="bold">B</option>
-                  <option value="italic">I</option>
-                  <option value="underline">U</option>
-                </go-toggle-group>
+                <div class="flex items-center gap-6">
+                  <go-spinner size="xs"></go-spinner>
+                  <go-spinner size="sm"></go-spinner>
+                  <go-spinner size="md"></go-spinner>
+                  <go-spinner size="lg"></go-spinner>
+                </div>
               </div>
               <div class="pc-code">
-                <pre class="code" data-lang="html">&lt;go-toggle-group type="multiple" variant="outline"&gt;
-  &lt;option value="bold"&gt;B&lt;/option&gt;
-  &lt;option value="italic"&gt;I&lt;/option&gt;
-  &lt;option value="underline"&gt;U&lt;/option&gt;
-&lt;/go-toggle-group&gt;</pre>
+                <pre class="code" data-lang="html">&lt;go-spinner size="xs"&gt;&lt;/go-spinner&gt;
+&lt;go-spinner size="sm"&gt;&lt;/go-spinner&gt;
+&lt;go-spinner size="md"&gt;&lt;/go-spinner&gt;
+&lt;go-spinner size="lg"&gt;&lt;/go-spinner&gt;</pre>
               </div>
             </div>
           </div>
 
-          <h3 id="single">Single</h3>
+          <h3 id="cor">Cor</h3>
           <p class="tx">
-            Com <code>type="single"</code> apenas um item pode estar ativo de
-            cada vez.
+            Usa uma classe utilitária <code>text-*</code> no host para alterar
+            a cor do spinner — ele herda <code>currentColor</code>.
           </p>
           <div class="pc" data-view="preview">
             <div class="pc-bar">
@@ -267,76 +252,29 @@ import '@st693ava/go-ui/style.css'</pre>
             </div>
             <div class="pc-panels">
               <div class="pc-preview">
-                <go-toggle-group type="single" value="center">
-                  <option value="left">Esquerda</option>
-                  <option value="center">Centro</option>
-                  <option value="right">Direita</option>
-                </go-toggle-group>
+                <div class="flex items-center gap-6">
+                  <go-spinner size="md" class="text-red-500"></go-spinner>
+                  <go-spinner size="md" class="text-green-500"></go-spinner>
+                  <go-spinner size="md" class="text-blue-500"></go-spinner>
+                  <go-spinner size="md" class="text-yellow-500"></go-spinner>
+                  <go-spinner size="md" class="text-purple-500"></go-spinner>
+                </div>
               </div>
               <div class="pc-code">
-                <pre class="code" data-lang="html">&lt;go-toggle-group type="single" value="center"&gt;
-  &lt;option value="left"&gt;Esquerda&lt;/option&gt;
-  &lt;option value="center"&gt;Centro&lt;/option&gt;
-  &lt;option value="right"&gt;Direita&lt;/option&gt;
-&lt;/go-toggle-group&gt;</pre>
+                <pre class="code" data-lang="html">&lt;go-spinner size="md" class="text-red-500"&gt;&lt;/go-spinner&gt;
+&lt;go-spinner size="md" class="text-green-500"&gt;&lt;/go-spinner&gt;
+&lt;go-spinner size="md" class="text-blue-500"&gt;&lt;/go-spinner&gt;
+&lt;go-spinner size="md" class="text-yellow-500"&gt;&lt;/go-spinner&gt;
+&lt;go-spinner size="md" class="text-purple-500"&gt;&lt;/go-spinner&gt;</pre>
               </div>
             </div>
           </div>
 
-          <h3 id="pequeno">Pequeno</h3>
-          <p class="tx">Usa <code>size="sm"</code> para um grupo pequeno.</p>
-          <div class="pc" data-view="preview">
-            <div class="pc-bar">
-              <button data-view="preview" aria-selected="true">Preview</button>
-              <button data-view="code" aria-selected="false">Code</button>
-            </div>
-            <div class="pc-panels">
-              <div class="pc-preview">
-                <go-toggle-group type="multiple" size="sm">
-                  <option value="bold">B</option>
-                  <option value="italic">I</option>
-                  <option value="underline">U</option>
-                </go-toggle-group>
-              </div>
-              <div class="pc-code">
-                <pre class="code" data-lang="html">&lt;go-toggle-group type="multiple" size="sm"&gt;
-  &lt;option value="bold"&gt;B&lt;/option&gt;
-  &lt;option value="italic"&gt;I&lt;/option&gt;
-  &lt;option value="underline"&gt;U&lt;/option&gt;
-&lt;/go-toggle-group&gt;</pre>
-              </div>
-            </div>
-          </div>
-
-          <h3 id="grande">Grande</h3>
-          <p class="tx">Usa <code>size="lg"</code> para um grupo grande.</p>
-          <div class="pc" data-view="preview">
-            <div class="pc-bar">
-              <button data-view="preview" aria-selected="true">Preview</button>
-              <button data-view="code" aria-selected="false">Code</button>
-            </div>
-            <div class="pc-panels">
-              <div class="pc-preview">
-                <go-toggle-group type="multiple" size="lg">
-                  <option value="bold">B</option>
-                  <option value="italic">I</option>
-                  <option value="underline">U</option>
-                </go-toggle-group>
-              </div>
-              <div class="pc-code">
-                <pre class="code" data-lang="html">&lt;go-toggle-group type="multiple" size="lg"&gt;
-  &lt;option value="bold"&gt;B&lt;/option&gt;
-  &lt;option value="italic"&gt;I&lt;/option&gt;
-  &lt;option value="underline"&gt;U&lt;/option&gt;
-&lt;/go-toggle-group&gt;</pre>
-              </div>
-            </div>
-          </div>
-
-          <h3 id="desativado">Desativado</h3>
+          <h3 id="botao">Botão</h3>
           <p class="tx">
-            Marca um item com <code>disabled</code> para o tornar não
-            interativo.
+            Adiciona um spinner a um botão para indicar um estado de
+            carregamento. O <code>&lt;go-button&gt;</code> trata do espaçamento
+            entre o spinner e o texto.
           </p>
           <div class="pc" data-view="preview">
             <div class="pc-bar">
@@ -345,28 +283,211 @@ import '@st693ava/go-ui/style.css'</pre>
             </div>
             <div class="pc-panels">
               <div class="pc-preview">
-                <go-toggle-group type="multiple">
-                  <option value="bold">B</option>
-                  <option value="italic" disabled>I</option>
-                  <option value="underline">U</option>
-                </go-toggle-group>
+                <div class="flex flex-col items-center gap-4">
+                  <go-button disabled size="sm">
+                    <go-spinner></go-spinner>
+                    A carregar...
+                  </go-button>
+                  <go-button variant="outline" disabled size="sm">
+                    <go-spinner></go-spinner>
+                    Aguarda
+                  </go-button>
+                  <go-button variant="secondary" disabled size="sm">
+                    <go-spinner></go-spinner>
+                    A processar
+                  </go-button>
+                </div>
               </div>
               <div class="pc-code">
-                <pre class="code" data-lang="html">&lt;go-toggle-group type="multiple"&gt;
-  &lt;option value="bold"&gt;B&lt;/option&gt;
-  &lt;option value="italic" disabled&gt;I&lt;/option&gt;
-  &lt;option value="underline"&gt;U&lt;/option&gt;
-&lt;/go-toggle-group&gt;</pre>
+                <pre class="code" data-lang="html">&lt;go-button disabled size="sm"&gt;
+  &lt;go-spinner&gt;&lt;/go-spinner&gt;
+  A carregar...
+&lt;/go-button&gt;
+&lt;go-button variant="outline" disabled size="sm"&gt;
+  &lt;go-spinner&gt;&lt;/go-spinner&gt;
+  Aguarda
+&lt;/go-button&gt;
+&lt;go-button variant="secondary" disabled size="sm"&gt;
+  &lt;go-spinner&gt;&lt;/go-spinner&gt;
+  A processar
+&lt;/go-button&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <h3 id="badge">Badge</h3>
+          <p class="tx">
+            Também podes usar um spinner dentro de um
+            <code>&lt;go-badge&gt;</code>.
+          </p>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <div class="flex items-center gap-4">
+                  <go-badge>
+                    <go-spinner size="xs"></go-spinner>
+                    A sincronizar
+                  </go-badge>
+                  <go-badge variant="secondary">
+                    <go-spinner size="xs"></go-spinner>
+                    A atualizar
+                  </go-badge>
+                  <go-badge variant="outline">
+                    <go-spinner size="xs"></go-spinner>
+                    A processar
+                  </go-badge>
+                </div>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-badge&gt;
+  &lt;go-spinner size="xs"&gt;&lt;/go-spinner&gt;
+  A sincronizar
+&lt;/go-badge&gt;
+&lt;go-badge variant="secondary"&gt;
+  &lt;go-spinner size="xs"&gt;&lt;/go-spinner&gt;
+  A atualizar
+&lt;/go-badge&gt;
+&lt;go-badge variant="outline"&gt;
+  &lt;go-spinner size="xs"&gt;&lt;/go-spinner&gt;
+  A processar
+&lt;/go-badge&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <h3 id="input-group">Input Group</h3>
+          <p class="tx">
+            O <code>&lt;go-input-group&gt;</code> pode conter spinners dentro de
+            um addon.
+          </p>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <div class="flex w-full max-w-md flex-col gap-4">
+                  <go-input-group>
+                    <input
+                      slot="input"
+                      placeholder="Envia uma mensagem..."
+                      disabled
+                    />
+                    <span slot="addon-end">
+                      <go-spinner size="xs"></go-spinner>
+                    </span>
+                  </go-input-group>
+                </div>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-input-group&gt;
+  &lt;input slot="input" placeholder="Envia uma mensagem..." disabled /&gt;
+  &lt;span slot="addon-end"&gt;
+    &lt;go-spinner size="xs"&gt;&lt;/go-spinner&gt;
+  &lt;/span&gt;
+&lt;/go-input-group&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <h3 id="estado-vazio">Estado vazio</h3>
+          <p class="tx">
+            Podes colocar um spinner dentro de um estado vazio para indicar que
+            algo está em curso.
+          </p>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <go-card class="w-full">
+                  <div
+                    class="flex flex-col items-center gap-3 p-6 text-center"
+                  >
+                    <go-spinner size="lg"></go-spinner>
+                    <div class="text-base font-medium">
+                      A processar o teu pedido
+                    </div>
+                    <p class="text-sm text-muted-foreground">
+                      Aguarda enquanto processamos o teu pedido. Não atualizes
+                      a página.
+                    </p>
+                    <go-button variant="outline" size="sm">Cancelar</go-button>
+                  </div>
+                </go-card>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-card&gt;
+  &lt;div class="flex flex-col items-center gap-3 p-6 text-center"&gt;
+    &lt;go-spinner size="lg"&gt;&lt;/go-spinner&gt;
+    &lt;div class="text-base font-medium"&gt;A processar o teu pedido&lt;/div&gt;
+    &lt;p class="text-sm text-muted-foreground"&gt;
+      Aguarda enquanto processamos o teu pedido. Não atualizes a página.
+    &lt;/p&gt;
+    &lt;go-button variant="outline" size="sm"&gt;Cancelar&lt;/go-button&gt;
+  &lt;/div&gt;
+&lt;/go-card&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <h3 id="item">Item</h3>
+          <p class="tx">
+            Usa o spinner junto do conteúdo de um item para sinalizar um estado
+            de carregamento.
+          </p>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <div class="flex w-full max-w-md flex-col gap-4">
+                  <go-card class="w-full">
+                    <div class="flex items-center gap-4 p-4">
+                      <go-spinner size="md"></go-spinner>
+                      <div class="flex flex-col">
+                        <span class="text-sm font-medium">A descarregar...</span>
+                        <span class="text-sm text-muted-foreground"
+                          >129 MB / 1000 MB</span
+                        >
+                      </div>
+                      <go-button variant="outline" size="sm" class="ml-auto"
+                        >Cancelar</go-button
+                      >
+                    </div>
+                  </go-card>
+                </div>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-card&gt;
+  &lt;div class="flex items-center gap-4 p-4"&gt;
+    &lt;go-spinner size="md"&gt;&lt;/go-spinner&gt;
+    &lt;div class="flex flex-col"&gt;
+      &lt;span class="text-sm font-medium"&gt;A descarregar...&lt;/span&gt;
+      &lt;span class="text-sm text-muted-foreground"&gt;129 MB / 1000 MB&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;go-button variant="outline" size="sm" class="ml-auto"&gt;Cancelar&lt;/go-button&gt;
+  &lt;/div&gt;
+&lt;/go-card&gt;</pre>
               </div>
             </div>
           </div>
 
           <nav class="docs-pager">
-            <a class="prev" href="toggle.html"
-              ><span>Anterior</span>Toggle</a
+            <a class="prev" href="skeleton.html"
+              ><span>Anterior</span>Skeleton</a
             >
-            <a class="next" href="toaster.html"
-              ><span>Seguinte</span>Toaster</a
+            <a class="next" href="progress.html"
+              ><span>Seguinte</span>Progress</a
             >
           </nav>
         </div>
