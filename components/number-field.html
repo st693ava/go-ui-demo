@@ -180,8 +180,12 @@ import '@st693ava/go-ui/style.css'</pre>
           <p class="tx">
             Define o valor inicial com <code>value</code> e limita o intervalo
             com <code>min</code>, <code>max</code> e <code>step</code> (passo do
-            stepper). O <code>name</code> liga-o a um formulário (FACE) e
-            <code>required</code> bloqueia o submit se estiver vazio.
+            stepper). Para formatação, usa <code>format="decimal"</code>,
+            <code>format="percent"</code> ou <code>format="currency"</code>
+            (com <code>currency="EUR"</code>) — mapeado para
+            <code>Intl.NumberFormat</code>. O <code>name</code> liga-o a um
+            formulário (FACE) e <code>required</code> bloqueia o submit se
+            estiver vazio.
           </p>
           <pre class="code" data-lang="html">&lt;go-number-field name="age" value="18" min="0"&gt;&lt;/go-number-field&gt;</pre>
           <div class="pc" data-view="preview">
@@ -253,15 +257,12 @@ import '@st693ava/go-ui/style.css'</pre>
             </div>
           </div>
 
-          <h3 id="passo">Passo</h3>
+          <h3 id="decimal">Decimal</h3>
           <p class="tx">
-            O atributo <code>step</code> controla o incremento. Aqui um campo
-            que sobe e desce de 5 em 5, com limites mínimo e máximo.
-            <span class="tx-note"
-              >Nota: o <code>&lt;go-number-field&gt;</code> usa stepper
-              numérico simples — formatação de moeda/percentagem (Intl) não está
-              exposta pela API atual.</span
-            >
+            Com <code>format="decimal"</code> o campo aceita casas decimais.
+            <code>min-fraction-digits</code> força um número mínimo de casas e
+            <code>sign-display="exceptZero"</code> mostra o sinal exceto no
+            zero.
           </p>
           <div class="pc" data-view="preview">
             <div class="pc-bar">
@@ -271,15 +272,88 @@ import '@st693ava/go-ui/style.css'</pre>
             <div class="pc-panels">
               <div class="pc-preview">
                 <go-number-field
-                  name="qty"
-                  value="10"
-                  min="0"
-                  max="100"
-                  step="5"
+                  name="number"
+                  value="5"
+                  format="decimal"
+                  min-fraction-digits="1"
+                  sign-display="exceptZero"
                 ></go-number-field>
               </div>
               <div class="pc-code">
-                <pre class="code" data-lang="html">&lt;go-number-field name="qty" value="10" min="0" max="100" step="5"&gt;&lt;/go-number-field&gt;</pre>
+                <pre class="code" data-lang="html">&lt;go-number-field
+  name="number"
+  value="5"
+  format="decimal"
+  min-fraction-digits="1"
+  sign-display="exceptZero"
+&gt;&lt;/go-number-field&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <h3 id="percentagem">Percentagem</h3>
+          <p class="tx">
+            Com <code>format="percent"</code> o valor é apresentado como
+            percentagem (<code>0.05</code> → <code>5%</code>). Combina com
+            <code>step</code> para definir o incremento.
+          </p>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <go-number-field
+                  name="percent"
+                  value="0.05"
+                  step="0.01"
+                  format="percent"
+                ></go-number-field>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-number-field
+  name="percent"
+  value="0.05"
+  step="0.01"
+  format="percent"
+&gt;&lt;/go-number-field&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <h3 id="moeda">Moeda</h3>
+          <p class="tx">
+            Com <code>format="currency"</code> e <code>currency="EUR"</code> o
+            campo formata como moeda. <code>currency-display="code"</code>
+            mostra o código ISO e <code>currency-sign="accounting"</code> usa a
+            convenção contabilística para valores negativos.
+          </p>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <go-number-field
+                  name="balance"
+                  value="1500"
+                  format="currency"
+                  currency="EUR"
+                  currency-display="code"
+                  currency-sign="accounting"
+                ></go-number-field>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-number-field
+  name="balance"
+  value="1500"
+  format="currency"
+  currency="EUR"
+  currency-display="code"
+  currency-sign="accounting"
+&gt;&lt;/go-number-field&gt;</pre>
               </div>
             </div>
           </div>
@@ -287,8 +361,9 @@ import '@st693ava/go-ui/style.css'</pre>
           <h3 id="formulario">Formulário</h3>
           <p class="tx">
             Como Custom Element Form-Associated, integra-se num
-            <code>&lt;form&gt;</code> nativo. Com <code>required</code>, o submit
-            é bloqueado enquanto o campo estiver vazio.
+            <code>&lt;form&gt;</code> nativo. Aqui um campo de pagamento em
+            euros, entre 10 e 5000; com <code>required</code> o submit é
+            bloqueado enquanto o campo estiver vazio.
           </p>
           <div class="pc" data-view="preview">
             <div class="pc-bar">
@@ -307,8 +382,13 @@ import '@st693ava/go-ui/style.css'</pre>
                     value="10"
                     min="10"
                     max="5000"
+                    format="currency"
+                    currency="EUR"
+                    currency-display="code"
+                    currency-sign="accounting"
                     required
                   ></go-number-field>
+                  <span class="nf-hint">Introduza um valor entre 10 e 5000.</span>
                   <go-button type="submit" size="sm">Submeter</go-button>
                   <output class="nf-out"></output>
                 </form>
@@ -316,7 +396,11 @@ import '@st693ava/go-ui/style.css'</pre>
               <div class="pc-code">
                 <pre class="code" data-lang="html">&lt;form&gt;
   &lt;go-label&gt;Pagamento&lt;/go-label&gt;
-  &lt;go-number-field name="payment" value="10" min="10" max="5000" required&gt;&lt;/go-number-field&gt;
+  &lt;go-number-field
+    name="payment" value="10" min="10" max="5000"
+    format="currency" currency="EUR"
+    currency-display="code" currency-sign="accounting" required
+  &gt;&lt;/go-number-field&gt;
   &lt;go-button type="submit"&gt;Submeter&lt;/go-button&gt;
 &lt;/form&gt;</pre>
               </div>
@@ -339,7 +423,8 @@ import '@st693ava/go-ui/style.css'</pre>
       <style>
         /* Composição local: o exemplo "Formulário" agrupa go-label +
            go-number-field + go-button reais e mostra o valor submetido via
-           FormData nativo. .tx-note = nota honesta sobre limites da API. */
+           FormData nativo. .nf-hint = descrição do campo (fiel ao
+           FieldDescription do demo de moeda do shadcn-vue). */
         .nf-form {
           display: flex;
           flex-direction: column;
@@ -351,9 +436,7 @@ import '@st693ava/go-ui/style.css'</pre>
           color: var(--muted-foreground, #6b7280);
           font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
         }
-        .tx-note {
-          display: block;
-          margin-top: 0.4rem;
+        .nf-hint {
           font-size: 0.8125rem;
           color: var(--muted-foreground, #6b7280);
         }

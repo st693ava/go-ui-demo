@@ -59,6 +59,21 @@ main[data-site-main] { max-width: 88rem; padding: 0 1.5rem; }
   background: var(--muted, #f4f4f5); padding: .1rem .35rem;
   border-radius: 5px; }
 
+/* ── Grelha de cartões do índice (components.html) ─────────────────── */
+.cat-grid { display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: .85rem; margin: 0 0 1rem; }
+.cat-grid a { display: block; border: 1px solid var(--border, #e5e7eb);
+  border-radius: 12px; padding: 1.05rem 1.15rem; text-decoration: none;
+  color: var(--foreground, #0a0a0a);
+  transition: background .12s, border-color .12s; }
+.cat-grid a:hover { background: var(--muted, #f4f4f5);
+  border-color: color-mix(in oklab, var(--foreground) 22%, transparent); }
+.cat-grid a strong { display: block; font-size: .95rem;
+  margin-bottom: .25rem; font-family: ui-monospace, monospace; }
+.cat-grid a span { font-size: .82rem;
+  color: var(--muted-foreground, #6b7280); }
+@media (max-width: 720px) { .cat-grid { grid-template-columns: 1fr; } }
+
 /* ── Bloco Preview / Code ──────────────────────────────────────────── */
 .pc { margin: 0 0 1.5rem; }
 .pc-bar { display: flex; align-items: center; gap: .25rem;

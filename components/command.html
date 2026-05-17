@@ -132,22 +132,30 @@
             <div class="pc-panels">
               <div class="pc-preview">
                 <go-command class="cmd-box">
-                  <option value="calendario">Calendário</option>
-                  <option value="emoji">Procurar emoji</option>
-                  <option value="calculadora">Calculadora</option>
-                  <option value="perfil">Perfil</option>
-                  <option value="faturacao">Faturação</option>
-                  <option value="definicoes">Definições</option>
+                  <section title="Sugestões">
+                    <option value="calendario">Calendário</option>
+                    <option value="emoji">Procurar emoji</option>
+                    <option value="calculadora" disabled>Calculadora</option>
+                  </section>
+                  <section title="Definições">
+                    <option value="perfil" shortcut="⌘P">Perfil</option>
+                    <option value="faturacao" shortcut="⌘B">Faturação</option>
+                    <option value="definicoes" shortcut="⌘S">Definições</option>
+                  </section>
                 </go-command>
               </div>
               <div class="pc-code">
                 <pre class="code" data-lang="html">&lt;go-command&gt;
-  &lt;option value="calendario"&gt;Calendário&lt;/option&gt;
-  &lt;option value="emoji"&gt;Procurar emoji&lt;/option&gt;
-  &lt;option value="calculadora"&gt;Calculadora&lt;/option&gt;
-  &lt;option value="perfil"&gt;Perfil&lt;/option&gt;
-  &lt;option value="faturacao"&gt;Faturação&lt;/option&gt;
-  &lt;option value="definicoes"&gt;Definições&lt;/option&gt;
+  &lt;section title="Sugestões"&gt;
+    &lt;option value="calendario"&gt;Calendário&lt;/option&gt;
+    &lt;option value="emoji"&gt;Procurar emoji&lt;/option&gt;
+    &lt;option value="calculadora" disabled&gt;Calculadora&lt;/option&gt;
+  &lt;/section&gt;
+  &lt;section title="Definições"&gt;
+    &lt;option value="perfil" shortcut="⌘P"&gt;Perfil&lt;/option&gt;
+    &lt;option value="faturacao" shortcut="⌘B"&gt;Faturação&lt;/option&gt;
+    &lt;option value="definicoes" shortcut="⌘S"&gt;Definições&lt;/option&gt;
+  &lt;/section&gt;
 &lt;/go-command&gt;</pre>
               </div>
             </div>
@@ -193,12 +201,19 @@ import '@st693ava/go-ui/style.css'</pre>
             um comando. O campo de pesquisa filtra a lista em tempo real; se não
             houver correspondência mostra-se uma mensagem de vazio. Ao
             selecionar, o elemento dispara um evento <code>select</code> com
-            <code>detail.value</code>.
+            <code>detail.value</code>. Agrupa comandos com
+            <code>&lt;section title="..."&gt;</code> (cabeçalho de grupo,
+            separado automaticamente) e usa <code>shortcut="⌘P"</code> ou
+            <code>disabled</code> em cada <code>option</code>.
           </p>
           <pre class="code" data-lang="html">&lt;go-command&gt;
-  &lt;option value="novo-ficheiro"&gt;Novo ficheiro&lt;/option&gt;
-  &lt;option value="abrir"&gt;Abrir…&lt;/option&gt;
-  &lt;option value="guardar" disabled&gt;Guardar&lt;/option&gt;
+  &lt;section title="Sugestões"&gt;
+    &lt;option value="novo-ficheiro"&gt;Novo ficheiro&lt;/option&gt;
+    &lt;option value="abrir"&gt;Abrir…&lt;/option&gt;
+  &lt;/section&gt;
+  &lt;section title="Definições"&gt;
+    &lt;option value="perfil" shortcut="⌘P"&gt;Perfil&lt;/option&gt;
+  &lt;/section&gt;
 &lt;/go-command&gt;</pre>
           <pre class="code" data-lang="ts">document
   .querySelector('go-command')

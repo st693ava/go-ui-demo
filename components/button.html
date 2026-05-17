@@ -129,10 +129,30 @@
             </div>
             <div class="pc-panels">
               <div class="pc-preview">
-                <go-button variant="outline">Button</go-button>
+                <div class="btn-row">
+                  <go-button variant="outline">Button</go-button>
+                  <go-button variant="outline" size="icon" aria-label="Submeter">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="m5 12 7-7 7 7" />
+                      <path d="M12 19V5" />
+                    </svg>
+                  </go-button>
+                </div>
               </div>
               <div class="pc-code">
-                <pre class="code" data-lang="html">&lt;go-button variant="outline"&gt;Button&lt;/go-button&gt;</pre>
+                <pre class="code" data-lang="html">&lt;go-button variant="outline"&gt;Button&lt;/go-button&gt;
+&lt;go-button variant="outline" size="icon" aria-label="Submeter"&gt;
+  &lt;svg viewBox="0 0 24 24" ...&gt;&lt;path d="m5 12 7-7 7 7"/&gt;&lt;path d="M12 19V5"/&gt;&lt;/svg&gt;
+&lt;/go-button&gt;</pre>
               </div>
             </div>
           </div>
@@ -197,6 +217,100 @@ import '@st693ava/go-ui/style.css'</pre>
           <!-- ── Exemplos ────────────────────────────────────────────── -->
           <h2 id="exemplos">Exemplos</h2>
 
+          <h3 id="size">Size</h3>
+          <p class="tx">
+            Três dimensões — <code>sm</code>, <code>default</code> e
+            <code>lg</code> — cada uma com a variante de ícone correspondente.
+          </p>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <div class="btn-sizes">
+                  <div class="btn-row">
+                    <go-button size="sm" variant="outline">Pequeno</go-button>
+                    <go-button
+                      size="icon-sm"
+                      variant="outline"
+                      aria-label="Submeter"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                      >
+                        <path d="M7 7h10v10" />
+                        <path d="M7 17 17 7" />
+                      </svg>
+                    </go-button>
+                  </div>
+                  <div class="btn-row">
+                    <go-button variant="outline">Padrão</go-button>
+                    <go-button
+                      size="icon"
+                      variant="outline"
+                      aria-label="Submeter"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                      >
+                        <path d="M7 7h10v10" />
+                        <path d="M7 17 17 7" />
+                      </svg>
+                    </go-button>
+                  </div>
+                  <div class="btn-row">
+                    <go-button variant="outline" size="lg">Grande</go-button>
+                    <go-button
+                      size="icon-lg"
+                      variant="outline"
+                      aria-label="Submeter"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                      >
+                        <path d="M7 7h10v10" />
+                        <path d="M7 17 17 7" />
+                      </svg>
+                    </go-button>
+                  </div>
+                </div>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-button size="sm" variant="outline"&gt;Pequeno&lt;/go-button&gt;
+&lt;go-button size="icon-sm" variant="outline" aria-label="Submeter"&gt;…&lt;/go-button&gt;
+
+&lt;go-button variant="outline"&gt;Padrão&lt;/go-button&gt;
+&lt;go-button size="icon" variant="outline" aria-label="Submeter"&gt;…&lt;/go-button&gt;
+
+&lt;go-button variant="outline" size="lg"&gt;Grande&lt;/go-button&gt;
+&lt;go-button size="icon-lg" variant="outline" aria-label="Submeter"&gt;…&lt;/go-button&gt;</pre>
+              </div>
+            </div>
+          </div>
+
           <h3 id="default">Default</h3>
           <p class="tx">
             O botão por defeito, com um botão de ícone ao lado.
@@ -210,33 +324,28 @@ import '@st693ava/go-ui/style.css'</pre>
               <div class="pc-preview">
                 <div class="btn-row">
                   <go-button variant="outline">Button</go-button>
-                  <go-button variant="outline" size="icon" aria-label="Submeter"
-                    ><span aria-hidden="true">↑</span></go-button
-                  >
+                  <go-button variant="outline" size="icon" aria-label="Submeter">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="m5 12 7-7 7 7" />
+                      <path d="M12 19V5" />
+                    </svg>
+                  </go-button>
                 </div>
               </div>
               <div class="pc-code">
                 <pre class="code" data-lang="html">&lt;go-button variant="outline"&gt;Button&lt;/go-button&gt;
 &lt;go-button variant="outline" size="icon" aria-label="Submeter"&gt;
-  ↑
+  &lt;svg viewBox="0 0 24 24" ...&gt;&lt;path d="m5 12 7-7 7 7"/&gt;&lt;path d="M12 19V5"/&gt;&lt;/svg&gt;
 &lt;/go-button&gt;</pre>
-              </div>
-            </div>
-          </div>
-
-          <h3 id="secondary">Secondary</h3>
-          <p class="tx">Variante secundária para ações de menor ênfase.</p>
-          <div class="pc" data-view="preview">
-            <div class="pc-bar">
-              <button data-view="preview" aria-selected="true">Preview</button>
-              <button data-view="code" aria-selected="false">Code</button>
-            </div>
-            <div class="pc-panels">
-              <div class="pc-preview">
-                <go-button variant="secondary">Secondary</go-button>
-              </div>
-              <div class="pc-code">
-                <pre class="code" data-lang="html">&lt;go-button variant="secondary"&gt;Secondary&lt;/go-button&gt;</pre>
               </div>
             </div>
           </div>
@@ -254,6 +363,23 @@ import '@st693ava/go-ui/style.css'</pre>
               </div>
               <div class="pc-code">
                 <pre class="code" data-lang="html">&lt;go-button variant="outline"&gt;Outline&lt;/go-button&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <h3 id="secondary">Secondary</h3>
+          <p class="tx">Variante secundária para ações de menor ênfase.</p>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <go-button variant="secondary">Secondary</go-button>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-button variant="secondary"&gt;Secondary&lt;/go-button&gt;</pre>
               </div>
             </div>
           </div>
@@ -320,13 +446,26 @@ import '@st693ava/go-ui/style.css'</pre>
             </div>
             <div class="pc-panels">
               <div class="pc-preview">
-                <go-button variant="outline" size="icon" aria-label="Atualizar"
-                  ><span aria-hidden="true">⟳</span></go-button
-                >
+                <go-button variant="outline" size="icon" aria-label="Atualizar">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M12 2a10 10 0 1 0 10 10" stroke-dasharray="3 3" />
+                    <path d="M16 8h4V4" />
+                    <path d="m20 4-8.61 8.61" />
+                  </svg>
+                </go-button>
               </div>
               <div class="pc-code">
                 <pre class="code" data-lang="html">&lt;go-button variant="outline" size="icon" aria-label="Atualizar"&gt;
-  ⟳
+  &lt;svg viewBox="0 0 24 24" ...&gt;&lt;!-- ícone lucide circle-fading-arrow-up --&gt;&lt;/svg&gt;
 &lt;/go-button&gt;</pre>
               </div>
             </div>
@@ -344,13 +483,70 @@ import '@st693ava/go-ui/style.css'</pre>
             </div>
             <div class="pc-panels">
               <div class="pc-preview">
-                <go-button variant="outline" size="sm"
-                  ><span aria-hidden="true">⎇</span> Novo ramo</go-button
-                >
+                <go-button variant="outline" size="sm">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <line x1="6" x2="6" y1="3" y2="15" />
+                    <circle cx="18" cy="6" r="3" />
+                    <circle cx="6" cy="18" r="3" />
+                    <path d="M18 9a9 9 0 0 1-9 9" />
+                  </svg>
+                  Novo ramo
+                </go-button>
               </div>
               <div class="pc-code">
                 <pre class="code" data-lang="html">&lt;go-button variant="outline" size="sm"&gt;
-  ⎇ Novo ramo
+  &lt;svg viewBox="0 0 24 24" ...&gt;&lt;!-- ícone lucide git-branch --&gt;&lt;/svg&gt;
+  Novo ramo
+&lt;/go-button&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <h3 id="rounded">Rounded</h3>
+          <p class="tx">
+            Combina <code>size="icon"</code> com um conteúdo redondo para um
+            botão circular.
+          </p>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <go-button
+                  variant="outline"
+                  size="icon"
+                  class="btn-round"
+                  aria-label="Submeter"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="m5 12 7-7 7 7" />
+                    <path d="M12 19V5" />
+                  </svg>
+                </go-button>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-button variant="outline" size="icon" class="rounded-full" aria-label="Submeter"&gt;
+  &lt;svg viewBox="0 0 24 24" ...&gt;&lt;path d="m5 12 7-7 7 7"/&gt;&lt;path d="M12 19V5"/&gt;&lt;/svg&gt;
 &lt;/go-button&gt;</pre>
               </div>
             </div>
@@ -368,14 +564,29 @@ import '@st693ava/go-ui/style.css'</pre>
             </div>
             <div class="pc-panels">
               <div class="pc-preview">
-                <go-button variant="outline" size="sm" disabled
-                  ><span class="btn-spin" aria-hidden="true"></span>
-                  Submeter</go-button
-                >
+                <go-button variant="outline" size="sm" disabled>
+                  <svg
+                    class="btn-spin"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M21 12a9 9 0 1 1-6.219-8.56" />
+                  </svg>
+                  Submeter
+                </go-button>
               </div>
               <div class="pc-code">
                 <pre class="code" data-lang="html">&lt;go-button variant="outline" size="sm" disabled&gt;
-  &lt;span class="spinner"&gt;&lt;/span&gt; Submeter
+  &lt;svg class="animate-spin" viewBox="0 0 24 24" ...&gt;
+    &lt;path d="M21 12a9 9 0 1 1-6.219-8.56"/&gt;
+  &lt;/svg&gt;
+  Submeter
 &lt;/go-button&gt;</pre>
               </div>
             </div>
@@ -421,22 +632,38 @@ import '@st693ava/go-ui/style.css'</pre>
       </div>
 
       <style>
-        /* Composição local: alinhamento de botões nos exemplos Default/Spinner
-           — só ajustes de layout, a skin vem toda do go-button. */
+        /* Composição local: alinhamento de botões nos exemplos
+           Default/Size/Spinner — só ajustes de layout, a skin vem toda do
+           go-button. */
         .btn-row {
           display: flex;
           align-items: center;
           gap: 0.5rem;
           flex-wrap: wrap;
         }
+        .btn-sizes {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+          align-items: flex-start;
+        }
+        @media (min-width: 640px) {
+          .btn-sizes {
+            flex-direction: row;
+            gap: 2rem;
+            align-items: flex-start;
+          }
+        }
+        /* Rounded: o go-button não encaminha `class` para o <button> interno;
+           o botão circular faz-se com CSS local sobre o elemento projetado. */
+        .btn-round::part(button),
+        go-button.btn-round button {
+          border-radius: 9999px;
+        }
+        /* Spinner: ícone lucide loader-circle em rotação contínua (equivale ao
+           componente Spinner do shadcn-vue com `animate-spin`). */
         .btn-spin {
-          display: inline-block;
-          width: 0.9em;
-          height: 0.9em;
-          border: 2px solid currentColor;
-          border-right-color: transparent;
-          border-radius: 50%;
-          animation: btn-spin 0.7s linear infinite;
+          animation: btn-spin 0.8s linear infinite;
         }
         @keyframes btn-spin {
           to {

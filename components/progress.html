@@ -131,11 +131,17 @@
             <div class="pc-panels">
               <div class="pc-preview">
                 <div class="pg-box">
-                  <go-progress value="66"></go-progress>
+                  <go-progress value="13" data-anim-progress></go-progress>
                 </div>
               </div>
               <div class="pc-code">
-                <pre class="code" data-lang="html">&lt;go-progress value="66"&gt;&lt;/go-progress&gt;</pre>
+                <pre class="code" data-lang="html">&lt;go-progress value="13" id="p"&gt;&lt;/go-progress&gt;
+
+&lt;script&gt;
+  setTimeout(() =&gt; {
+    document.getElementById('p').setAttribute('value', '66')
+  }, 500)
+&lt;/script&gt;</pre>
               </div>
             </div>
           </div>
@@ -330,10 +336,12 @@ import '@st693ava/go-ui/style.css'</pre>
         }
       </style>
       <script type="module">
-        // Exemplo "Animado": atualiza o atributo value após 500ms, idêntico ao
-        // demo ProgressDemo do shadcn-vue (onMounted → setTimeout).
-        const el = document.querySelector('[data-anim-progress]')
-        if (el) setTimeout(() => el.setAttribute('value', '66'), 500)
+        // Preview principal + exemplo "Animado": value arranca em 13 e sobe
+        // para 66 após 500ms, idêntico ao ProgressDemo do shadcn-vue
+        // (onMounted → setTimeout).
+        for (const el of document.querySelectorAll('[data-anim-progress]')) {
+          setTimeout(() => el.setAttribute('value', '66'), 500)
+        }
       </script>
     </main>
   </body>

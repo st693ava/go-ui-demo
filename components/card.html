@@ -134,6 +134,9 @@
                     card-title="Entrar na tua conta"
                     card-description="Introduz o teu email para entrar na conta"
                   >
+                    <a slot="action" href="#" class="card-action-link"
+                      >Registar</a
+                    >
                     <form class="card-form">
                       <div class="card-field">
                         <go-label for="email">Email</go-label>
@@ -144,7 +147,12 @@
                         ></go-input>
                       </div>
                       <div class="card-field">
-                        <go-label for="password">Palavra-passe</go-label>
+                        <div class="card-flabel">
+                          <go-label for="password">Palavra-passe</go-label>
+                          <a href="#" class="card-forgot"
+                            >Esqueceste-te da palavra-passe?</a
+                          >
+                        </div>
                         <go-input id="password" type="password"></go-input>
                       </div>
                     </form>
@@ -162,6 +170,7 @@
                 <pre class="code" data-lang="html">&lt;go-card
   card-title="Entrar na tua conta"
   card-description="Introduz o teu email para entrar na conta"&gt;
+  &lt;a slot="action" href="#"&gt;Registar&lt;/a&gt;
   &lt;form&gt;
     &lt;go-label for="email"&gt;Email&lt;/go-label&gt;
     &lt;go-input id="email" type="email" placeholder="m@exemplo.com"&gt;&lt;/go-input&gt;
@@ -213,11 +222,14 @@ import '@st693ava/go-ui/style.css'</pre>
           <p class="tx">
             O <code>&lt;go-card&gt;</code> recebe o título e a descrição via os
             atributos <code>card-title</code> e <code>card-description</code> — o
-            cabeçalho só aparece se um deles existir. O conteúdo principal é o
-            HTML por defeito do elemento; o rodapé é o
+            cabeçalho só aparece se um deles (ou o <code>slot="action"</code>)
+            existir. O <code>slot="action"</code> coloca uma ação no canto do
+            cabeçalho (equivalente ao <code>CardAction</code> do shadcn). O
+            conteúdo principal é o HTML por defeito do elemento; o rodapé é o
             <code>slot="footer"</code>.
           </p>
           <pre class="code" data-lang="html">&lt;go-card card-title="Título" card-description="Descrição"&gt;
+  &lt;a slot="action" href="#"&gt;Ação&lt;/a&gt;
   &lt;p&gt;Conteúdo do cartão&lt;/p&gt;
   &lt;go-button slot="footer"&gt;Rodapé&lt;/go-button&gt;
 &lt;/go-card&gt;</pre>
@@ -253,8 +265,9 @@ import '@st693ava/go-ui/style.css'</pre>
           <h3 id="formulario">Formulário</h3>
           <p class="tx">
             Cartão de autenticação a compor <code>&lt;go-label&gt;</code>,
-            <code>&lt;go-input&gt;</code> e <code>&lt;go-button&gt;</code> reais —
-            o equivalente go-ui do exemplo padrão do shadcn-vue.
+            <code>&lt;go-input&gt;</code> e <code>&lt;go-button&gt;</code> reais,
+            com a ação «Registar» no <code>slot="action"</code> do cabeçalho —
+            o equivalente go-ui do exemplo padrão do shadcn-vue (CardDemo).
           </p>
           <div class="pc" data-view="preview">
             <div class="pc-bar">
@@ -268,6 +281,9 @@ import '@st693ava/go-ui/style.css'</pre>
                     card-title="Entrar na tua conta"
                     card-description="Introduz o teu email para entrar na conta"
                   >
+                    <a slot="action" href="#" class="card-action-link"
+                      >Registar</a
+                    >
                     <form class="card-form">
                       <div class="card-field">
                         <go-label for="email2">Email</go-label>
@@ -304,10 +320,14 @@ import '@st693ava/go-ui/style.css'</pre>
                 <pre class="code" data-lang="html">&lt;go-card
   card-title="Entrar na tua conta"
   card-description="Introduz o teu email para entrar na conta"&gt;
+  &lt;a slot="action" href="#"&gt;Registar&lt;/a&gt;
   &lt;form&gt;
     &lt;go-label for="email"&gt;Email&lt;/go-label&gt;
     &lt;go-input id="email" type="email" placeholder="m@exemplo.com"&gt;&lt;/go-input&gt;
-    &lt;go-label for="password"&gt;Palavra-passe&lt;/go-label&gt;
+    &lt;div&gt;
+      &lt;go-label for="password"&gt;Palavra-passe&lt;/go-label&gt;
+      &lt;a href="#"&gt;Esqueceste-te da palavra-passe?&lt;/a&gt;
+    &lt;/div&gt;
     &lt;go-input id="password" type="password"&gt;&lt;/go-input&gt;
   &lt;/form&gt;
   &lt;go-button slot="footer"&gt;Entrar&lt;/go-button&gt;
@@ -390,6 +410,15 @@ import '@st693ava/go-ui/style.css'</pre>
           font-size: 0.8125rem;
           text-decoration: underline;
           color: var(--muted-foreground, #6b7280);
+        }
+        .card-action-link {
+          font-size: 0.875rem;
+          font-weight: 500;
+          color: var(--primary, #18181b);
+          text-decoration: none;
+        }
+        .card-action-link:hover {
+          text-decoration: underline;
         }
         .card-fbtn {
           width: 100%;

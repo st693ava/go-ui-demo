@@ -132,19 +132,49 @@
               <div class="pc-preview">
                 <go-dropdown-menu>
                   <span slot="trigger" class="dm-trigger">Abrir</span>
-                  <option value="perfil">Perfil</option>
-                  <option value="faturacao">Faturação</option>
+                  <option type="label">A minha conta</option>
+                  <option value="perfil" shortcut="⇧⌘P">Perfil</option>
+                  <option value="faturacao" shortcut="⌘B">Faturação</option>
+                  <option value="definicoes" shortcut="⌘S">Definições</option>
+                  <option value="atalhos" shortcut="⌘K">Atalhos de teclado</option>
+                  <option type="separator"></option>
                   <option value="equipa">Equipa</option>
-                  <option value="subscricao">Subscrição</option>
+                  <section title="Convidar utilizadores">
+                    <option value="email">Email</option>
+                    <option value="mensagem">Mensagem</option>
+                    <option value="mais-convite">Mais…</option>
+                  </section>
+                  <option value="nova-equipa" shortcut="⌘+T">Nova equipa</option>
+                  <option type="separator"></option>
+                  <option value="github">GitHub</option>
+                  <option value="suporte">Suporte</option>
+                  <option value="api" disabled>API</option>
+                  <option type="separator"></option>
+                  <option value="terminar" shortcut="⇧⌘Q">Terminar sessão</option>
                 </go-dropdown-menu>
               </div>
               <div class="pc-code">
                 <pre class="code" data-lang="html">&lt;go-dropdown-menu&gt;
   &lt;span slot="trigger"&gt;Abrir&lt;/span&gt;
-  &lt;option value="perfil"&gt;Perfil&lt;/option&gt;
-  &lt;option value="faturacao"&gt;Faturação&lt;/option&gt;
+  &lt;option type="label"&gt;A minha conta&lt;/option&gt;
+  &lt;option value="perfil" shortcut="⇧⌘P"&gt;Perfil&lt;/option&gt;
+  &lt;option value="faturacao" shortcut="⌘B"&gt;Faturação&lt;/option&gt;
+  &lt;option value="definicoes" shortcut="⌘S"&gt;Definições&lt;/option&gt;
+  &lt;option value="atalhos" shortcut="⌘K"&gt;Atalhos de teclado&lt;/option&gt;
+  &lt;option type="separator"&gt;&lt;/option&gt;
   &lt;option value="equipa"&gt;Equipa&lt;/option&gt;
-  &lt;option value="subscricao"&gt;Subscrição&lt;/option&gt;
+  &lt;section title="Convidar utilizadores"&gt;
+    &lt;option value="email"&gt;Email&lt;/option&gt;
+    &lt;option value="mensagem"&gt;Mensagem&lt;/option&gt;
+    &lt;option value="mais-convite"&gt;Mais…&lt;/option&gt;
+  &lt;/section&gt;
+  &lt;option value="nova-equipa" shortcut="⌘+T"&gt;Nova equipa&lt;/option&gt;
+  &lt;option type="separator"&gt;&lt;/option&gt;
+  &lt;option value="github"&gt;GitHub&lt;/option&gt;
+  &lt;option value="suporte"&gt;Suporte&lt;/option&gt;
+  &lt;option value="api" disabled&gt;API&lt;/option&gt;
+  &lt;option type="separator"&gt;&lt;/option&gt;
+  &lt;option value="terminar" shortcut="⇧⌘Q"&gt;Terminar sessão&lt;/option&gt;
 &lt;/go-dropdown-menu&gt;</pre>
               </div>
             </div>
@@ -190,12 +220,22 @@ import '@st693ava/go-ui/style.css'</pre>
             abre o menu. Cada
             <code>&lt;option value="x"&gt;Etiqueta&lt;/option&gt;</code> é um
             item; ao selecionar, o elemento dispara um evento
-            <code>select</code> com <code>detail.value</code>.
+            <code>select</code> com <code>detail.value</code>. Atributos
+            declarativos opcionais:
+            <code>shortcut="⌘P"</code> mostra um atalho,
+            <code>disabled</code> desativa o item,
+            <code>type="label"</code> cria um rótulo de grupo,
+            <code>type="separator"</code> insere um divisor e uma
+            <code>&lt;section title="..."&gt;</code> aninhada vira um submenu.
           </p>
           <pre class="code" data-lang="html">&lt;go-dropdown-menu&gt;
   &lt;span slot="trigger"&gt;Abrir&lt;/span&gt;
-  &lt;option value="perfil"&gt;Perfil&lt;/option&gt;
-  &lt;option value="faturacao"&gt;Faturação&lt;/option&gt;
+  &lt;option type="label"&gt;A minha conta&lt;/option&gt;
+  &lt;option value="perfil" shortcut="⇧⌘P"&gt;Perfil&lt;/option&gt;
+  &lt;option type="separator"&gt;&lt;/option&gt;
+  &lt;section title="Convidar"&gt;
+    &lt;option value="email"&gt;Email&lt;/option&gt;
+  &lt;/section&gt;
 &lt;/go-dropdown-menu&gt;</pre>
           <pre class="code" data-lang="ts">document
   .querySelector('go-dropdown-menu')
@@ -208,9 +248,9 @@ import '@st693ava/go-ui/style.css'</pre>
 
           <h3 id="conta">Menu de conta</h3>
           <p class="tx">
-            Um menu com as ações típicas de uma conta de utilizador. O
-            <code>&lt;span slot="trigger"&gt;</code> estiliza-se livremente como
-            qualquer botão.
+            Um menu com rótulo, atalhos e separadores — as ações típicas de uma
+            conta de utilizador. O <code>&lt;span slot="trigger"&gt;</code>
+            estiliza-se livremente como qualquer botão.
           </p>
           <div class="pc" data-view="preview">
             <div class="pc-bar">
@@ -221,19 +261,65 @@ import '@st693ava/go-ui/style.css'</pre>
               <div class="pc-preview">
                 <go-dropdown-menu>
                   <span slot="trigger" class="dm-trigger">A minha conta</span>
-                  <option value="perfil">Perfil</option>
-                  <option value="faturacao">Faturação</option>
-                  <option value="equipa">Equipa</option>
-                  <option value="subscricao">Subscrição</option>
+                  <option type="label">A minha conta</option>
+                  <option value="perfil" shortcut="⇧⌘P">Perfil</option>
+                  <option value="faturacao" shortcut="⌘B">Faturação</option>
+                  <option value="definicoes" shortcut="⌘S">Definições</option>
+                  <option type="separator"></option>
+                  <option value="terminar" shortcut="⇧⌘Q"
+                    >Terminar sessão</option
+                  >
                 </go-dropdown-menu>
               </div>
               <div class="pc-code">
                 <pre class="code" data-lang="html">&lt;go-dropdown-menu&gt;
   &lt;span slot="trigger"&gt;A minha conta&lt;/span&gt;
-  &lt;option value="perfil"&gt;Perfil&lt;/option&gt;
-  &lt;option value="faturacao"&gt;Faturação&lt;/option&gt;
-  &lt;option value="equipa"&gt;Equipa&lt;/option&gt;
-  &lt;option value="subscricao"&gt;Subscrição&lt;/option&gt;
+  &lt;option type="label"&gt;A minha conta&lt;/option&gt;
+  &lt;option value="perfil" shortcut="⇧⌘P"&gt;Perfil&lt;/option&gt;
+  &lt;option value="faturacao" shortcut="⌘B"&gt;Faturação&lt;/option&gt;
+  &lt;option value="definicoes" shortcut="⌘S"&gt;Definições&lt;/option&gt;
+  &lt;option type="separator"&gt;&lt;/option&gt;
+  &lt;option value="terminar" shortcut="⇧⌘Q"&gt;Terminar sessão&lt;/option&gt;
+&lt;/go-dropdown-menu&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <h3 id="submenu">Submenu</h3>
+          <p class="tx">
+            Uma <code>&lt;section title="..."&gt;</code> aninhada torna-se um
+            submenu que abre lateralmente ao passar o rato.
+          </p>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <go-dropdown-menu>
+                  <span slot="trigger" class="dm-trigger">Equipa</span>
+                  <option value="membros">Membros</option>
+                  <section title="Convidar utilizadores">
+                    <option value="email">Email</option>
+                    <option value="mensagem">Mensagem</option>
+                    <option value="mais-convite">Mais…</option>
+                  </section>
+                  <option value="nova-equipa" shortcut="⌘+T"
+                    >Nova equipa</option
+                  >
+                </go-dropdown-menu>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-dropdown-menu&gt;
+  &lt;span slot="trigger"&gt;Equipa&lt;/span&gt;
+  &lt;option value="membros"&gt;Membros&lt;/option&gt;
+  &lt;section title="Convidar utilizadores"&gt;
+    &lt;option value="email"&gt;Email&lt;/option&gt;
+    &lt;option value="mensagem"&gt;Mensagem&lt;/option&gt;
+    &lt;option value="mais-convite"&gt;Mais…&lt;/option&gt;
+  &lt;/section&gt;
+  &lt;option value="nova-equipa" shortcut="⌘+T"&gt;Nova equipa&lt;/option&gt;
 &lt;/go-dropdown-menu&gt;</pre>
               </div>
             </div>

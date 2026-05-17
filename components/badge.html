@@ -184,7 +184,8 @@ import '@st693ava/go-ui/style.css'</pre>
             O conteúdo do selo é o HTML por defeito do elemento. O atributo
             <code>variant</code> aceita <code>default</code>,
             <code>secondary</code>, <code>destructive</code> ou
-            <code>outline</code>.
+            <code>outline</code>. Com <code>as-child</code> e uma única
+            <code>&lt;a&gt;</code> filha, a skin aplica-se ao próprio link.
           </p>
           <pre class="code" data-lang="html">&lt;go-badge variant="secondary"&gt;Badge&lt;/go-badge&gt;</pre>
           <div class="pc" data-view="preview">
@@ -267,11 +268,10 @@ import '@st693ava/go-ui/style.css'</pre>
 
           <h3 id="ligacao">Ligação</h3>
           <p class="tx">
-            No shadcn-vue usa-se a prop <code>as-child</code> para dar a uma
-            <code>&lt;a&gt;</code> o aspeto de selo. O
-            <code>&lt;go-badge&gt;</code> não expõe <code>as-child</code>; a
-            forma fiel é envolver a ligação com o selo — o
-            <code>[a]:hover</code> da skin já reage ao clique.
+            Usa o atributo <code>as-child</code> para dar a uma
+            <code>&lt;a&gt;</code> o aspeto de selo — equivalente real ao
+            <code>as-child</code> do shadcn-vue. A skin é aplicada ao próprio
+            link, preservando o <code>href</code> e a navegação nativa.
           </p>
           <div class="pc" data-view="preview">
             <div class="pc-bar">
@@ -280,12 +280,10 @@ import '@st693ava/go-ui/style.css'</pre>
             </div>
             <div class="pc-panels">
               <div class="pc-preview">
-                <go-badge
-                  ><a class="badge-link" href="#">Badge</a></go-badge
-                >
+                <go-badge as-child><a href="#">Badge</a></go-badge>
               </div>
               <div class="pc-code">
-                <pre class="code" data-lang="html">&lt;go-badge&gt;
+                <pre class="code" data-lang="html">&lt;go-badge as-child&gt;
   &lt;a href="#"&gt;Badge&lt;/a&gt;
 &lt;/go-badge&gt;</pre>
               </div>
@@ -318,10 +316,6 @@ import '@st693ava/go-ui/style.css'</pre>
           display: flex;
           flex-direction: column;
           gap: 0.75rem;
-        }
-        .badge-link {
-          color: inherit;
-          text-decoration: none;
         }
       </style>
     </main>

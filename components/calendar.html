@@ -144,7 +144,9 @@
             que usa o pacote
             <code>@internationalized/date</code> para tratar datas. É
             self-contained: arranca sem valor pré-selecionado e a seleção é
-            comunicada via evento.
+            comunicada via evento <code>change</code>. Os atributos
+            <code>locale</code> e <code>layout</code> são reencaminhados para o
+            componente Reka subjacente.
           </p>
 
           <!-- ── Instalação ──────────────────────────────────────────── -->
@@ -221,14 +223,11 @@ import '@st693ava/go-ui/style.css'</pre>
             </div>
           </div>
 
-          <h3 id="sistemas-de-calendario">Sistemas de calendário</h3>
+          <h3 id="localizacao">Localização</h3>
           <p class="tx">
-            O <code>@internationalized/date</code> suporta 13 sistemas de
-            calendário (Persa, Hijri, Jalali, etc.). O
-            <code>&lt;go-calendar&gt;</code> usa o sistema gregoriano por
-            defeito e gere a localização internamente; não expõe os atributos
-            <code>locale</code> ou <code>placeholder</code> do componente Reka
-            subjacente.
+            Usa o atributo <code>locale</code> para mudar os nomes de meses e
+            dias e a ordem da semana. Aqui o calendário em português
+            (<code>locale="pt"</code>); o sistema gregoriano é o default.
           </p>
           <div class="pc" data-view="preview">
             <div class="pc-bar">
@@ -237,11 +236,30 @@ import '@st693ava/go-ui/style.css'</pre>
             </div>
             <div class="pc-panels">
               <div class="pc-preview">
-                <go-calendar></go-calendar>
+                <go-calendar locale="pt"></go-calendar>
               </div>
               <div class="pc-code">
-                <pre class="code" data-lang="html">&lt;!-- Sistema gregoriano (default) --&gt;
-&lt;go-calendar&gt;&lt;/go-calendar&gt;</pre>
+                <pre class="code" data-lang="html">&lt;go-calendar locale="pt"&gt;&lt;/go-calendar&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <h3 id="seletor-mes-ano">Seletor de mês e ano</h3>
+          <p class="tx">
+            Com <code>layout="month-and-year"</code> o cabeçalho passa a
+            dropdowns de mês e ano, para navegar datas distantes mais depressa.
+          </p>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <go-calendar locale="pt" layout="month-and-year"></go-calendar>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-calendar locale="pt" layout="month-and-year"&gt;&lt;/go-calendar&gt;</pre>
               </div>
             </div>
           </div>

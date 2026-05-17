@@ -131,36 +131,25 @@
             <div class="pc-panels">
               <div class="pc-preview">
                 <go-scroll-area
-                  height="14rem"
-                  width="14rem"
+                  height="18rem"
+                  width="12rem"
                   class="sa-border"
                 >
                   <div class="sa-pad">
-                    <h4 class="sa-title">Etiquetas</h4>
-                    <div class="sa-item">v1.2.0-beta.50</div>
-                    <div class="sa-item">v1.2.0-beta.49</div>
-                    <div class="sa-item">v1.2.0-beta.48</div>
-                    <div class="sa-item">v1.2.0-beta.47</div>
-                    <div class="sa-item">v1.2.0-beta.46</div>
-                    <div class="sa-item">v1.2.0-beta.45</div>
-                    <div class="sa-item">v1.2.0-beta.44</div>
-                    <div class="sa-item">v1.2.0-beta.43</div>
-                    <div class="sa-item">v1.2.0-beta.42</div>
-                    <div class="sa-item">v1.2.0-beta.41</div>
-                    <div class="sa-item">v1.2.0-beta.40</div>
-                    <div class="sa-item">v1.2.0-beta.39</div>
-                    <div class="sa-item">v1.2.0-beta.38</div>
-                    <div class="sa-item">v1.2.0-beta.37</div>
+                    <h4 class="sa-title">Tags</h4>
+                    <div data-sa-tags></div>
                   </div>
                 </go-scroll-area>
               </div>
               <div class="pc-code">
-                <pre class="code" data-lang="html">&lt;go-scroll-area height="14rem" width="14rem"&gt;
+                <pre class="code" data-lang="html">&lt;go-scroll-area height="18rem" width="12rem"&gt;
   &lt;div class="content"&gt;
-    &lt;h4&gt;Etiquetas&lt;/h4&gt;
+    &lt;h4&gt;Tags&lt;/h4&gt;
     &lt;div&gt;v1.2.0-beta.50&lt;/div&gt;
+    &lt;hr /&gt;
     &lt;div&gt;v1.2.0-beta.49&lt;/div&gt;
-    &lt;!-- … --&gt;
+    &lt;hr /&gt;
+    &lt;!-- … 50 tags --&gt;
   &lt;/div&gt;
 &lt;/go-scroll-area&gt;</pre>
               </div>
@@ -246,8 +235,9 @@ import '@st693ava/go-ui/style.css'</pre>
 
           <h3 id="vertical">Vertical</h3>
           <p class="tx">
-            Lista vertical com separadores entre itens — scroll na vertical
-            quando o conteúdo ultrapassa a altura.
+            Lista vertical de 50 tags com um separador entre cada uma — scroll
+            na vertical quando o conteúdo ultrapassa a altura. Os itens são
+            gerados em JavaScript, tal como no demo original do shadcn-vue.
           </p>
           <div class="pc" data-view="preview">
             <div class="pc-bar">
@@ -257,35 +247,30 @@ import '@st693ava/go-ui/style.css'</pre>
             <div class="pc-panels">
               <div class="pc-preview">
                 <go-scroll-area
-                  height="14rem"
+                  height="18rem"
                   width="12rem"
                   class="sa-border"
                 >
                   <div class="sa-pad">
-                    <h4 class="sa-title">Etiquetas</h4>
-                    <div class="sa-item sep">v1.2.0-beta.50</div>
-                    <div class="sa-item sep">v1.2.0-beta.49</div>
-                    <div class="sa-item sep">v1.2.0-beta.48</div>
-                    <div class="sa-item sep">v1.2.0-beta.47</div>
-                    <div class="sa-item sep">v1.2.0-beta.46</div>
-                    <div class="sa-item sep">v1.2.0-beta.45</div>
-                    <div class="sa-item sep">v1.2.0-beta.44</div>
-                    <div class="sa-item sep">v1.2.0-beta.43</div>
-                    <div class="sa-item sep">v1.2.0-beta.42</div>
-                    <div class="sa-item sep">v1.2.0-beta.41</div>
-                    <div class="sa-item sep">v1.2.0-beta.40</div>
-                    <div class="sa-item">v1.2.0-beta.39</div>
+                    <h4 class="sa-title">Tags</h4>
+                    <div data-sa-tags></div>
                   </div>
                 </go-scroll-area>
               </div>
               <div class="pc-code">
-                <pre class="code" data-lang="html">&lt;go-scroll-area height="14rem" width="12rem"&gt;
-  &lt;div class="content"&gt;
-    &lt;h4&gt;Etiquetas&lt;/h4&gt;
-    &lt;div&gt;v1.2.0-beta.50&lt;/div&gt;
-    &lt;!-- … 50 itens --&gt;
-  &lt;/div&gt;
-&lt;/go-scroll-area&gt;</pre>
+                <pre class="code" data-lang="html">&lt;go-scroll-area height="18rem" width="12rem"&gt;
+  &lt;div class="content"&gt;&lt;h4&gt;Tags&lt;/h4&gt;&lt;div id="list"&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/go-scroll-area&gt;
+
+&lt;script&gt;
+  const list = document.getElementById('list')
+  for (let i = 50; i &gt;= 1; i--) {
+    const item = document.createElement('div')
+    item.className = 'sa-item'
+    item.textContent = `v1.2.0-beta.${i}`
+    list.append(item, document.createElement('hr'))
+  }
+&lt;/script&gt;</pre>
               </div>
             </div>
           </div>
@@ -374,10 +359,14 @@ import '@st693ava/go-ui/style.css'</pre>
         }
         .sa-item {
           font-size: 0.875rem;
-          padding: 0.35rem 0;
+          padding: 0.1rem 0;
         }
-        .sa-item.sep {
-          border-bottom: 1px solid var(--border, #e4e4e7);
+        /* Separador entre tags — equivale ao <Separator class="my-2"/> do demo
+           shadcn-vue. A skin/scrollbar vêm todas do go-scroll-area. */
+        [data-sa-tags] hr {
+          border: 0;
+          border-top: 1px solid var(--border, #e4e4e7);
+          margin: 0.5rem 0;
         }
         .sa-prose {
           font-size: 0.875rem;
@@ -409,6 +398,21 @@ import '@st693ava/go-ui/style.css'</pre>
           margin-bottom: 0.4rem;
         }
       </style>
+      <script type="module">
+        // Gera as 50 tags + separadores, idêntico ao ScrollAreaDemo do
+        // shadcn-vue (Array.from({ length: 50 }) → v1.2.0-beta.N + Separator).
+        for (const host of document.querySelectorAll('[data-sa-tags]')) {
+          const frag = document.createDocumentFragment()
+          for (let i = 50; i >= 1; i--) {
+            const item = document.createElement('div')
+            item.className = 'sa-item'
+            item.textContent = `v1.2.0-beta.${i}`
+            frag.append(item)
+            if (i > 1) frag.append(document.createElement('hr'))
+          }
+          host.append(frag)
+        }
+      </script>
     </main>
   </body>
 </html>

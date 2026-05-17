@@ -156,7 +156,7 @@
                       <tr>
                         <td>INV003</td>
                         <td>Por pagar</td>
-                        <td>Transferência</td>
+                        <td>Transferência bancária</td>
                         <td class="ta-right">350,00 €</td>
                       </tr>
                       <tr>
@@ -171,11 +171,23 @@
                         <td>PayPal</td>
                         <td class="ta-right">550,00 €</td>
                       </tr>
+                      <tr>
+                        <td>INV006</td>
+                        <td>Pendente</td>
+                        <td>Transferência bancária</td>
+                        <td class="ta-right">200,00 €</td>
+                      </tr>
+                      <tr>
+                        <td>INV007</td>
+                        <td>Por pagar</td>
+                        <td>Cartão de crédito</td>
+                        <td class="ta-right">300,00 €</td>
+                      </tr>
                     </tbody>
                     <tfoot>
                       <tr>
                         <td colspan="3">Total</td>
-                        <td class="ta-right">1750,00 €</td>
+                        <td class="ta-right">2.500,00 €</td>
                       </tr>
                     </tfoot>
                   </table>
@@ -200,12 +212,12 @@
         &lt;td&gt;Cartão de crédito&lt;/td&gt;
         &lt;td class="ta-right"&gt;250,00 €&lt;/td&gt;
       &lt;/tr&gt;
-      &lt;!-- … --&gt;
+      &lt;!-- INV002 … INV007 --&gt;
     &lt;/tbody&gt;
     &lt;tfoot&gt;
       &lt;tr&gt;
         &lt;td colspan="3"&gt;Total&lt;/td&gt;
-        &lt;td class="ta-right"&gt;1750,00 €&lt;/td&gt;
+        &lt;td class="ta-right"&gt;2.500,00 €&lt;/td&gt;
       &lt;/tr&gt;
     &lt;/tfoot&gt;
   &lt;/table&gt;
@@ -321,7 +333,8 @@ import '@st693ava/go-ui/style.css'</pre>
 
           <h3 id="faturas">Faturas</h3>
           <p class="tx">
-            Tabela simples com legenda, cabeçalho, corpo e rodapé de total.
+            Lista de faturas com legenda, cabeçalho, corpo e rodapé de total —
+            o demo canónico do shadcn-vue, fiel linha a linha.
           </p>
           <div class="pc" data-view="preview">
             <div class="pc-bar">
@@ -359,14 +372,38 @@ import '@st693ava/go-ui/style.css'</pre>
                       <tr>
                         <td>INV003</td>
                         <td>Por pagar</td>
-                        <td>Transferência</td>
+                        <td>Transferência bancária</td>
                         <td class="ta-right">350,00 €</td>
+                      </tr>
+                      <tr>
+                        <td>INV004</td>
+                        <td>Pago</td>
+                        <td>Cartão de crédito</td>
+                        <td class="ta-right">450,00 €</td>
+                      </tr>
+                      <tr>
+                        <td>INV005</td>
+                        <td>Pago</td>
+                        <td>PayPal</td>
+                        <td class="ta-right">550,00 €</td>
+                      </tr>
+                      <tr>
+                        <td>INV006</td>
+                        <td>Pendente</td>
+                        <td>Transferência bancária</td>
+                        <td class="ta-right">200,00 €</td>
+                      </tr>
+                      <tr>
+                        <td>INV007</td>
+                        <td>Por pagar</td>
+                        <td>Cartão de crédito</td>
+                        <td class="ta-right">300,00 €</td>
                       </tr>
                     </tbody>
                     <tfoot>
                       <tr>
                         <td colspan="3">Total</td>
-                        <td class="ta-right">750,00 €</td>
+                        <td class="ta-right">2.500,00 €</td>
                       </tr>
                     </tfoot>
                   </table>
@@ -383,14 +420,16 @@ import '@st693ava/go-ui/style.css'</pre>
       &lt;/tr&gt;
     &lt;/thead&gt;
     &lt;tbody&gt;
-      &lt;tr&gt;
-        &lt;td&gt;INV001&lt;/td&gt;&lt;td&gt;Pago&lt;/td&gt;
-        &lt;td&gt;Cartão de crédito&lt;/td&gt;&lt;td class="ta-right"&gt;250,00 €&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;!-- … --&gt;
+      &lt;tr&gt;&lt;td&gt;INV001&lt;/td&gt;&lt;td&gt;Pago&lt;/td&gt;&lt;td&gt;Cartão de crédito&lt;/td&gt;&lt;td class="ta-right"&gt;250,00 €&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;INV002&lt;/td&gt;&lt;td&gt;Pendente&lt;/td&gt;&lt;td&gt;PayPal&lt;/td&gt;&lt;td class="ta-right"&gt;150,00 €&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;INV003&lt;/td&gt;&lt;td&gt;Por pagar&lt;/td&gt;&lt;td&gt;Transferência bancária&lt;/td&gt;&lt;td class="ta-right"&gt;350,00 €&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;INV004&lt;/td&gt;&lt;td&gt;Pago&lt;/td&gt;&lt;td&gt;Cartão de crédito&lt;/td&gt;&lt;td class="ta-right"&gt;450,00 €&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;INV005&lt;/td&gt;&lt;td&gt;Pago&lt;/td&gt;&lt;td&gt;PayPal&lt;/td&gt;&lt;td class="ta-right"&gt;550,00 €&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;INV006&lt;/td&gt;&lt;td&gt;Pendente&lt;/td&gt;&lt;td&gt;Transferência bancária&lt;/td&gt;&lt;td class="ta-right"&gt;200,00 €&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td&gt;INV007&lt;/td&gt;&lt;td&gt;Por pagar&lt;/td&gt;&lt;td&gt;Cartão de crédito&lt;/td&gt;&lt;td class="ta-right"&gt;300,00 €&lt;/td&gt;&lt;/tr&gt;
     &lt;/tbody&gt;
     &lt;tfoot&gt;
-      &lt;tr&gt;&lt;td colspan="3"&gt;Total&lt;/td&gt;&lt;td class="ta-right"&gt;750,00 €&lt;/td&gt;&lt;/tr&gt;
+      &lt;tr&gt;&lt;td colspan="3"&gt;Total&lt;/td&gt;&lt;td class="ta-right"&gt;2.500,00 €&lt;/td&gt;&lt;/tr&gt;
     &lt;/tfoot&gt;
   &lt;/table&gt;
 &lt;/go-table&gt;</pre>

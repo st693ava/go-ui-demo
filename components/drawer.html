@@ -138,8 +138,22 @@
                   <div slot="description">Define a tua meta diária de atividade.</div>
                   <div slot="content">
                     <div class="dw-counter">
-                      <div class="dw-val">350</div>
-                      <div class="dw-unit">Calorias / dia</div>
+                      <go-button
+                        variant="outline"
+                        size="icon"
+                        aria-label="Diminuir"
+                        >−</go-button
+                      >
+                      <div class="dw-stat">
+                        <div class="dw-val">350</div>
+                        <div class="dw-unit">Calorias / dia</div>
+                      </div>
+                      <go-button
+                        variant="outline"
+                        size="icon"
+                        aria-label="Aumentar"
+                        >+</go-button
+                      >
                     </div>
                   </div>
                   <div slot="footer">
@@ -155,8 +169,12 @@
   &lt;div slot="description"&gt;Define a tua meta diária de atividade.&lt;/div&gt;
   &lt;div slot="content"&gt;
     &lt;div class="dw-counter"&gt;
-      &lt;div class="dw-val"&gt;350&lt;/div&gt;
-      &lt;div class="dw-unit"&gt;Calorias / dia&lt;/div&gt;
+      &lt;go-button variant="outline" size="icon" aria-label="Diminuir"&gt;−&lt;/go-button&gt;
+      &lt;div class="dw-stat"&gt;
+        &lt;div class="dw-val"&gt;350&lt;/div&gt;
+        &lt;div class="dw-unit"&gt;Calorias / dia&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;go-button variant="outline" size="icon" aria-label="Aumentar"&gt;+&lt;/go-button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;div slot="footer"&gt;
@@ -313,11 +331,12 @@ const tag = desktop ? 'go-dialog' : 'go-drawer'
             </div>
           </div>
 
-          <h3 id="contador">Contador interativo</h3>
+          <h3 id="contador">Definir meta</h3>
           <p class="tx">
-            O conteúdo do drawer pode incluir qualquer markup — neste exemplo um
-            grande indicador numérico de meta, igual ao demo original do
-            shadcn-vue.
+            O exemplo canónico do shadcn-vue: um grande indicador de meta com
+            controlos de incremento. Os botões −/+ são reais
+            (<code>&lt;go-button&gt;</code>); a contagem é estática nesta página
+            de documentação (sem JS de exemplo).
           </p>
           <div class="pc" data-view="preview">
             <div class="pc-bar">
@@ -334,12 +353,27 @@ const tag = desktop ? 'go-dialog' : 'go-drawer'
                   <div slot="description">Define a tua meta diária de atividade.</div>
                   <div slot="content">
                     <div class="dw-counter">
-                      <div class="dw-val">350</div>
-                      <div class="dw-unit">Calorias / dia</div>
+                      <go-button
+                        variant="outline"
+                        size="icon"
+                        aria-label="Diminuir"
+                        >−</go-button
+                      >
+                      <div class="dw-stat">
+                        <div class="dw-val">350</div>
+                        <div class="dw-unit">Calorias / dia</div>
+                      </div>
+                      <go-button
+                        variant="outline"
+                        size="icon"
+                        aria-label="Aumentar"
+                        >+</go-button
+                      >
                     </div>
                   </div>
                   <div slot="footer">
                     <go-button>Submeter</go-button>
+                    <go-button variant="outline">Cancelar</go-button>
                   </div>
                 </go-drawer>
               </div>
@@ -350,12 +384,17 @@ const tag = desktop ? 'go-dialog' : 'go-drawer'
   &lt;div slot="description"&gt;Define a tua meta diária de atividade.&lt;/div&gt;
   &lt;div slot="content"&gt;
     &lt;div class="dw-counter"&gt;
-      &lt;div class="dw-val"&gt;350&lt;/div&gt;
-      &lt;div class="dw-unit"&gt;Calorias / dia&lt;/div&gt;
+      &lt;go-button variant="outline" size="icon" aria-label="Diminuir"&gt;−&lt;/go-button&gt;
+      &lt;div class="dw-stat"&gt;
+        &lt;div class="dw-val"&gt;350&lt;/div&gt;
+        &lt;div class="dw-unit"&gt;Calorias / dia&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;go-button variant="outline" size="icon" aria-label="Aumentar"&gt;+&lt;/go-button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;div slot="footer"&gt;
     &lt;go-button&gt;Submeter&lt;/go-button&gt;
+    &lt;go-button variant="outline"&gt;Cancelar&lt;/go-button&gt;
   &lt;/div&gt;
 &lt;/go-drawer&gt;</pre>
               </div>
@@ -385,8 +424,16 @@ const tag = desktop ? 'go-dialog' : 'go-drawer'
           flex-wrap: wrap;
         }
         .dw-counter {
-          text-align: center;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 1.25rem;
           padding: 1.5rem 0;
+        }
+        .dw-stat {
+          text-align: center;
+          flex: 1;
+          max-width: 12rem;
         }
         .dw-val {
           font-size: 4.5rem;

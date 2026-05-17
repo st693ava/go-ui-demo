@@ -136,44 +136,123 @@
               <div class="pc-preview">
                 <go-menubar>
                   <section title="Ficheiro">
-                    <option value="novo-separador">Novo separador</option>
-                    <option value="nova-janela">Nova janela</option>
-                    <option value="partilhar">Partilhar</option>
-                    <option value="imprimir">Imprimir</option>
+                    <option value="novo-separador" shortcut="⌘T"
+                      >Novo separador</option
+                    >
+                    <option value="nova-janela" shortcut="⌘N"
+                      >Nova janela</option
+                    >
+                    <option value="nova-janela-incognito" disabled
+                      >Nova janela de navegação anónima</option
+                    >
+                    <option type="separator"></option>
+                    <section title="Partilhar">
+                      <option value="email-link">Link por email</option>
+                      <option value="mensagens">Mensagens</option>
+                      <option value="notas">Notas</option>
+                    </section>
+                    <option type="separator"></option>
+                    <option value="imprimir" shortcut="⌘P">Imprimir…</option>
                   </section>
                   <section title="Editar">
-                    <option value="desfazer">Desfazer</option>
-                    <option value="refazer">Refazer</option>
+                    <option value="desfazer" shortcut="⌘Z">Desfazer</option>
+                    <option value="refazer" shortcut="⇧⌘Z">Refazer</option>
+                    <option type="separator"></option>
+                    <section title="Localizar">
+                      <option value="pesquisar-web">Pesquisar na web</option>
+                      <option value="localizar">Localizar…</option>
+                      <option value="localizar-seguinte"
+                        >Localizar seguinte</option
+                      >
+                      <option value="localizar-anterior"
+                        >Localizar anterior</option
+                      >
+                    </section>
+                    <option type="separator"></option>
                     <option value="cortar">Cortar</option>
                     <option value="copiar">Copiar</option>
                     <option value="colar">Colar</option>
                   </section>
                   <section title="Ver">
-                    <option value="recarregar">Recarregar</option>
-                    <option value="forcar-recarregar">Forçar recarregar</option>
-                    <option value="ecra-inteiro">Ecrã inteiro</option>
+                    <option type="checkbox" value="barra-favoritos"
+                      >Mostrar sempre a barra de favoritos</option
+                    >
+                    <option type="checkbox" value="urls-completos" checked
+                      >Mostrar sempre URLs completos</option
+                    >
+                    <option type="separator"></option>
+                    <option value="recarregar" inset shortcut="⌘R"
+                      >Recarregar</option
+                    >
+                    <option
+                      value="forcar-recarregar"
+                      inset
+                      disabled
+                      shortcut="⇧⌘R"
+                      >Forçar recarregar</option
+                    >
+                    <option type="separator"></option>
+                    <option value="ecra-inteiro" inset>Ecrã inteiro</option>
+                    <option type="separator"></option>
+                    <option value="ocultar-barra" inset
+                      >Ocultar barra lateral</option
+                    >
+                  </section>
+                  <section title="Perfis">
+                    <option type="radio" name="perfil" value="andy"
+                      >Andy</option
+                    >
+                    <option type="radio" name="perfil" value="benoit" checked
+                      >Benoit</option
+                    >
+                    <option type="radio" name="perfil" value="luis"
+                      >Luís</option
+                    >
+                    <option type="separator"></option>
+                    <option value="editar" inset>Editar…</option>
+                    <option type="separator"></option>
+                    <option value="adicionar-perfil" inset
+                      >Adicionar perfil…</option
+                    >
                   </section>
                 </go-menubar>
               </div>
               <div class="pc-code">
                 <pre class="code" data-lang="html">&lt;go-menubar&gt;
   &lt;section title="Ficheiro"&gt;
-    &lt;option value="novo-separador"&gt;Novo separador&lt;/option&gt;
-    &lt;option value="nova-janela"&gt;Nova janela&lt;/option&gt;
-    &lt;option value="partilhar"&gt;Partilhar&lt;/option&gt;
-    &lt;option value="imprimir"&gt;Imprimir&lt;/option&gt;
+    &lt;option value="novo-separador" shortcut="⌘T"&gt;Novo separador&lt;/option&gt;
+    &lt;option value="nova-janela" shortcut="⌘N"&gt;Nova janela&lt;/option&gt;
+    &lt;option value="nova-janela-incognito" disabled
+      &gt;Nova janela de navegação anónima&lt;/option&gt;
+    &lt;option type="separator"&gt;&lt;/option&gt;
+    &lt;section title="Partilhar"&gt;
+      &lt;option value="email-link"&gt;Link por email&lt;/option&gt;
+      &lt;option value="mensagens"&gt;Mensagens&lt;/option&gt;
+      &lt;option value="notas"&gt;Notas&lt;/option&gt;
+    &lt;/section&gt;
+    &lt;option type="separator"&gt;&lt;/option&gt;
+    &lt;option value="imprimir" shortcut="⌘P"&gt;Imprimir…&lt;/option&gt;
   &lt;/section&gt;
   &lt;section title="Editar"&gt;
-    &lt;option value="desfazer"&gt;Desfazer&lt;/option&gt;
-    &lt;option value="refazer"&gt;Refazer&lt;/option&gt;
-    &lt;option value="cortar"&gt;Cortar&lt;/option&gt;
+    &lt;option value="desfazer" shortcut="⌘Z"&gt;Desfazer&lt;/option&gt;
+    &lt;option value="refazer" shortcut="⇧⌘Z"&gt;Refazer&lt;/option&gt;
+    &lt;option type="separator"&gt;&lt;/option&gt;
+    &lt;section title="Localizar"&gt;
+      &lt;option value="pesquisar-web"&gt;Pesquisar na web&lt;/option&gt;
+      &lt;option value="localizar"&gt;Localizar…&lt;/option&gt;
+    &lt;/section&gt;
+    &lt;option type="separator"&gt;&lt;/option&gt;
     &lt;option value="copiar"&gt;Copiar&lt;/option&gt;
-    &lt;option value="colar"&gt;Colar&lt;/option&gt;
   &lt;/section&gt;
   &lt;section title="Ver"&gt;
-    &lt;option value="recarregar"&gt;Recarregar&lt;/option&gt;
-    &lt;option value="forcar-recarregar"&gt;Forçar recarregar&lt;/option&gt;
-    &lt;option value="ecra-inteiro"&gt;Ecrã inteiro&lt;/option&gt;
+    &lt;option type="checkbox" value="urls-completos" checked
+      &gt;Mostrar sempre URLs completos&lt;/option&gt;
+    &lt;option type="separator"&gt;&lt;/option&gt;
+    &lt;option value="recarregar" inset shortcut="⌘R"&gt;Recarregar&lt;/option&gt;
+  &lt;/section&gt;
+  &lt;section title="Perfis"&gt;
+    &lt;option type="radio" name="perfil" value="benoit" checked&gt;Benoit&lt;/option&gt;
+    &lt;option type="radio" name="perfil" value="luis"&gt;Luís&lt;/option&gt;
   &lt;/section&gt;
 &lt;/go-menubar&gt;</pre>
               </div>
@@ -220,7 +299,13 @@ import '@st693ava/go-ui/style.css'</pre>
             barra; o <code>title</code> é a etiqueta do botão. As
             <code>&lt;option value="x"&gt;</code> dentro de cada section são os
             itens desse menu. Ao selecionar, o elemento dispara um evento
-            <code>select</code> com <code>detail.value</code>.
+            <code>select</code> com <code>detail.value</code>. Atributos
+            declarativos opcionais por <code>option</code>:
+            <code>shortcut</code>, <code>disabled</code>, <code>inset</code>,
+            <code>type="separator"</code>,
+            <code>type="checkbox" checked</code>,
+            <code>type="radio" name="g"</code> (grupo de opção); uma
+            <code>&lt;section&gt;</code> aninhada dentro de outra vira submenu.
           </p>
           <pre class="code" data-lang="html">&lt;go-menubar&gt;
   &lt;section title="Ficheiro"&gt;

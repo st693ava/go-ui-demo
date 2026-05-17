@@ -130,30 +130,60 @@
             </div>
             <div class="pc-panels">
               <div class="pc-preview">
-                <go-accordion type="single" collapsible>
-                  <section title="É acessível?" value="item-1">
-                    Sim. Cumpre o padrão de desenho WAI-ARIA.
+                <go-accordion type="single" collapsible default-value="item-1">
+                  <section title="Informação do produto" value="item-1">
+                    <p>
+                      O nosso produto de eleição combina tecnologia de ponta
+                      com um design elegante. Construído com materiais
+                      premium, oferece desempenho e fiabilidade sem paralelo.
+                    </p>
+                    <p style="margin-top: 0.5rem">
+                      As funcionalidades principais incluem capacidades de
+                      processamento avançadas e uma interface intuitiva
+                      pensada tanto para iniciados como para especialistas.
+                    </p>
                   </section>
-                  <section title="Tem um estilo?" value="item-2">
-                    Sim. Vem com estilos por defeito que combinam com o resto
-                    da biblioteca.
+                  <section title="Detalhes de envio" value="item-2">
+                    <p>
+                      Fazemos envios para todo o mundo através de parceiros de
+                      transporte de confiança. A entrega padrão demora 3 a 5
+                      dias úteis; o envio expresso garante entrega em 1 a 2
+                      dias úteis.
+                    </p>
+                    <p style="margin-top: 0.5rem">
+                      Todas as encomendas são cuidadosamente embaladas e
+                      totalmente seguradas. Acompanha o envio em tempo real no
+                      nosso portal de seguimento.
+                    </p>
                   </section>
-                  <section title="É animado?" value="item-3">
-                    Sim. É animado por defeito, mas podes desativar se
-                    preferires.
+                  <section title="Política de devoluções" value="item-3">
+                    <p>
+                      Apoiamos os nossos produtos com uma política de
+                      devolução completa de 30 dias. Se não ficares totalmente
+                      satisfeito, basta devolver o artigo na condição
+                      original.
+                    </p>
+                    <p style="margin-top: 0.5rem">
+                      O processo de devolução sem complicações inclui envio de
+                      devolução gratuito e reembolsos totais processados em 48
+                      horas após a receção do artigo devolvido.
+                    </p>
                   </section>
                 </go-accordion>
               </div>
               <div class="pc-code">
-                <pre class="code" data-lang="html">&lt;go-accordion type="single" collapsible&gt;
-  &lt;section title="É acessível?" value="item-1"&gt;
-    Sim. Cumpre o padrão de desenho WAI-ARIA.
+                <pre class="code" data-lang="html">&lt;go-accordion type="single" collapsible default-value="item-1"&gt;
+  &lt;section title="Informação do produto" value="item-1"&gt;
+    &lt;p&gt;O nosso produto de eleição combina tecnologia de ponta com um design elegante.&lt;/p&gt;
+    &lt;p&gt;As funcionalidades incluem processamento avançado e uma interface intuitiva.&lt;/p&gt;
   &lt;/section&gt;
-  &lt;section title="Tem um estilo?" value="item-2"&gt;
-    Sim. Vem com estilos por defeito.
+  &lt;section title="Detalhes de envio" value="item-2"&gt;
+    &lt;p&gt;Fazemos envios para todo o mundo através de parceiros de confiança.&lt;/p&gt;
+    &lt;p&gt;Todas as encomendas são embaladas e totalmente seguradas.&lt;/p&gt;
   &lt;/section&gt;
-  &lt;section title="É animado?" value="item-3"&gt;
-    Sim. É animado por defeito.
+  &lt;section title="Política de devoluções" value="item-3"&gt;
+    &lt;p&gt;Apoiamos os produtos com uma política de devolução de 30 dias.&lt;/p&gt;
+    &lt;p&gt;O processo inclui envio de devolução gratuito e reembolsos totais.&lt;/p&gt;
   &lt;/section&gt;
 &lt;/go-accordion&gt;</pre>
               </div>
@@ -234,9 +264,10 @@ import '@st693ava/go-ui/style.css'</pre>
           <!-- ── Exemplos ────────────────────────────────────────────── -->
           <h2 id="exemplos">Exemplos</h2>
 
-          <h3 id="tres-itens">Três itens</h3>
+          <h3 id="acessibilidade">Acessibilidade</h3>
           <p class="tx">
-            O acordeão por defeito com três itens, um aberto de cada vez.
+            O acordeão cumpre o padrão de desenho WAI-ARIA — exemplo de FAQ
+            com um item aberto de cada vez.
           </p>
           <div class="pc" data-view="preview">
             <div class="pc-bar">

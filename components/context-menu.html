@@ -136,19 +136,57 @@
                   <div slot="trigger" class="cm-zone">
                     Clique com o botão direito aqui
                   </div>
-                  <option value="perfil">Perfil</option>
-                  <option value="faturacao">Faturação</option>
-                  <option value="equipa">Equipa</option>
-                  <option value="subscricao">Subscrição</option>
+                  <option value="voltar" inset shortcut="⌘[">Voltar</option>
+                  <option value="avancar" inset shortcut="⌘]" disabled
+                    >Avançar</option
+                  >
+                  <option value="recarregar" inset shortcut="⌘R"
+                    >Recarregar</option
+                  >
+                  <section title="Mais ferramentas">
+                    <option value="guardar-pagina" shortcut="⇧⌘S"
+                      >Guardar página…</option
+                    >
+                    <option value="criar-atalho">Criar atalho…</option>
+                    <option value="nomear-janela">Nomear janela…</option>
+                    <option value="dev-tools">Ferramentas de programador</option>
+                    <option value="eliminar">Eliminar</option>
+                  </section>
+                  <option type="separator"></option>
+                  <option type="checkbox" value="favoritos" checked
+                    >Mostrar favoritos</option
+                  >
+                  <option type="checkbox" value="urls">Mostrar URLs completos</option>
+                  <option type="separator"></option>
+                  <option type="label" inset>Pessoas</option>
+                  <option type="radio" name="pessoa" value="pedro" checked
+                    >Pedro Duarte</option
+                  >
+                  <option type="radio" name="pessoa" value="colm"
+                    >Colm Tuite</option
+                  >
                 </go-context-menu>
               </div>
               <div class="pc-code">
                 <pre class="code" data-lang="html">&lt;go-context-menu&gt;
   &lt;div slot="trigger"&gt;Clique com o botão direito aqui&lt;/div&gt;
-  &lt;option value="perfil"&gt;Perfil&lt;/option&gt;
-  &lt;option value="faturacao"&gt;Faturação&lt;/option&gt;
-  &lt;option value="equipa"&gt;Equipa&lt;/option&gt;
-  &lt;option value="subscricao"&gt;Subscrição&lt;/option&gt;
+  &lt;option value="voltar" inset shortcut="⌘["&gt;Voltar&lt;/option&gt;
+  &lt;option value="avancar" inset shortcut="⌘]" disabled&gt;Avançar&lt;/option&gt;
+  &lt;option value="recarregar" inset shortcut="⌘R"&gt;Recarregar&lt;/option&gt;
+  &lt;section title="Mais ferramentas"&gt;
+    &lt;option value="guardar-pagina" shortcut="⇧⌘S"&gt;Guardar página…&lt;/option&gt;
+    &lt;option value="criar-atalho"&gt;Criar atalho…&lt;/option&gt;
+    &lt;option value="nomear-janela"&gt;Nomear janela…&lt;/option&gt;
+    &lt;option value="dev-tools"&gt;Ferramentas de programador&lt;/option&gt;
+    &lt;option value="eliminar"&gt;Eliminar&lt;/option&gt;
+  &lt;/section&gt;
+  &lt;option type="separator"&gt;&lt;/option&gt;
+  &lt;option type="checkbox" value="favoritos" checked&gt;Mostrar favoritos&lt;/option&gt;
+  &lt;option type="checkbox" value="urls"&gt;Mostrar URLs completos&lt;/option&gt;
+  &lt;option type="separator"&gt;&lt;/option&gt;
+  &lt;option type="label" inset&gt;Pessoas&lt;/option&gt;
+  &lt;option type="radio" name="pessoa" value="pedro" checked&gt;Pedro Duarte&lt;/option&gt;
+  &lt;option type="radio" name="pessoa" value="colm"&gt;Colm Tuite&lt;/option&gt;
 &lt;/go-context-menu&gt;</pre>
               </div>
             </div>
@@ -194,12 +232,19 @@ import '@st693ava/go-ui/style.css'</pre>
             sensível ao clique-direito. Cada
             <code>&lt;option value="x"&gt;Etiqueta&lt;/option&gt;</code> é um
             item; ao selecionar, o elemento dispara um evento
-            <code>select</code> com <code>detail.value</code>.
+            <code>select</code> com <code>detail.value</code>. Atributos
+            declarativos opcionais:
+            <code>shortcut</code>, <code>disabled</code>,
+            <code>type="label|separator"</code>,
+            <code>type="checkbox" checked</code>,
+            <code>type="radio" name="g"</code> (grupo de opção) e uma
+            <code>&lt;section title="..."&gt;</code> aninhada para submenu.
           </p>
           <pre class="code" data-lang="html">&lt;go-context-menu&gt;
   &lt;div slot="trigger"&gt;Clique com o botão direito&lt;/div&gt;
-  &lt;option value="perfil"&gt;Perfil&lt;/option&gt;
-  &lt;option value="faturacao"&gt;Faturação&lt;/option&gt;
+  &lt;option value="recarregar" shortcut="⌘R"&gt;Recarregar&lt;/option&gt;
+  &lt;option type="separator"&gt;&lt;/option&gt;
+  &lt;option type="checkbox" value="favoritos" checked&gt;Favoritos&lt;/option&gt;
 &lt;/go-context-menu&gt;</pre>
           <pre class="code" data-lang="ts">document
   .querySelector('go-context-menu')
@@ -273,6 +318,53 @@ import '@st693ava/go-ui/style.css'</pre>
   &lt;option value="renomear"&gt;Renomear&lt;/option&gt;
   &lt;option value="bloquear" disabled&gt;Bloquear&lt;/option&gt;
   &lt;option value="eliminar"&gt;Eliminar&lt;/option&gt;
+&lt;/go-context-menu&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <h3 id="estados">Verificação e opção</h3>
+          <p class="tx">
+            Itens <code>type="checkbox"</code> alternam um estado visível; itens
+            <code>type="radio"</code> com o mesmo <code>name</code> formam um
+            grupo de seleção exclusiva.
+          </p>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <go-context-menu>
+                  <div slot="trigger" class="cm-zone">Vista da grelha</div>
+                  <option type="label">Apresentação</option>
+                  <option type="checkbox" value="grelha" checked
+                    >Mostrar grelha</option
+                  >
+                  <option type="checkbox" value="reguas">Mostrar réguas</option>
+                  <option type="separator"></option>
+                  <option type="label">Ordenar por</option>
+                  <option type="radio" name="ordem" value="nome" checked
+                    >Nome</option
+                  >
+                  <option type="radio" name="ordem" value="data">Data</option>
+                  <option type="radio" name="ordem" value="tamanho"
+                    >Tamanho</option
+                  >
+                </go-context-menu>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-context-menu&gt;
+  &lt;div slot="trigger"&gt;Vista da grelha&lt;/div&gt;
+  &lt;option type="label"&gt;Apresentação&lt;/option&gt;
+  &lt;option type="checkbox" value="grelha" checked&gt;Mostrar grelha&lt;/option&gt;
+  &lt;option type="checkbox" value="reguas"&gt;Mostrar réguas&lt;/option&gt;
+  &lt;option type="separator"&gt;&lt;/option&gt;
+  &lt;option type="label"&gt;Ordenar por&lt;/option&gt;
+  &lt;option type="radio" name="ordem" value="nome" checked&gt;Nome&lt;/option&gt;
+  &lt;option type="radio" name="ordem" value="data"&gt;Data&lt;/option&gt;
+  &lt;option type="radio" name="ordem" value="tamanho"&gt;Tamanho&lt;/option&gt;
 &lt;/go-context-menu&gt;</pre>
               </div>
             </div>

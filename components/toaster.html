@@ -130,17 +130,18 @@
             <div class="pc-panels">
               <div class="pc-preview">
                 <go-button
-                  onclick="window.goToast &amp;&amp; window.goToast('Domingo, 17 de maio às 21:00')"
+                  variant="outline"
+                  onclick="window.goToast &amp;&amp; window.goToast('O evento foi criado', { description: 'Domingo, 3 de dezembro de 2023 às 9:00', action: { label: 'Anular', onClick: function () {} } })"
                   >Mostrar toast</go-button
                 >
               </div>
               <div class="pc-code">
                 <pre class="code" data-lang="html">&lt;!-- Monta o toaster 1× na raiz da app --&gt;
-&lt;go-toaster position="bottom-right"&gt;&lt;/go-toaster&gt;
-
-&lt;go-button
-  onclick="window.goToast('Domingo, 17 de maio às 21:00')"
-&gt;Mostrar toast&lt;/go-button&gt;</pre>
+&lt;go-toaster position="bottom-right"&gt;&lt;/go-toaster&gt;</pre>
+                <pre class="code" data-lang="ts">window.goToast('O evento foi criado', {
+  description: 'Domingo, 3 de dezembro de 2023 às 9:00',
+  action: { label: 'Anular', onClick: () =&gt; {} },
+})</pre>
               </div>
             </div>
           </div>
@@ -198,7 +199,8 @@ window.goToast('A minha primeira notificação')</pre>
           <p class="tx">
             Os métodos <code>success</code>, <code>info</code>,
             <code>warning</code> e <code>error</code> aplicam o estilo
-            correspondente ao toast.
+            correspondente ao toast. <code>promise</code> mostra um estado de
+            carregamento até a promessa resolver.
           </p>
           <div class="pc" data-view="preview">
             <div class="pc-bar">
@@ -209,28 +211,47 @@ window.goToast('A minha primeira notificação')</pre>
               <div class="pc-preview">
                 <div class="sn-row">
                   <go-button
-                    onclick="window.goToast &amp;&amp; window.goToast.success('Guardado!')"
+                    variant="outline"
+                    onclick="window.goToast &amp;&amp; window.goToast('O evento foi criado')"
+                    >Default</go-button
+                  >
+                  <go-button
+                    variant="outline"
+                    onclick="window.goToast &amp;&amp; window.goToast.success('O evento foi criado')"
                     >Sucesso</go-button
                   >
                   <go-button
-                    onclick="window.goToast &amp;&amp; window.goToast.info('Há atualizações disponíveis.')"
+                    variant="outline"
+                    onclick="window.goToast &amp;&amp; window.goToast.info('Chega 10 minutos antes da hora do evento')"
                     >Info</go-button
                   >
                   <go-button
-                    onclick="window.goToast &amp;&amp; window.goToast.warning('Sessão a expirar.')"
+                    variant="outline"
+                    onclick="window.goToast &amp;&amp; window.goToast.warning('A hora de início não pode ser anterior às 8h')"
                     >Aviso</go-button
                   >
                   <go-button
-                    onclick="window.goToast &amp;&amp; window.goToast.error('Algo correu mal.')"
+                    variant="outline"
+                    onclick="window.goToast &amp;&amp; window.goToast.error('O evento não foi criado')"
                     >Erro</go-button
+                  >
+                  <go-button
+                    variant="outline"
+                    onclick="window.goToast &amp;&amp; window.goToast.promise(new Promise(function (r) { setTimeout(function () { r({ name: 'Evento' }) }, 2000) }), { loading: 'A carregar...', success: function (d) { return d.name + ' foi criado' }, error: 'Erro' })"
+                    >Promise</go-button
                   >
                 </div>
               </div>
               <div class="pc-code">
-                <pre class="code" data-lang="ts">window.goToast.success('Guardado!')
-window.goToast.info('Há atualizações disponíveis.')
-window.goToast.warning('Sessão a expirar.')
-window.goToast.error('Algo correu mal.')</pre>
+                <pre class="code" data-lang="ts">window.goToast('O evento foi criado')
+window.goToast.success('O evento foi criado')
+window.goToast.info('Chega 10 minutos antes da hora do evento')
+window.goToast.warning('A hora de início não pode ser anterior às 8h')
+window.goToast.error('O evento não foi criado')
+window.goToast.promise(
+  () =&gt; new Promise((r) =&gt; setTimeout(() =&gt; r({ name: 'Evento' }), 2000)),
+  { loading: 'A carregar...', success: (d) =&gt; `${d.name} foi criado`, error: 'Erro' },
+)</pre>
               </div>
             </div>
           </div>
@@ -249,51 +270,30 @@ window.goToast.error('Algo correu mal.')</pre>
             <div class="pc-panels">
               <div class="pc-preview">
                 <go-dialog>
-                  <go-button slot="trigger">Abrir dialog</go-button>
+                  <go-button slot="trigger" variant="outline"
+                    >Dialog com toast</go-button
+                  >
                   <div class="sn-dlg">
-                    <h3>Confirmar ação</h3>
-                    <p>Queres mesmo guardar as alterações?</p>
+                    <h3>Vue Sonner Toast</h3>
+                    <p>Dialog com toast</p>
                     <go-button
-                      onclick="window.goToast &amp;&amp; window.goToast.success('Alterações guardadas.')"
-                      >Guardar</go-button
+                      onclick="window.goToast &amp;&amp; window.goToast('O evento foi criado', { description: 'Domingo, 3 de dezembro de 2023 às 9:00', action: { label: 'Anular', onClick: function () {} } })"
+                      >Toast</go-button
                     >
                   </div>
                 </go-dialog>
               </div>
               <div class="pc-code">
                 <pre class="code" data-lang="html">&lt;go-dialog&gt;
-  &lt;go-button slot="trigger"&gt;Abrir dialog&lt;/go-button&gt;
+  &lt;go-button slot="trigger"&gt;Dialog com toast&lt;/go-button&gt;
   &lt;div&gt;
-    &lt;h3&gt;Confirmar ação&lt;/h3&gt;
-    &lt;go-button
-      onclick="window.goToast.success('Alterações guardadas.')"
-    &gt;Guardar&lt;/go-button&gt;
+    &lt;h3&gt;Vue Sonner Toast&lt;/h3&gt;
+    &lt;go-button onclick="window.goToast('O evento foi criado', {
+      description: 'Domingo, 3 de dezembro de 2023 às 9:00',
+      action: { label: 'Anular', onClick: () =&gt; {} },
+    })"&gt;Toast&lt;/go-button&gt;
   &lt;/div&gt;
 &lt;/go-dialog&gt;</pre>
-              </div>
-            </div>
-          </div>
-
-          <h3 id="cores-ricas">Cores ricas</h3>
-          <p class="tx">
-            O atributo <code>rich-colors</code> no
-            <code>&lt;go-toaster&gt;</code> dá fundo colorido aos toasts de
-            sucesso/erro/aviso (configura-se no toaster da raiz da app).
-          </p>
-          <div class="pc" data-view="preview">
-            <div class="pc-bar">
-              <button data-view="preview" aria-selected="true">Preview</button>
-              <button data-view="code" aria-selected="false">Code</button>
-            </div>
-            <div class="pc-panels">
-              <div class="pc-preview">
-                <go-button
-                  onclick="window.goToast &amp;&amp; window.goToast.success('Operação concluída.')"
-                  >Mostrar sucesso</go-button
-                >
-              </div>
-              <div class="pc-code">
-                <pre class="code" data-lang="html">&lt;go-toaster position="bottom-right" rich-colors&gt;&lt;/go-toaster&gt;</pre>
               </div>
             </div>
           </div>

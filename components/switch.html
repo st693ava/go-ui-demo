@@ -175,10 +175,10 @@ import '@st693ava/go-ui/style.css'</pre>
           <h2 id="uso">Uso</h2>
           <p class="tx">
             O conteúdo do elemento é a etiqueta — clicar no texto também alterna
-            o estado. O atributo <code>name</code> liga o valor ao
-            <code>&lt;form&gt;</code> nativo via <code>ElementInternals</code>
-            (FACE). Quando ligado, submete <code>on</code> (ou o
-            <code>value</code> que definires).
+            o estado. Usa <code>checked</code> para começar ligado. O atributo
+            <code>name</code> liga o valor ao <code>&lt;form&gt;</code> nativo
+            via <code>ElementInternals</code> (FACE). Quando ligado, submete
+            <code>on</code> (ou o <code>value</code> que definires).
           </p>
           <pre class="code" data-lang="html">&lt;go-switch name="airplane-mode"&gt;Modo avião&lt;/go-switch&gt;</pre>
           <div class="pc" data-view="preview">
@@ -251,7 +251,8 @@ import '@st693ava/go-ui/style.css'</pre>
           <h3 id="lista-de-definicoes">Lista de definições</h3>
           <p class="tx">
             Vários switches numa lista de preferências, cada um com a sua
-            etiqueta e descrição.
+            etiqueta e descrição. O atributo <code>checked</code> define o
+            estado inicial de cada um.
           </p>
           <div class="pc" data-view="preview">
             <div class="pc-bar">
@@ -266,7 +267,7 @@ import '@st693ava/go-ui/style.css'</pre>
                       <strong>Notificações push</strong>
                       <p class="sw-hint">Alertas no dispositivo em tempo real.</p>
                     </div>
-                    <go-switch name="push"></go-switch>
+                    <go-switch name="push" checked></go-switch>
                   </div>
                   <div class="sw-row">
                     <div>
@@ -283,7 +284,7 @@ import '@st693ava/go-ui/style.css'</pre>
     &lt;strong&gt;Notificações push&lt;/strong&gt;
     &lt;p&gt;Alertas no dispositivo em tempo real.&lt;/p&gt;
   &lt;/div&gt;
-  &lt;go-switch name="push"&gt;&lt;/go-switch&gt;
+  &lt;go-switch name="push" checked&gt;&lt;/go-switch&gt;
 &lt;/div&gt;</pre>
               </div>
             </div>

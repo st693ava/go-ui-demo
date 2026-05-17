@@ -132,14 +132,36 @@
               <div class="pc-preview">
                 <div class="cb-stack">
                   <go-checkbox name="terms">Aceitar termos e condições</go-checkbox>
-                  <go-checkbox name="newsletter">Subscrever a newsletter</go-checkbox>
+                  <div class="cb-field">
+                    <go-checkbox name="terms-2" checked>Aceitar termos e condições</go-checkbox>
+                    <p class="cb-hint">
+                      Ao marcar esta caixa, concordas com os termos e condições.
+                    </p>
+                  </div>
                   <go-checkbox name="notify" disabled>Ativar notificações</go-checkbox>
+                  <div class="cb-card">
+                    <go-checkbox name="notify-2" checked>Ativar notificações</go-checkbox>
+                    <p class="cb-hint">
+                      Podes ativar ou desativar as notificações a qualquer
+                      momento.
+                    </p>
+                  </div>
                 </div>
               </div>
               <div class="pc-code">
                 <pre class="code" data-lang="html">&lt;go-checkbox name="terms"&gt;Aceitar termos e condições&lt;/go-checkbox&gt;
-&lt;go-checkbox name="newsletter"&gt;Subscrever a newsletter&lt;/go-checkbox&gt;
-&lt;go-checkbox name="notify" disabled&gt;Ativar notificações&lt;/go-checkbox&gt;</pre>
+
+&lt;div class="field"&gt;
+  &lt;go-checkbox name="terms-2" checked&gt;Aceitar termos e condições&lt;/go-checkbox&gt;
+  &lt;p class="hint"&gt;Ao marcar esta caixa, concordas com os termos e condições.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;go-checkbox name="notify" disabled&gt;Ativar notificações&lt;/go-checkbox&gt;
+
+&lt;div class="card"&gt;
+  &lt;go-checkbox name="notify-2" checked&gt;Ativar notificações&lt;/go-checkbox&gt;
+  &lt;p class="hint"&gt;Podes ativar ou desativar as notificações a qualquer momento.&lt;/p&gt;
+&lt;/div&gt;</pre>
               </div>
             </div>
           </div>
@@ -181,10 +203,10 @@ import '@st693ava/go-ui/style.css'</pre>
           <h2 id="uso">Uso</h2>
           <p class="tx">
             O conteúdo do elemento é a etiqueta — clicar no texto também alterna
-            o estado. O atributo <code>name</code> liga o valor ao
-            <code>&lt;form&gt;</code> nativo via <code>ElementInternals</code>
-            (FACE). Quando marcado, submete <code>on</code> (ou o
-            <code>value</code> que definires).
+            o estado. Usa <code>checked</code> para começar marcada. O atributo
+            <code>name</code> liga o valor ao <code>&lt;form&gt;</code> nativo
+            via <code>ElementInternals</code> (FACE). Quando marcado, submete
+            <code>on</code> (ou o <code>value</code> que definires).
           </p>
           <pre class="code" data-lang="html">&lt;go-checkbox name="terms"&gt;Aceitar termos e condições&lt;/go-checkbox&gt;</pre>
           <div class="pc" data-view="preview">
@@ -208,7 +230,8 @@ import '@st693ava/go-ui/style.css'</pre>
           <h3 id="com-texto-de-apoio">Com texto de apoio</h3>
           <p class="tx">
             Compõe a checkbox com um parágrafo descritivo ao nível da página
-            para dar contexto à escolha.
+            para dar contexto à escolha. Aqui começa marcada com
+            <code>checked</code>.
           </p>
           <div class="pc" data-view="preview">
             <div class="pc-bar">
@@ -218,7 +241,7 @@ import '@st693ava/go-ui/style.css'</pre>
             <div class="pc-panels">
               <div class="pc-preview">
                 <div class="cb-field">
-                  <go-checkbox name="terms-2">Aceitar termos e condições</go-checkbox>
+                  <go-checkbox name="terms-3" checked>Aceitar termos e condições</go-checkbox>
                   <p class="cb-hint">
                     Ao marcar esta caixa, concordas com os termos e condições.
                   </p>
@@ -226,7 +249,7 @@ import '@st693ava/go-ui/style.css'</pre>
               </div>
               <div class="pc-code">
                 <pre class="code" data-lang="html">&lt;div class="field"&gt;
-  &lt;go-checkbox name="terms"&gt;Aceitar termos e condições&lt;/go-checkbox&gt;
+  &lt;go-checkbox name="terms" checked&gt;Aceitar termos e condições&lt;/go-checkbox&gt;
   &lt;p class="hint"&gt;Ao marcar esta caixa, concordas com os termos e condições.&lt;/p&gt;
 &lt;/div&gt;</pre>
               </div>
@@ -266,7 +289,7 @@ import '@st693ava/go-ui/style.css'</pre>
             <div class="pc-panels">
               <div class="pc-preview">
                 <div class="cb-card">
-                  <go-checkbox name="notify-2">Ativar notificações</go-checkbox>
+                  <go-checkbox name="notify-3" checked>Ativar notificações</go-checkbox>
                   <p class="cb-hint">
                     Podes ativar ou desativar as notificações a qualquer
                     momento.
@@ -275,7 +298,7 @@ import '@st693ava/go-ui/style.css'</pre>
               </div>
               <div class="pc-code">
                 <pre class="code" data-lang="html">&lt;div class="card"&gt;
-  &lt;go-checkbox name="notify"&gt;Ativar notificações&lt;/go-checkbox&gt;
+  &lt;go-checkbox name="notify" checked&gt;Ativar notificações&lt;/go-checkbox&gt;
   &lt;p class="hint"&gt;Podes ativar ou desativar as notificações a qualquer momento.&lt;/p&gt;
 &lt;/div&gt;</pre>
               </div>

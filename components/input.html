@@ -205,7 +205,7 @@ import '@st693ava/go-ui/style.css'</pre>
           <h2 id="exemplos">Exemplos</h2>
 
           <h3 id="por-defeito">Por defeito</h3>
-          <p class="tx">Um campo de e-mail simples com placeholder.</p>
+          <p class="tx">Um campo de entrada simples.</p>
           <div class="pc" data-view="preview">
             <div class="pc-bar">
               <button data-view="preview" aria-selected="true">Preview</button>
@@ -214,7 +214,7 @@ import '@st693ava/go-ui/style.css'</pre>
             <div class="pc-panels">
               <div class="pc-preview">
                 <span class="in-w">
-                  <go-input name="email" type="email" placeholder="E-mail"></go-input>
+                  <go-input name="email-default" type="email" placeholder="E-mail"></go-input>
                 </span>
               </div>
               <div class="pc-code">
@@ -225,8 +225,12 @@ import '@st693ava/go-ui/style.css'</pre>
 
           <h3 id="ficheiro">Ficheiro</h3>
           <p class="tx">
-            Com <code>type="file"</code>, composto com uma
-            <code>&lt;go-label&gt;</code> ao nível da página.
+            Um campo de carregamento de ficheiro com <code>type="file"</code>,
+            composto com uma <code>&lt;go-label&gt;</code> ao nível da página. O
+            seletor de ficheiros nativo renderiza com a skin; a submissão do
+            ficheiro via FACE não está coberta (usa um <code>&lt;input
+            type="file"&gt;</code> nativo se precisares do binário no
+            <code>&lt;form&gt;</code>).
           </p>
           <div class="pc" data-view="preview">
             <div class="pc-bar">
@@ -251,8 +255,8 @@ import '@st693ava/go-ui/style.css'</pre>
 
           <h3 id="desativado">Desativado</h3>
           <p class="tx">
-            O atributo <code>disabled</code> impede a edição e remove o valor da
-            submissão.
+            Um campo desativado: o atributo <code>disabled</code> impede a
+            edição e remove o valor da submissão.
           </p>
           <div class="pc" data-view="preview">
             <div class="pc-bar">
@@ -262,7 +266,7 @@ import '@st693ava/go-ui/style.css'</pre>
             <div class="pc-panels">
               <div class="pc-preview">
                 <span class="in-w">
-                  <go-input name="email" type="email" placeholder="E-mail" disabled></go-input>
+                  <go-input name="email-disabled" type="email" placeholder="E-mail" disabled></go-input>
                 </span>
               </div>
               <div class="pc-code">
@@ -273,9 +277,8 @@ import '@st693ava/go-ui/style.css'</pre>
 
           <h3 id="com-etiqueta">Com etiqueta</h3>
           <p class="tx">
-            Compõe <code>&lt;go-label&gt;</code> com
-            <code>&lt;go-input&gt;</code> ao nível da página para um campo
-            etiquetado.
+            Um campo com etiqueta: compõe <code>&lt;go-label&gt;</code> com
+            <code>&lt;go-input&gt;</code> ao nível da página.
           </p>
           <div class="pc" data-view="preview">
             <div class="pc-bar">
@@ -300,9 +303,9 @@ import '@st693ava/go-ui/style.css'</pre>
 
           <h3 id="com-botao">Com botão</h3>
           <p class="tx">
-            Compõe <code>&lt;go-input&gt;</code> com
-            <code>&lt;go-button&gt;</code> numa linha para uma ação inline (ex.:
-            subscrever).
+            Um campo com botão: compõe <code>&lt;go-input&gt;</code> com
+            <code>&lt;go-button&gt;</code> numa linha para uma ação inline
+            (ex.: subscrever).
           </p>
           <div class="pc" data-view="preview">
             <div class="pc-bar">

@@ -135,14 +135,17 @@
                   <div slot="content">
                     <div class="hc-row">
                       <go-avatar
-                        src="https://github.com/nuxt.png"
+                        src="https://github.com/vercel.png"
                         alt="@nuxt"
-                        fallback="NX"
+                        fallback="VC"
                       ></go-avatar>
                       <div class="hc-body">
                         <h4>@nuxt</h4>
                         <p>A framework Vue — a framework web progressiva.</p>
-                        <span class="hc-meta">Juntou-se em dezembro de 2021</span>
+                        <span class="hc-meta">
+                          <span class="hc-cal" aria-hidden="true">▦</span>
+                          Juntou-se em dezembro de 2021
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -152,7 +155,7 @@
                 <pre class="code" data-lang="html">&lt;go-hover-card&gt;
   &lt;go-button slot="trigger" variant="link"&gt;@nuxt&lt;/go-button&gt;
   &lt;div slot="content"&gt;
-    &lt;go-avatar src="https://github.com/nuxt.png" alt="@nuxt" fallback="NX"&gt;&lt;/go-avatar&gt;
+    &lt;go-avatar src="https://github.com/vercel.png" alt="@nuxt" fallback="VC"&gt;&lt;/go-avatar&gt;
     &lt;h4&gt;@nuxt&lt;/h4&gt;
     &lt;p&gt;A framework Vue — a framework web progressiva.&lt;/p&gt;
     &lt;span&gt;Juntou-se em dezembro de 2021&lt;/span&gt;
@@ -250,16 +253,17 @@ import '@st693ava/go-ui/style.css'</pre>
                   <div slot="content">
                     <div class="hc-row">
                       <go-avatar
-                        src="https://github.com/nuxt.png"
+                        src="https://github.com/vercel.png"
                         alt="@nuxt"
-                        fallback="NX"
+                        fallback="VC"
                       ></go-avatar>
                       <div class="hc-body">
                         <h4>@nuxt</h4>
                         <p>A framework Vue — a framework web progressiva.</p>
-                        <span class="hc-meta"
-                          >Juntou-se em dezembro de 2021</span
-                        >
+                        <span class="hc-meta">
+                          <span class="hc-cal" aria-hidden="true">▦</span>
+                          Juntou-se em dezembro de 2021
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -269,7 +273,7 @@ import '@st693ava/go-ui/style.css'</pre>
                 <pre class="code" data-lang="html">&lt;go-hover-card&gt;
   &lt;go-button slot="trigger" variant="link"&gt;@nuxt&lt;/go-button&gt;
   &lt;div slot="content"&gt;
-    &lt;go-avatar src="https://github.com/nuxt.png" alt="@nuxt" fallback="NX"&gt;&lt;/go-avatar&gt;
+    &lt;go-avatar src="https://github.com/vercel.png" alt="@nuxt" fallback="VC"&gt;&lt;/go-avatar&gt;
     &lt;h4&gt;@nuxt&lt;/h4&gt;
     &lt;p&gt;A framework Vue — a framework web progressiva.&lt;/p&gt;
     &lt;span&gt;Juntou-se em dezembro de 2021&lt;/span&gt;
@@ -345,8 +349,17 @@ import '@st693ava/go-ui/style.css'</pre>
           color: var(--foreground, #0a0a0a);
         }
         .hc-meta {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.4rem;
+          padding-top: 0.5rem;
           font-size: 0.75rem;
           color: var(--muted-foreground, #6b7280);
+        }
+        .hc-cal {
+          opacity: 0.7;
+          font-size: 0.9rem;
+          line-height: 1;
         }
         .hc-text {
           margin: 0;

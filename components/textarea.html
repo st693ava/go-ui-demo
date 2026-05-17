@@ -203,7 +203,7 @@ import '@st693ava/go-ui/style.css'</pre>
           <h2 id="exemplos">Exemplos</h2>
 
           <h3 id="por-defeito">Por defeito</h3>
-          <p class="tx">Uma área de texto simples com placeholder.</p>
+          <p class="tx">Uma área de texto simples.</p>
           <div class="pc" data-view="preview">
             <div class="pc-bar">
               <button data-view="preview" aria-selected="true">Preview</button>
@@ -212,7 +212,7 @@ import '@st693ava/go-ui/style.css'</pre>
             <div class="pc-panels">
               <div class="pc-preview">
                 <span class="ta-w">
-                  <go-textarea name="message" placeholder="Escreve a tua mensagem aqui."></go-textarea>
+                  <go-textarea name="message-default" placeholder="Escreve a tua mensagem aqui."></go-textarea>
                 </span>
               </div>
               <div class="pc-code">
@@ -223,8 +223,8 @@ import '@st693ava/go-ui/style.css'</pre>
 
           <h3 id="desativada">Desativada</h3>
           <p class="tx">
-            O atributo <code>disabled</code> impede a edição e remove o valor da
-            submissão.
+            Uma área de texto desativada: o atributo <code>disabled</code>
+            impede a edição e remove o valor da submissão.
           </p>
           <div class="pc" data-view="preview">
             <div class="pc-bar">
@@ -234,7 +234,7 @@ import '@st693ava/go-ui/style.css'</pre>
             <div class="pc-panels">
               <div class="pc-preview">
                 <span class="ta-w">
-                  <go-textarea name="message" placeholder="Escreve a tua mensagem aqui." disabled></go-textarea>
+                  <go-textarea name="message-disabled" placeholder="Escreve a tua mensagem aqui." disabled></go-textarea>
                 </span>
               </div>
               <div class="pc-code">
@@ -245,9 +245,9 @@ import '@st693ava/go-ui/style.css'</pre>
 
           <h3 id="com-etiqueta">Com etiqueta</h3>
           <p class="tx">
-            Compõe <code>&lt;go-label&gt;</code> com
-            <code>&lt;go-textarea&gt;</code> ao nível da página para um campo
-            etiquetado.
+            Uma área de texto com etiqueta: compõe
+            <code>&lt;go-label&gt;</code> com
+            <code>&lt;go-textarea&gt;</code> ao nível da página.
           </p>
           <div class="pc" data-view="preview">
             <div class="pc-bar">
@@ -272,7 +272,8 @@ import '@st693ava/go-ui/style.css'</pre>
 
           <h3 id="com-texto-de-apoio">Com texto de apoio</h3>
           <p class="tx">
-            Adiciona uma descrição abaixo da área de texto para dar contexto.
+            Uma área de texto com texto de apoio: adiciona uma descrição abaixo
+            do campo para dar contexto.
           </p>
           <div class="pc" data-view="preview">
             <div class="pc-bar">
@@ -301,8 +302,8 @@ import '@st693ava/go-ui/style.css'</pre>
 
           <h3 id="com-botao">Com botão</h3>
           <p class="tx">
-            Compõe a área de texto com um <code>&lt;go-button&gt;</code> de
-            envio ao nível da página.
+            Uma área de texto com botão: compõe o campo com um
+            <code>&lt;go-button&gt;</code> de envio ao nível da página.
           </p>
           <div class="pc" data-view="preview">
             <div class="pc-bar">

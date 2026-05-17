@@ -200,11 +200,12 @@ import '@st693ava/go-ui/style.css'</pre>
 
           <h3 id="tamanhos">Tamanhos</h3>
           <p class="tx">
-            No shadcn-vue usa-se a classe utilitária <code>basis</code> em cada
-            item para mostrar vários slides em simultâneo. O
-            <code>&lt;go-carousel&gt;</code> não expõe controlo de
-            <code>basis</code> por item; o exemplo abaixo aproxima o efeito
-            compondo vários cartões dentro de cada <code>&lt;section&gt;</code>.
+            Para mostrar vários slides em simultâneo, usa o atributo
+            <code>items-per-view</code> — o
+            <code>&lt;go-carousel&gt;</code> aplica a classe
+            <code>basis-1/N</code> a cada item (equivalente ao
+            <code>basis-*</code> do shadcn-vue). Aqui três itens visíveis, cada
+            um a ocupar um terço da largura.
           </p>
           <div class="pc" data-view="preview">
             <div class="pc-bar">
@@ -213,33 +214,22 @@ import '@st693ava/go-ui/style.css'</pre>
             </div>
             <div class="pc-panels">
               <div class="pc-preview">
-                <go-carousel>
-                  <section title="g1">
-                    <div class="car-row">
-                      <div class="car-slide car-sm">1</div>
-                      <div class="car-slide car-sm">2</div>
-                      <div class="car-slide car-sm">3</div>
-                    </div>
-                  </section>
-                  <section title="g2">
-                    <div class="car-row">
-                      <div class="car-slide car-sm">4</div>
-                      <div class="car-slide car-sm">5</div>
-                      <div class="car-slide car-sm">6</div>
-                    </div>
-                  </section>
+                <go-carousel items-per-view="3">
+                  <section title="1"><div class="car-slide car-sm">1</div></section>
+                  <section title="2"><div class="car-slide car-sm">2</div></section>
+                  <section title="3"><div class="car-slide car-sm">3</div></section>
+                  <section title="4"><div class="car-slide car-sm">4</div></section>
+                  <section title="5"><div class="car-slide car-sm">5</div></section>
                 </go-carousel>
               </div>
               <div class="pc-code">
-                <pre class="code" data-lang="html">&lt;go-carousel&gt;
-  &lt;section&gt;
-    &lt;div class="row"&gt;
-      &lt;div class="card"&gt;1&lt;/div&gt;
-      &lt;div class="card"&gt;2&lt;/div&gt;
-      &lt;div class="card"&gt;3&lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/section&gt;
-  &lt;section&gt;...&lt;/section&gt;
+                <pre class="code" data-lang="html">&lt;!-- 33% da largura do carrossel por item --&gt;
+&lt;go-carousel items-per-view="3"&gt;
+  &lt;section&gt;&lt;div class="card"&gt;1&lt;/div&gt;&lt;/section&gt;
+  &lt;section&gt;&lt;div class="card"&gt;2&lt;/div&gt;&lt;/section&gt;
+  &lt;section&gt;&lt;div class="card"&gt;3&lt;/div&gt;&lt;/section&gt;
+  &lt;section&gt;&lt;div class="card"&gt;4&lt;/div&gt;&lt;/section&gt;
+  &lt;section&gt;&lt;div class="card"&gt;5&lt;/div&gt;&lt;/section&gt;
 &lt;/go-carousel&gt;</pre>
               </div>
             </div>
@@ -247,9 +237,13 @@ import '@st693ava/go-ui/style.css'</pre>
 
           <h3 id="espacamento">Espaçamento</h3>
           <p class="tx">
-            O espaçamento entre os slides é gerido internamente pelo
-            <code>&lt;go-carousel&gt;</code>. Para espaço extra dentro de um
-            slide, aplica padding ao conteúdo da própria
+            No shadcn-vue o espaçamento entre slides faz-se com
+            <code>pl-[VALOR]</code> em cada item e um
+            <code>-ml-[VALOR]</code> negativo no contentor. O
+            <code>&lt;go-carousel&gt;</code> já aplica esse par
+            (<code>pl-4</code>/<code>-ml-4</code>) internamente, por isso o
+            espaçamento entre slides vem por defeito. Para espaço extra dentro
+            de um slide, aplica padding ao conteúdo da própria
             <code>&lt;section&gt;</code>.
           </p>
           <div class="pc" data-view="preview">
@@ -259,20 +253,27 @@ import '@st693ava/go-ui/style.css'</pre>
             </div>
             <div class="pc-panels">
               <div class="pc-preview">
-                <go-carousel>
+                <go-carousel items-per-view="3">
                   <section title="s1">
-                    <div class="car-pad"><div class="car-slide">1</div></div>
+                    <div class="car-pad"><div class="car-slide car-sm">1</div></div>
                   </section>
                   <section title="s2">
-                    <div class="car-pad"><div class="car-slide">2</div></div>
+                    <div class="car-pad"><div class="car-slide car-sm">2</div></div>
                   </section>
                   <section title="s3">
-                    <div class="car-pad"><div class="car-slide">3</div></div>
+                    <div class="car-pad"><div class="car-slide car-sm">3</div></div>
+                  </section>
+                  <section title="s4">
+                    <div class="car-pad"><div class="car-slide car-sm">4</div></div>
+                  </section>
+                  <section title="s5">
+                    <div class="car-pad"><div class="car-slide car-sm">5</div></div>
                   </section>
                 </go-carousel>
               </div>
               <div class="pc-code">
-                <pre class="code" data-lang="html">&lt;go-carousel&gt;
+                <pre class="code" data-lang="html">&lt;!-- pl-4/-ml-4 são aplicados internamente --&gt;
+&lt;go-carousel items-per-view="3"&gt;
   &lt;section&gt;
     &lt;div style="padding:1rem"&gt;&lt;div class="card"&gt;1&lt;/div&gt;&lt;/div&gt;
   &lt;/section&gt;

@@ -132,11 +132,12 @@
               <div class="pc-preview">
                 <go-tags-input
                   name="fruits"
+                  value="Maçã,Banana"
                   placeholder="Frutas..."
                 ></go-tags-input>
               </div>
               <div class="pc-code">
-                <pre class="code" data-lang="html">&lt;go-tags-input name="fruits" placeholder="Frutas..."&gt;&lt;/go-tags-input&gt;</pre>
+                <pre class="code" data-lang="html">&lt;go-tags-input name="fruits" value="Maçã,Banana" placeholder="Frutas..."&gt;&lt;/go-tags-input&gt;</pre>
               </div>
             </div>
           </div>
@@ -178,13 +179,15 @@ import '@st693ava/go-ui/style.css'</pre>
           <h2 id="uso">Uso</h2>
           <p class="tx">
             Escreve no campo e prime Enter para adicionar uma tag; cada tag tem
-            um botão para a remover. O atributo <code>placeholder</code> define
-            o texto do input. O <code>name</code> liga-o a um formulário (FACE)
-            — cada tag submete-se como uma entrada própria, em paridade com
-            <code>&lt;select multiple&gt;</code>. O componente emite
-            <code>change</code> com o array de tags.
+            um botão para a remover. O atributo <code>value</code> define as
+            tags iniciais (separadas por vírgula, ou pelo
+            <code>delimiter</code> que escolheres) e
+            <code>placeholder</code> o texto do input. O <code>name</code>
+            liga-o a um formulário (FACE) — cada tag submete-se como uma entrada
+            própria, em paridade com <code>&lt;select multiple&gt;</code>. O
+            componente emite <code>change</code> com o array de tags.
           </p>
-          <pre class="code" data-lang="html">&lt;go-tags-input name="fruits" placeholder="Frutas..."&gt;&lt;/go-tags-input&gt;</pre>
+          <pre class="code" data-lang="html">&lt;go-tags-input name="fruits" value="Maçã,Banana" placeholder="Frutas..."&gt;&lt;/go-tags-input&gt;</pre>
           <div class="pc" data-view="preview">
             <div class="pc-bar">
               <button data-view="preview" aria-selected="true">Preview</button>
@@ -194,11 +197,12 @@ import '@st693ava/go-ui/style.css'</pre>
               <div class="pc-preview">
                 <go-tags-input
                   name="fruits2"
+                  value="Maçã,Banana"
                   placeholder="Frutas..."
                 ></go-tags-input>
               </div>
               <div class="pc-code">
-                <pre class="code" data-lang="html">&lt;go-tags-input name="fruits" placeholder="Frutas..."&gt;&lt;/go-tags-input&gt;</pre>
+                <pre class="code" data-lang="html">&lt;go-tags-input name="fruits" value="Maçã,Banana" placeholder="Frutas..."&gt;&lt;/go-tags-input&gt;</pre>
               </div>
             </div>
           </div>
@@ -208,13 +212,8 @@ import '@st693ava/go-ui/style.css'</pre>
 
           <h3 id="default">Default</h3>
           <p class="tx">
-            O exemplo base: campo vazio com placeholder. Escreve e prime Enter
-            para adicionar.
-            <span class="tx-note"
-              >Nota: tags iniciais por atributo não são expostas pela API atual
-              — começa-se sempre vazio; o estado inicial é definido em
-              runtime.</span
-            >
+            O exemplo base: arranca com duas tags e um campo para adicionar
+            mais. Escreve e prime Enter para adicionar; clica no × para remover.
           </p>
           <div class="pc" data-view="preview">
             <div class="pc-bar">
@@ -225,11 +224,12 @@ import '@st693ava/go-ui/style.css'</pre>
               <div class="pc-preview">
                 <go-tags-input
                   name="fruits3"
+                  value="Maçã,Banana"
                   placeholder="Frutas..."
                 ></go-tags-input>
               </div>
               <div class="pc-code">
-                <pre class="code" data-lang="html">&lt;go-tags-input name="fruits" placeholder="Frutas..."&gt;&lt;/go-tags-input&gt;</pre>
+                <pre class="code" data-lang="html">&lt;go-tags-input name="fruits" value="Maçã,Banana" placeholder="Frutas..."&gt;&lt;/go-tags-input&gt;</pre>
               </div>
             </div>
           </div>
@@ -260,11 +260,9 @@ import '@st693ava/go-ui/style.css'</pre>
 
           <h3 id="estado-inicial">Estado inicial</h3>
           <p class="tx">
-            O estado inicial define-se em runtime, despachando o evento
-            <code>change</code> ou definindo a propriedade após o registo do
-            elemento — aproximação fiel ao padrão controlado do shadcn-vue
-            (<code>v-model</code>), já que a API do Web Component não tem um
-            atributo declarativo de valor.
+            Define as tags iniciais com o atributo <code>value</code> (lista
+            separada por vírgula). Para um separador diferente — útil quando os
+            valores contêm vírgulas — usa <code>delimiter</code>.
           </p>
           <div class="pc" data-view="preview">
             <div class="pc-bar">
@@ -274,31 +272,33 @@ import '@st693ava/go-ui/style.css'</pre>
             <div class="pc-panels">
               <div class="pc-preview">
                 <go-tags-input
-                  id="ti-seed"
                   name="seeded"
-                  placeholder="Frutas..."
+                  value="Nuxt;Remix;Astro"
+                  delimiter=";"
+                  placeholder="Frameworks..."
                 ></go-tags-input>
-                <script>
-                  customElements
-                    .whenDefined('go-tags-input')
-                    .then(function () {
-                      var el = document.getElementById('ti-seed')
-                      el &&
-                        el.dispatchEvent(
-                          new CustomEvent('seed', { detail: ['Maçã', 'Banana'] }),
-                        )
-                    })
-                </script>
               </div>
               <div class="pc-code">
-                <pre class="code" data-lang="ts">// Define o estado inicial em runtime (padrão controlado, como v-model)
-customElements.whenDefined('go-tags-input').then(() =&gt; {
-  const el = document.querySelector('go-tags-input')
-  el.addEventListener('change', (e) =&gt; console.log(e.detail))
-})</pre>
+                <pre class="code" data-lang="html">&lt;go-tags-input
+  name="seeded"
+  value="Nuxt;Remix;Astro"
+  delimiter=";"
+  placeholder="Frameworks..."
+&gt;&lt;/go-tags-input&gt;</pre>
               </div>
             </div>
           </div>
+
+          <h3 id="com-listbox">Com Listbox</h3>
+          <p class="tx">
+            O exemplo "Tags with Listbox" do shadcn-vue compõe um
+            <code>TagsInput</code> com um <code>Popover</code> e um
+            <code>ListboxRoot</code> do Reka para autocompletar. Esta composição
+            multi-componente com estado partilhado não é exprimível como Web
+            Component declarativo simples — pelo que não está incluída aqui,
+            para não apresentar um exemplo falso. Adiciona tags livremente
+            escrevendo no campo e premindo Enter.
+          </p>
 
           <h3 id="formulario">Formulário</h3>
           <p class="tx">
@@ -354,8 +354,7 @@ customElements.whenDefined('go-tags-input').then(() =&gt; {
       <style>
         /* Composição local: o exemplo "Formulário" agrupa go-label +
            go-tags-input + go-button reais e mostra as tags submetidas via
-           FormData.getAll(). .tx-note = nota honesta sobre limites da API
-           (sem atributo declarativo de valor inicial). */
+           FormData.getAll(). Só esta página precisa deste layout. */
         .ti-form {
           display: flex;
           flex-direction: column;
@@ -366,12 +365,6 @@ customElements.whenDefined('go-tags-input').then(() =&gt; {
           font-size: 0.875rem;
           color: var(--muted-foreground, #6b7280);
           font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-        }
-        .tx-note {
-          display: block;
-          margin-top: 0.4rem;
-          font-size: 0.8125rem;
-          color: var(--muted-foreground, #6b7280);
         }
       </style>
     </main>

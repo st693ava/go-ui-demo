@@ -131,9 +131,9 @@
               <div class="pc-preview">
                 <div class="sk-row">
                   <go-skeleton
+                    circle
                     width="3rem"
                     height="3rem"
-                    class="sk-circle"
                   ></go-skeleton>
                   <div class="sk-lines">
                     <go-skeleton width="250px" height="1rem"></go-skeleton>
@@ -143,7 +143,7 @@
               </div>
               <div class="pc-code">
                 <pre class="code" data-lang="html">&lt;div class="row"&gt;
-  &lt;go-skeleton width="3rem" height="3rem"&gt;&lt;/go-skeleton&gt;
+  &lt;go-skeleton circle width="3rem" height="3rem"&gt;&lt;/go-skeleton&gt;
   &lt;div class="lines"&gt;
     &lt;go-skeleton width="250px" height="1rem"&gt;&lt;/go-skeleton&gt;
     &lt;go-skeleton width="200px" height="1rem"&gt;&lt;/go-skeleton&gt;
@@ -191,10 +191,13 @@ import '@st693ava/go-ui/style.css'</pre>
           <p class="tx">
             Os atributos <code>width</code> e <code>height</code> aceitam
             qualquer valor CSS (<code>px</code>, <code>rem</code>,
-            <code>%</code>) e são aplicados via estilo inline. A animação de
-            pulsação vem da skin.
+            <code>%</code>) e são aplicados via estilo inline. O atributo
+            <code>circle</code> torna-o redondo (placeholder de avatar) e
+            <code>radius</code> aceita <code>none</code>, <code>sm</code>,
+            <code>md</code>, <code>lg</code>, <code>xl</code> ou
+            <code>full</code>. A animação de pulsação vem da skin.
           </p>
-          <pre class="code" data-lang="html">&lt;go-skeleton width="100px" height="20px"&gt;&lt;/go-skeleton&gt;</pre>
+          <pre class="code" data-lang="html">&lt;go-skeleton width="100px" height="20px" radius="full"&gt;&lt;/go-skeleton&gt;</pre>
           <div class="pc" data-view="preview">
             <div class="pc-bar">
               <button data-view="preview" aria-selected="true">Preview</button>
@@ -202,10 +205,14 @@ import '@st693ava/go-ui/style.css'</pre>
             </div>
             <div class="pc-panels">
               <div class="pc-preview">
-                <go-skeleton width="100px" height="20px"></go-skeleton>
+                <go-skeleton
+                  width="100px"
+                  height="20px"
+                  radius="full"
+                ></go-skeleton>
               </div>
               <div class="pc-code">
-                <pre class="code" data-lang="html">&lt;go-skeleton width="100px" height="20px"&gt;&lt;/go-skeleton&gt;</pre>
+                <pre class="code" data-lang="html">&lt;go-skeleton width="100px" height="20px" radius="full"&gt;&lt;/go-skeleton&gt;</pre>
               </div>
             </div>
           </div>
@@ -216,8 +223,8 @@ import '@st693ava/go-ui/style.css'</pre>
           <h3 id="esqueleto">Esqueleto</h3>
           <p class="tx">
             Réplica do demo shadcn-vue: um avatar circular e duas linhas de
-            texto a carregar. O círculo usa <code>border-radius</code> via CSS
-            local (o componente só define dimensões).
+            texto a carregar. A forma redonda vem do atributo
+            <code>circle</code> do próprio componente — sem CSS local.
           </p>
           <div class="pc" data-view="preview">
             <div class="pc-bar">
@@ -228,9 +235,9 @@ import '@st693ava/go-ui/style.css'</pre>
               <div class="pc-preview">
                 <div class="sk-row">
                   <go-skeleton
+                    circle
                     width="3rem"
                     height="3rem"
-                    class="sk-circle"
                   ></go-skeleton>
                   <div class="sk-lines">
                     <go-skeleton width="250px" height="1rem"></go-skeleton>
@@ -240,7 +247,7 @@ import '@st693ava/go-ui/style.css'</pre>
               </div>
               <div class="pc-code">
                 <pre class="code" data-lang="html">&lt;div class="row"&gt;
-  &lt;go-skeleton width="3rem" height="3rem"&gt;&lt;/go-skeleton&gt;
+  &lt;go-skeleton circle width="3rem" height="3rem"&gt;&lt;/go-skeleton&gt;
   &lt;div class="lines"&gt;
     &lt;go-skeleton width="250px" height="1rem"&gt;&lt;/go-skeleton&gt;
     &lt;go-skeleton width="200px" height="1rem"&gt;&lt;/go-skeleton&gt;
@@ -264,9 +271,9 @@ import '@st693ava/go-ui/style.css'</pre>
               <div class="pc-preview">
                 <div class="sk-card">
                   <go-skeleton
+                    radius="lg"
                     width="100%"
                     height="8rem"
-                    class="sk-media"
                   ></go-skeleton>
                   <div class="sk-lines">
                     <go-skeleton width="80%" height="1rem"></go-skeleton>
@@ -277,7 +284,7 @@ import '@st693ava/go-ui/style.css'</pre>
               </div>
               <div class="pc-code">
                 <pre class="code" data-lang="html">&lt;div class="card"&gt;
-  &lt;go-skeleton width="100%" height="8rem"&gt;&lt;/go-skeleton&gt;
+  &lt;go-skeleton radius="lg" width="100%" height="8rem"&gt;&lt;/go-skeleton&gt;
   &lt;div class="lines"&gt;
     &lt;go-skeleton width="80%" height="1rem"&gt;&lt;/go-skeleton&gt;
     &lt;go-skeleton width="60%" height="1rem"&gt;&lt;/go-skeleton&gt;
@@ -302,9 +309,9 @@ import '@st693ava/go-ui/style.css'</pre>
       </div>
 
       <style>
-        /* Layout local: compõe vários go-skeleton reais em padrões comuns
-           (avatar+linhas, cartão). O círculo/borda são CSS local porque o
-           componente só recebe width/height. */
+        /* Layout local: apenas posiciona vários go-skeleton reais em padrões
+           comuns (avatar+linhas, cartão). A forma (círculo/raio) é definida
+           pelo próprio componente via atributos circle/radius. */
         .sk-row {
           display: flex;
           align-items: center;
@@ -315,22 +322,12 @@ import '@st693ava/go-ui/style.css'</pre>
           flex-direction: column;
           gap: 0.5rem;
         }
-        .sk-circle {
-          border-radius: 9999px;
-          overflow: hidden;
-          display: inline-block;
-        }
         .sk-card {
           display: flex;
           flex-direction: column;
           gap: 0.75rem;
           width: 100%;
           max-width: 20rem;
-        }
-        .sk-media {
-          border-radius: 0.5rem;
-          overflow: hidden;
-          display: block;
         }
       </style>
     </main>

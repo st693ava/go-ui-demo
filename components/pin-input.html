@@ -180,6 +180,12 @@ import '@st693ava/go-ui/style.css'</pre>
             enquanto o código estiver incompleto. O componente emite
             <code>change</code> a cada dígito e <code>complete</code> quando
             todas as casas estão preenchidas.
+            <span class="pi-note"
+              >Nota: a montante o shadcn-vue marcou o Pin Input como
+              descontinuado a favor do Input OTP; o
+              <code>&lt;go-pin-input&gt;</code> mantém-no como componente FACE
+              estável e os exemplos abaixo são próprios do go-ui.</span
+            >
           </p>
           <pre class="code" data-lang="html">&lt;go-pin-input name="otp" length="6"&gt;&lt;/go-pin-input&gt;</pre>
           <div class="pc" data-view="preview">
@@ -318,6 +324,12 @@ import '@st693ava/go-ui/style.css'</pre>
           font-size: 0.875rem;
           color: var(--muted-foreground, #6b7280);
           font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        }
+        .pi-note {
+          display: block;
+          margin-top: 0.4rem;
+          font-size: 0.8125rem;
+          color: var(--muted-foreground, #6b7280);
         }
       </style>
     </main>

@@ -130,7 +130,7 @@
             </div>
             <div class="pc-panels">
               <div class="pc-preview">
-                <div class="sb-shell-wrap">
+                <div class="sb-shell-wrap" style="height:14rem;overflow:hidden;transform:translateZ(0);position:relative;width:100%">
                   <go-sidebar mode="shell">
                     <div slot="header" class="sb-brand">A minha app</div>
                     <section title="Plataforma">
@@ -294,7 +294,7 @@ import '@st693ava/go-ui/style.css'</pre>
             </div>
             <div class="pc-panels">
               <div class="pc-preview">
-                <div class="sb-shell-wrap">
+                <div class="sb-shell-wrap" style="height:14rem;overflow:hidden;transform:translateZ(0);position:relative;width:100%">
                   <go-sidebar mode="shell">
                     <div slot="header" class="sb-brand">Acme Inc.</div>
                     <section title="Geral">
@@ -337,7 +337,7 @@ import '@st693ava/go-ui/style.css'</pre>
             </div>
             <div class="pc-panels">
               <div class="pc-preview">
-                <div class="sb-shell-wrap">
+                <div class="sb-shell-wrap" style="height:14rem;overflow:hidden;transform:translateZ(0);position:relative;width:100%">
                   <go-sidebar mode="shell" side="right">
                     <section title="Painel">
                       <option value="#atividade">Atividade</option>
@@ -364,6 +364,91 @@ import '@st693ava/go-ui/style.css'</pre>
             </div>
           </div>
 
+          <h3 id="variante">Variante</h3>
+          <p class="tx">
+            Usa <code>variant</code> para mudar a aparência da barra:
+            <code>sidebar</code> (default), <code>floating</code> ou
+            <code>inset</code>.
+          </p>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <div class="sb-shell-wrap" style="height:14rem;overflow:hidden;transform:translateZ(0);position:relative;width:100%">
+                  <go-sidebar mode="shell" variant="floating">
+                    <div slot="header" class="sb-brand">A minha app</div>
+                    <section title="Plataforma">
+                      <option value="#dashboard">Dashboard</option>
+                      <option value="#projetos">Projetos</option>
+                    </section>
+                    <div slot="content">
+                      <h3>Dashboard</h3>
+                      <p>Barra lateral com a variante flutuante.</p>
+                    </div>
+                  </go-sidebar>
+                </div>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-sidebar mode="shell" variant="floating"&gt;
+  &lt;div slot="header"&gt;A minha app&lt;/div&gt;
+  &lt;section title="Plataforma"&gt;
+    &lt;option value="/dashboard"&gt;Dashboard&lt;/option&gt;
+    &lt;option value="/projetos"&gt;Projetos&lt;/option&gt;
+  &lt;/section&gt;
+  &lt;div slot="content"&gt;
+    &lt;h3&gt;Dashboard&lt;/h3&gt;
+  &lt;/div&gt;
+&lt;/go-sidebar&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <h3 id="recolhivel">Recolhível</h3>
+          <p class="tx">
+            Usa <code>collapsible</code> para definir como a barra recolhe:
+            <code>offcanvas</code> (default), <code>icon</code> ou
+            <code>none</code>. Clica no botão do cabeçalho do shell para
+            alternar.
+          </p>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <div class="sb-shell-wrap" style="height:14rem;overflow:hidden;transform:translateZ(0);position:relative;width:100%">
+                  <go-sidebar mode="shell" collapsible="icon">
+                    <div slot="header" class="sb-brand">Acme Inc.</div>
+                    <section title="Geral">
+                      <option value="#inicio">Início</option>
+                      <option value="#relatorios">Relatórios</option>
+                    </section>
+                    <div slot="content">
+                      <h3>Início</h3>
+                      <p>Recolhe para ícones com o botão do cabeçalho.</p>
+                    </div>
+                  </go-sidebar>
+                </div>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-sidebar mode="shell" collapsible="icon"&gt;
+  &lt;div slot="header"&gt;Acme Inc.&lt;/div&gt;
+  &lt;section title="Geral"&gt;
+    &lt;option value="/inicio"&gt;Início&lt;/option&gt;
+    &lt;option value="/relatorios"&gt;Relatórios&lt;/option&gt;
+  &lt;/section&gt;
+  &lt;div slot="content"&gt;
+    &lt;h3&gt;Início&lt;/h3&gt;
+  &lt;/div&gt;
+&lt;/go-sidebar&gt;</pre>
+              </div>
+            </div>
+          </div>
+
           <nav class="docs-pager">
             <a class="prev" href="toaster.html"
               ><span>Anterior</span>Toaster</a
@@ -383,12 +468,12 @@ import '@st693ava/go-ui/style.css'</pre>
            altura fixa, overflow oculto e novo contexto de empilhamento
            (transform) — o fixed passa a posicionar-se relativo ao wrapper.
            Local a esta página. */
+        /* go-sidebar mode="shell" usa position:fixed (app-shell). Para o
+           mostrar inline numa página de docs, o wrapper recebe height/
+           overflow/transform/position/width via style inline (novo contexto
+           de empilhamento → o fixed posiciona-se relativo ao wrapper). A
+           classe só acrescenta a moldura. Local a esta página. */
         .sb-shell-wrap {
-          height: 16rem;
-          overflow: hidden;
-          transform: translateZ(0);
-          position: relative;
-          width: 100%;
           border: 1px solid var(--border, #d4d4d8);
           border-radius: 0.5rem;
         }

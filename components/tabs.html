@@ -132,20 +132,56 @@
               <div class="pc-preview">
                 <go-tabs default-value="account">
                   <section title="Conta" value="account">
-                    Faz alterações à tua conta aqui.
+                    <div class="tb-card">
+                      <p class="tb-desc">
+                        Faz alterações à tua conta aqui. Guarda quando
+                        terminares.
+                      </p>
+                      <go-input
+                        label="Nome"
+                        name="name"
+                        value="Pedro Saraiva"
+                      ></go-input>
+                      <go-input
+                        label="Utilizador"
+                        name="user"
+                        value="@pedro"
+                      ></go-input>
+                      <go-button>Guardar alterações</go-button>
+                    </div>
                   </section>
                   <section title="Palavra-passe" value="password">
-                    Altera a tua palavra-passe aqui.
+                    <div class="tb-card">
+                      <p class="tb-desc">
+                        Altera a tua palavra-passe aqui. Depois de guardar,
+                        terás de iniciar sessão de novo.
+                      </p>
+                      <go-input
+                        label="Palavra-passe atual"
+                        name="current"
+                        type="password"
+                      ></go-input>
+                      <go-input
+                        label="Nova palavra-passe"
+                        name="new"
+                        type="password"
+                      ></go-input>
+                      <go-button>Guardar palavra-passe</go-button>
+                    </div>
                   </section>
                 </go-tabs>
               </div>
               <div class="pc-code">
                 <pre class="code" data-lang="html">&lt;go-tabs default-value="account"&gt;
   &lt;section title="Conta" value="account"&gt;
-    Faz alterações à tua conta aqui.
+    &lt;go-input label="Nome" name="name" value="Pedro Saraiva"&gt;&lt;/go-input&gt;
+    &lt;go-input label="Utilizador" name="user" value="@pedro"&gt;&lt;/go-input&gt;
+    &lt;go-button&gt;Guardar alterações&lt;/go-button&gt;
   &lt;/section&gt;
   &lt;section title="Palavra-passe" value="password"&gt;
-    Altera a tua palavra-passe aqui.
+    &lt;go-input label="Palavra-passe atual" name="current" type="password"&gt;&lt;/go-input&gt;
+    &lt;go-input label="Nova palavra-passe" name="new" type="password"&gt;&lt;/go-input&gt;
+    &lt;go-button&gt;Guardar palavra-passe&lt;/go-button&gt;
   &lt;/section&gt;
 &lt;/go-tabs&gt;</pre>
               </div>
@@ -234,10 +270,9 @@ import '@st693ava/go-ui/style.css'</pre>
           <!-- ── Exemplos ────────────────────────────────────────────── -->
           <h2 id="exemplos">Exemplos</h2>
 
-          <h3 id="conta-e-palavra-passe">Conta e palavra-passe</h3>
+          <h3 id="texto-simples">Texto simples</h3>
           <p class="tx">
-            Dois separadores, cada um com o seu formulário, compostos com
-            componentes go-ui dentro do painel.
+            O caso base: dois separadores com conteúdo textual, sem formulário.
           </p>
           <div class="pc" data-view="preview">
             <div class="pc-bar">
@@ -248,55 +283,20 @@ import '@st693ava/go-ui/style.css'</pre>
               <div class="pc-preview">
                 <go-tabs default-value="account">
                   <section title="Conta" value="account">
-                    <div class="tb-card">
-                      <p class="tb-desc">
-                        Faz alterações à tua conta. Guarda quando terminares.
-                      </p>
-                      <go-input
-                        label="Nome"
-                        name="name"
-                        value="Pedro Saraiva"
-                      ></go-input>
-                      <go-input
-                        label="Utilizador"
-                        name="user"
-                        value="@pedro"
-                      ></go-input>
-                      <go-button>Guardar alterações</go-button>
-                    </div>
+                    Faz alterações à tua conta aqui.
                   </section>
                   <section title="Palavra-passe" value="password">
-                    <div class="tb-card">
-                      <p class="tb-desc">
-                        Altera a palavra-passe. Terás de iniciar sessão de
-                        novo.
-                      </p>
-                      <go-input
-                        label="Palavra-passe atual"
-                        name="current"
-                        type="password"
-                      ></go-input>
-                      <go-input
-                        label="Nova palavra-passe"
-                        name="new"
-                        type="password"
-                      ></go-input>
-                      <go-button>Alterar palavra-passe</go-button>
-                    </div>
+                    Altera a tua palavra-passe aqui.
                   </section>
                 </go-tabs>
               </div>
               <div class="pc-code">
                 <pre class="code" data-lang="html">&lt;go-tabs default-value="account"&gt;
   &lt;section title="Conta" value="account"&gt;
-    &lt;go-input label="Nome" name="name" value="Pedro Saraiva"&gt;&lt;/go-input&gt;
-    &lt;go-input label="Utilizador" name="user" value="@pedro"&gt;&lt;/go-input&gt;
-    &lt;go-button&gt;Guardar alterações&lt;/go-button&gt;
+    Faz alterações à tua conta aqui.
   &lt;/section&gt;
   &lt;section title="Palavra-passe" value="password"&gt;
-    &lt;go-input label="Palavra-passe atual" name="current" type="password"&gt;&lt;/go-input&gt;
-    &lt;go-input label="Nova palavra-passe" name="new" type="password"&gt;&lt;/go-input&gt;
-    &lt;go-button&gt;Alterar palavra-passe&lt;/go-button&gt;
+    Altera a tua palavra-passe aqui.
   &lt;/section&gt;
 &lt;/go-tabs&gt;</pre>
               </div>

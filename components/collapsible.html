@@ -129,18 +129,28 @@
             </div>
             <div class="pc-panels">
               <div class="pc-preview">
-                <go-collapsible>
-                  <span slot="trigger">Posso usar isto no meu projeto?</span>
-                  Sim. Livre para uso pessoal e comercial. Sem necessidade de
-                  atribuição.
-                </go-collapsible>
+                <div class="col-repos">
+                  <p class="col-head">
+                    &commat;pedro marcou 3 repositórios com estrela
+                  </p>
+                  <code class="col-item">&commat;radix-ui/primitives</code>
+                  <go-collapsible>
+                    <span slot="trigger" class="col-more">Alternar</span>
+                    <code class="col-item">&commat;radix-ui/colors</code>
+                    <code class="col-item">&commat;stitches/react</code>
+                  </go-collapsible>
+                </div>
               </div>
               <div class="pc-code">
-                <pre class="code" data-lang="html">&lt;go-collapsible&gt;
-  &lt;span slot="trigger"&gt;Posso usar isto no meu projeto?&lt;/span&gt;
-  Sim. Livre para uso pessoal e comercial. Sem necessidade de
-  atribuição.
-&lt;/go-collapsible&gt;</pre>
+                <pre class="code" data-lang="html">&lt;div class="repos"&gt;
+  &lt;p&gt;@pedro marcou 3 repositórios com estrela&lt;/p&gt;
+  &lt;code&gt;@radix-ui/primitives&lt;/code&gt;
+  &lt;go-collapsible&gt;
+    &lt;span slot="trigger"&gt;Alternar&lt;/span&gt;
+    &lt;code&gt;@radix-ui/colors&lt;/code&gt;
+    &lt;code&gt;@stitches/react&lt;/code&gt;
+  &lt;/go-collapsible&gt;
+&lt;/div&gt;</pre>
               </div>
             </div>
           </div>
@@ -243,10 +253,9 @@ import '@st693ava/go-ui/style.css'</pre>
             </div>
           </div>
 
-          <h3 id="lista-de-repositorios">Lista de repositórios</h3>
+          <h3 id="disclosure-simples">Disclosure simples</h3>
           <p class="tx">
-            Padrão típico: um cabeçalho sempre visível e itens extra revelados
-            ao expandir. Composto com markup local nesta página.
+            O caso base: um gatilho e um painel de texto que expande e colapsa.
           </p>
           <div class="pc" data-view="preview">
             <div class="pc-bar">
@@ -255,28 +264,18 @@ import '@st693ava/go-ui/style.css'</pre>
             </div>
             <div class="pc-panels">
               <div class="pc-preview">
-                <div class="col-repos">
-                  <p class="col-head">
-                    &commat;pedro adicionou 3 repositórios
-                  </p>
-                  <code class="col-item">@radix-ui/primitives</code>
-                  <go-collapsible>
-                    <span slot="trigger" class="col-more">Mostrar mais</span>
-                    <code class="col-item">@radix-ui/colors</code>
-                    <code class="col-item">@stitches/react</code>
-                  </go-collapsible>
-                </div>
+                <go-collapsible>
+                  <span slot="trigger">Posso usar isto no meu projeto?</span>
+                  Sim. Livre para uso pessoal e comercial. Sem necessidade de
+                  atribuição.
+                </go-collapsible>
               </div>
               <div class="pc-code">
-                <pre class="code" data-lang="html">&lt;div class="repos"&gt;
-  &lt;p&gt;@pedro adicionou 3 repositórios&lt;/p&gt;
-  &lt;code&gt;@radix-ui/primitives&lt;/code&gt;
-  &lt;go-collapsible&gt;
-    &lt;span slot="trigger"&gt;Mostrar mais&lt;/span&gt;
-    &lt;code&gt;@radix-ui/colors&lt;/code&gt;
-    &lt;code&gt;@stitches/react&lt;/code&gt;
-  &lt;/go-collapsible&gt;
-&lt;/div&gt;</pre>
+                <pre class="code" data-lang="html">&lt;go-collapsible&gt;
+  &lt;span slot="trigger"&gt;Posso usar isto no meu projeto?&lt;/span&gt;
+  Sim. Livre para uso pessoal e comercial. Sem necessidade de
+  atribuição.
+&lt;/go-collapsible&gt;</pre>
               </div>
             </div>
           </div>
