@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>go-ui — índice de componentes</title>
+    <title>go-ui — Web Components shadcn-vue</title>
+    <link rel="icon" href="/dist/favicon.svg" />
     <script>
       // Anti-flash: aplica o tema ANTES da pintura. Default = sistema.
       (function () {
@@ -15,176 +16,73 @@
     </script>
     <link rel="stylesheet" href="./go-ui.css" />
     <script type="module" src="./go-ui.js"></script>
+    <script type="module" src="./site-chrome.js"></script>
     <style>
-      * { box-sizing: border-box; }
-      body { margin: 0; font-family: system-ui, sans-serif;
-        color: var(--foreground, #0a0a0a); background: var(--background, #fff); }
-      .layout { display: grid; grid-template-columns: 15rem 1fr; min-height: 100vh; }
-      nav { position: sticky; top: 0; align-self: start; height: 100vh; overflow-y: auto;
-        border-right: 1px solid var(--border, #e5e7eb); padding: 1.5rem 1rem; font-size: .85rem; }
-      nav .grp { font-size: .7rem; text-transform: uppercase; letter-spacing: .05em;
-        color: var(--muted-foreground, #6b7280); margin: 1rem 0 .35rem; font-weight: 700; }
-      nav a { display: block; color: var(--foreground, #374151); text-decoration: none;
-        padding: .2rem .4rem; border-radius: 4px; }
-      nav a:hover { background: var(--muted, #f3f4f6); }
-      main { padding: 2rem 3rem; max-width: 60rem; }
-      header.bar { display: flex; align-items: flex-start; justify-content: space-between;
-        gap: 1rem; margin-bottom: 1.25rem; }
-      h1 { font-size: 1.75rem; margin: 0 0 .25rem; }
-      .sub { color: var(--muted-foreground, #6b7280); margin: 0; }
-      .cmp { padding: 1.25rem 0 .5rem; scroll-margin-top: 1rem; }
-      .cmp h3 { font-size: 1.1rem; margin: 0 0 .25rem; font-family: ui-monospace, monospace;
-        display: flex; align-items: center; gap: .5rem; }
-      .cmp .d { color: var(--muted-foreground, #6b7280); font-size: .88rem; margin: 0 0 .9rem; }
-      .stage { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; }
-      go-card { display: block; }
-      go-separator { display: block; margin: 1.5rem 0; }
+      .hero { text-align: center; padding: 5rem 0 3.5rem; }
+      .hero .pill { display: inline-flex; align-items: center; gap: .5rem;
+        font-size: .8rem; border: 1px solid var(--border, #e5e7eb);
+        border-radius: 999px; padding: .3rem .8rem;
+        color: var(--muted-foreground, #6b7280); margin-bottom: 1.5rem; }
+      .hero h1 { font-size: clamp(2.2rem, 6vw, 3.75rem); line-height: 1.05;
+        letter-spacing: -.03em; margin: 0 0 1.25rem; font-weight: 800; }
+      .hero p.lead { font-size: 1.15rem; color: var(--muted-foreground, #6b7280);
+        max-width: 42rem; margin: 0 auto 2rem; line-height: 1.6; }
+      .hero .cta { display: flex; gap: .75rem; justify-content: center;
+        flex-wrap: wrap; }
+      .grid3 { display: grid; grid-template-columns: repeat(3, 1fr);
+        gap: 1rem; margin: 3rem 0; }
+      .grid3 .feat { border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; padding: 1.5rem; }
+      .grid3 .feat h3 { margin: 0 0 .4rem; font-size: 1rem; }
+      .grid3 .feat p { margin: 0; color: var(--muted-foreground, #6b7280);
+        font-size: .9rem; line-height: 1.55; }
+      @media (max-width: 720px) { .grid3 { grid-template-columns: 1fr; } }
     </style>
   </head>
   <body>
     <go-toaster position="bottom-right"></go-toaster>
-    <div class="layout">
-      <nav id="nav"></nav>
-      <main>
-        <header class="bar">
-          <div>
-            <h1>go-ui</h1>
-            <p class="sub">48 Web Components shadcn-vue (Reka UI). Cada demo está num <code>&lt;go-card&gt;</code>; etiquetas em <code>&lt;go-badge&gt;</code>; divisórias <code>&lt;go-separator&gt;</code>.</p>
+    <main data-site-main>
+      <section class="hero">
+        <span class="pill">48+ componentes · FACE forms · qualquer stack</span>
+        <h1>Constrói apps modernas<br />só com Web Components.</h1>
+        <p class="lead">
+          go-ui compila a biblioteca shadcn-vue (Reka UI) para Custom Elements
+          no-Shadow. Inputs form-associated reais, tema light/dark, zero
+          framework no consumidor — um único <code>import</code> e funciona em
+          Laravel, Astro, HTML puro ou qualquer SPA.
+        </p>
+        <div class="cta">
+          <go-button onclick="location.href='installation.html'">Começar</go-button>
+          <go-button variant="outline" onclick="location.href='components.html'">Ver componentes</go-button>
+          <go-button variant="ghost" onclick="location.href='blocks.html'">Blocks &rarr;</go-button>
+        </div>
+      </section>
+
+      <div class="grid3">
+        <div class="feat">
+          <h3>Web Components a sério</h3>
+          <p>defineCustomElement no-Shadow: as classes Tailwind resolvem-se na folha global, sem duplicação de estilos por shadow root.</p>
+        </div>
+        <div class="feat">
+          <h3>Formulários FACE</h3>
+          <p>10 inputs Form-Associated reais (ElementInternals): participam em <code>&lt;form&gt;</code> nativo, validação e reset, sem JS de cola.</p>
+        </div>
+        <div class="feat">
+          <h3>Lazy por componente</h3>
+          <p>Componentes pesados (charts, data-table) chegam em chunks próprios — só descarregados quando o elemento monta na página.</p>
+        </div>
+      </div>
+
+      <section style="margin: 3rem 0;">
+        <h2 style="font-size:1.5rem;letter-spacing:-.02em;margin:0 0 1rem;">Exemplo</h2>
+        <go-card card-title="Subscrição" card-description="Tudo o que precisas para começar.">
+          <div style="display:flex;flex-direction:column;gap:.75rem;max-width:22rem;">
+            <go-input name="email" type="email" placeholder="nome@exemplo.pt"></go-input>
+            <go-button>Subscrever</go-button>
           </div>
-          <go-toggle-group id="theme" type="single" size="sm" variant="outline">
-            <option value="system">Sistema</option>
-            <option value="light">Claro</option>
-            <option value="dark">Escuro</option>
-          </go-toggle-group>
-        </header>
-        <script>
-          // Reflete o modo guardado no switcher ANTES do upgrade do CE
-          // (script clássico corre antes do módulo register.ts).
-          document.getElementById('theme').setAttribute(
-            'value', localStorage.getItem('go-ui-theme') || 'system')
-        </script>
-
-        <div class="grp" data-grp="Form-inputs (FACE)"></div>
-        <form id="formdemo">
-        <div class="cmp" id="checkbox"><h3>go-checkbox <go-badge>FACE</go-badge></h3><p class="d">Checkbox form-associated.</p><go-card><div class="stage"><go-checkbox name="termos" required>Aceito os termos</go-checkbox></div></go-card></div>
-        <div class="cmp" id="switch"><h3>go-switch <go-badge>FACE</go-badge></h3><p class="d">Interruptor on/off.</p><go-card><div class="stage"><go-switch name="notif">Notificações</go-switch></div></go-card></div>
-        <div class="cmp" id="input"><h3>go-input <go-badge>FACE</go-badge></h3><p class="d">Campo de texto.</p><go-card><div class="stage"><go-input name="email" type="email" placeholder="nome@exemplo.pt"></go-input></div></go-card></div>
-        <div class="cmp" id="textarea"><h3>go-textarea <go-badge>FACE</go-badge></h3><p class="d">Área de texto.</p><go-card><div class="stage"><go-textarea name="bio" placeholder="Escreve algo..."></go-textarea></div></go-card></div>
-        <div class="cmp" id="slider"><h3>go-slider <go-badge>FACE</go-badge></h3><p class="d">Cursor de intervalo.</p><go-card><div class="stage" style="width:18rem"><go-slider name="vol" min="0" max="100" step="5" value="40"></go-slider></div></go-card></div>
-        <div class="cmp" id="radio-group"><h3>go-radio-group <go-badge>FACE</go-badge></h3><p class="d">Opções exclusivas.</p><go-card><div class="stage"><go-radio-group name="plano"><option value="free">Grátis</option><option value="pro">Pro</option></go-radio-group></div></go-card></div>
-        <div class="cmp" id="select"><h3>go-select <go-badge>FACE</go-badge></h3><p class="d">Seleção dropdown.</p><go-card><div class="stage"><go-select name="pais" placeholder="País"><option value="pt">Portugal</option><option value="es">Espanha</option></go-select></div></go-card></div>
-        <div class="cmp" id="number-field"><h3>go-number-field <go-badge>FACE</go-badge></h3><p class="d">Campo numérico.</p><go-card><div class="stage"><go-number-field name="qtd" min="0" max="99" value="1"></go-number-field></div></go-card></div>
-        <div class="cmp" id="pin-input"><h3>go-pin-input <go-badge>FACE</go-badge></h3><p class="d">Código OTP.</p><go-card><div class="stage"><go-pin-input name="otp" length="6"></go-pin-input></div></go-card></div>
-        <div class="cmp" id="tags-input"><h3>go-tags-input <go-badge>FACE</go-badge></h3><p class="d">Etiquetas múltiplas.</p><go-card><div class="stage"><go-tags-input name="skills" placeholder="Add skill..."></go-tags-input></div></go-card></div>
-        </form>
-        <go-separator></go-separator>
-
-        <div class="grp" data-grp="Layout & apresentação"></div>
-        <div class="cmp" id="card"><h3>go-card</h3><p class="d">Cartão de conteúdo.</p><go-card card-title="Plano Pro" card-description="Tudo o que precisas."><p>9€/mês.</p><go-button slot="footer">Subscrever</go-button></go-card></div>
-        <div class="cmp" id="alert"><h3>go-alert</h3><p class="d">Mensagem em destaque.</p><go-card><go-alert><div slot="title">Atenção</div><div slot="description">Lê antes de continuar.</div></go-alert></go-card></div>
-        <div class="cmp" id="badge"><h3>go-badge</h3><p class="d">Etiqueta curta.</p><go-card><div class="stage"><go-badge>Novo</go-badge><go-badge variant="secondary">Beta</go-badge><go-badge variant="destructive">Erro</go-badge></div></go-card></div>
-        <div class="cmp" id="avatar"><h3>go-avatar</h3><p class="d">Foto/iniciais.</p><go-card><div class="stage"><go-avatar fallback="PS" alt="Pedro"></go-avatar></div></go-card></div>
-        <div class="cmp" id="aspect-ratio"><h3>go-aspect-ratio</h3><p class="d">Proporção fixa.</p><go-card><div style="width:16rem"><go-aspect-ratio ratio="16/9"><div style="width:100%;height:100%;background:#e5e7eb;display:flex;align-items:center;justify-content:center;border-radius:8px">16:9</div></go-aspect-ratio></div></go-card></div>
-        <div class="cmp" id="separator"><h3>go-separator</h3><p class="d">Linha divisória.</p><go-card><div style="width:100%">Acima<go-separator></go-separator>Abaixo</div></go-card></div>
-        <div class="cmp" id="skeleton"><h3>go-skeleton</h3><p class="d">Placeholder de carregamento.</p><go-card><go-skeleton width="16rem" height="1.25rem"></go-skeleton></go-card></div>
-        <div class="cmp" id="button"><h3>go-button</h3><p class="d">Botão.</p><go-card><div class="stage"><go-button>Default</go-button><go-button variant="secondary">Secundário</go-button><go-button variant="outline">Outline</go-button><go-button variant="destructive">Apagar</go-button></div></go-card></div>
-        <div class="cmp" id="label"><h3>go-label</h3><p class="d">Etiqueta de campo.</p><go-card><go-label for="x">Nome de utilizador</go-label></go-card></div>
-        <div class="cmp" id="input-group"><h3>go-input-group</h3><p class="d">Input com adornos.</p><go-card><go-input-group><input placeholder="pesquisar..." style="border:0;outline:0;padding:.4rem" /></go-input-group></go-card></div>
-        <div class="cmp" id="scroll-area"><h3>go-scroll-area</h3><p class="d">Área com scroll.</p><go-card><go-scroll-area height="6rem" width="16rem"><p>Linha 1</p><p>Linha 2</p><p>Linha 3</p><p>Linha 4</p><p>Linha 5</p><p>Linha 6</p></go-scroll-area></go-card></div>
-        <div class="cmp" id="table"><h3>go-table</h3><p class="d">Tabela de dados.</p><go-card><go-table><thead><tr><th>Nome</th><th>Cargo</th></tr></thead><tbody><tr><td>Ana</td><td>Dev</td></tr><tr><td>Rui</td><td>Design</td></tr></tbody></go-table></go-card></div>
-        <div class="cmp" id="progress"><h3>go-progress</h3><p class="d">Barra de progresso.</p><go-card><go-progress value="65"></go-progress></go-card></div>
-        <go-separator></go-separator>
-
-        <div class="grp" data-grp="Disclosure"></div>
-        <div class="cmp" id="accordion"><h3>go-accordion</h3><p class="d">Painéis expansíveis.</p><go-card><go-accordion type="single" collapsible style="width:100%"><section title="É acessível?" value="a"><p>Sim, WAI-ARIA via Reka.</p></section><section title="Qualquer stack?" value="b"><p>Sim — WC light-DOM.</p></section></go-accordion></go-card></div>
-        <div class="cmp" id="collapsible"><h3>go-collapsible</h3><p class="d">Mostrar/esconder.</p><go-card><go-collapsible><span slot="trigger">Detalhes</span><p>Conteúdo escondido.</p></go-collapsible></go-card></div>
-        <div class="cmp" id="tabs"><h3>go-tabs</h3><p class="d">Separadores.</p><go-card><go-tabs style="width:100%"><section title="Conta" value="a"><p>Definições da conta.</p></section><section title="Password" value="b"><p>Alterar password.</p></section></go-tabs></go-card></div>
-        <div class="cmp" id="stepper"><h3>go-stepper</h3><p class="d">Passos sequenciais.</p><go-card><go-stepper style="width:100%"><section title="Carrinho"><p>Itens.</p></section><section title="Envio"><p>Morada.</p></section><section title="Pagamento"><p>Cartão.</p></section></go-stepper></go-card></div>
-        <go-separator></go-separator>
-
-        <div class="grp" data-grp="Overlays"></div>
-        <div class="cmp" id="dialog"><h3>go-dialog</h3><p class="d">Modal.</p><go-card><go-dialog><span slot="trigger">Editar perfil</span><div slot="title">Editar perfil</div><div slot="description">Faz alterações.</div><div slot="content"><p>Formulário aqui.</p></div><div slot="footer"><go-button>Guardar</go-button></div></go-dialog></go-card></div>
-        <div class="cmp" id="alert-dialog"><h3>go-alert-dialog</h3><p class="d">Confirmação destrutiva.</p><go-card><go-alert-dialog><span slot="trigger">Apagar conta</span><div slot="title">Tens a certeza?</div><div slot="description">Irreversível.</div><div slot="footer"><button>Confirmar</button></div></go-alert-dialog></go-card></div>
-        <div class="cmp" id="drawer"><h3>go-drawer</h3><p class="d">Painel deslizante.</p><go-card><go-drawer><span slot="trigger">Abrir drawer</span><div slot="title">Drawer</div><div slot="content"><p>Conteúdo.</p></div></go-drawer></go-card></div>
-        <div class="cmp" id="sheet"><h3>go-sheet</h3><p class="d">Painel lateral.</p><go-card><go-sheet side="right"><span slot="trigger">Abrir sheet</span><div slot="title">Definições</div><div slot="content"><p>Conteúdo lateral.</p></div></go-sheet></go-card></div>
-        <div class="cmp" id="popover"><h3>go-popover</h3><p class="d">Balão de conteúdo.</p><go-card><go-popover><span slot="trigger">Mostrar popover</span><div slot="content"><p>Conteúdo flutuante.</p></div></go-popover></go-card></div>
-        <div class="cmp" id="hover-card"><h3>go-hover-card</h3><p class="d">Cartão ao passar o rato.</p><go-card><go-hover-card><span slot="trigger">@pedro</span><div slot="content"><p>Pedro Saraiva — Dev.</p></div></go-hover-card></go-card></div>
-        <div class="cmp" id="tooltip"><h3>go-tooltip</h3><p class="d">Dica.</p><go-card><go-tooltip><span slot="trigger">Passa o rato</span><span slot="content">Mais info</span></go-tooltip></go-card></div>
-        <go-separator></go-separator>
-
-        <div class="grp" data-grp="Navegação & menus"></div>
-        <div class="cmp" id="breadcrumb"><h3>go-breadcrumb</h3><p class="d">Trilho.</p><go-card><go-breadcrumb><option value="/">Início</option><option value="/docs">Docs</option><option value="/docs/c">Componentes</option></go-breadcrumb></go-card></div>
-        <div class="cmp" id="dropdown-menu"><h3>go-dropdown-menu</h3><p class="d">Menu de ações.</p><go-card><go-dropdown-menu><span slot="trigger">Abrir menu</span><option value="perfil">Perfil</option><option value="defs">Definições</option></go-dropdown-menu></go-card></div>
-        <div class="cmp" id="context-menu"><h3>go-context-menu</h3><p class="d">Menu de clique-direito.</p><go-card><go-context-menu><span slot="trigger" style="display:block;padding:1.5rem;border:1px dashed #ccc;border-radius:8px">Clica-direito</span><option value="copiar">Copiar</option></go-context-menu></go-card></div>
-        <div class="cmp" id="menubar"><h3>go-menubar</h3><p class="d">Barra de menus.</p><go-card><go-menubar><section title="Ficheiro"><option value="novo">Novo</option><option value="abrir">Abrir</option></section><section title="Editar"><option value="desfazer">Desfazer</option></section></go-menubar></go-card></div>
-        <div class="cmp" id="navigation-menu"><h3>go-navigation-menu</h3><p class="d">Navegação principal.</p><go-card><go-navigation-menu><section title="Produtos"><a href="#">Visão geral</a></section></go-navigation-menu></go-card></div>
-        <div class="cmp" id="command"><h3>go-command</h3><p class="d">Paleta de comandos.</p><go-card><go-command><option value="novo">Novo ficheiro</option><option value="abrir">Abrir...</option></go-command></go-card></div>
-        <div class="cmp" id="pagination"><h3>go-pagination</h3><p class="d">Paginação.</p><go-card><go-pagination total="95" items-per-page="10"></go-pagination></go-card></div>
-        <go-separator></go-separator>
-
-        <div class="grp" data-grp="Especiais"></div>
-        <div class="cmp" id="carousel"><h3>go-carousel</h3><p class="d">Carrossel.</p><go-card><div style="width:18rem"><go-carousel><section><div style="padding:3rem;background:#eee;border-radius:8px;text-align:center">Slide 1</div></section><section><div style="padding:3rem;background:#ddd;border-radius:8px;text-align:center">Slide 2</div></section></go-carousel></div></go-card></div>
-        <div class="cmp" id="calendar"><h3>go-calendar</h3><p class="d">Calendário.</p><go-card><go-calendar></go-calendar></go-card></div>
-        <div class="cmp" id="resizable"><h3>go-resizable</h3><p class="d">Painéis redimensionáveis.</p><go-card><div style="width:100%;height:8rem"><go-resizable direction="horizontal"><section><div style="padding:1rem">Painel A</div></section><section><div style="padding:1rem">Painel B</div></section></go-resizable></div></go-card></div>
-        <div class="cmp" id="toggle"><h3>go-toggle</h3><p class="d">Botão alternável.</p><go-card><div class="stage"><go-toggle>B</go-toggle></div></go-card></div>
-        <div class="cmp" id="toggle-group"><h3>go-toggle-group</h3><p class="d">Grupo alternável.</p><go-card><div class="stage"><go-toggle-group type="single"><option value="l">Esq</option><option value="c">Centro</option><option value="r">Dir</option></go-toggle-group></div></go-card></div>
-        <div class="cmp" id="toaster"><h3>go-toaster</h3><p class="d">Notificações toast.</p><go-card><go-button onclick="window.goToast && window.goToast.success('Guardado com sucesso!')">Disparar toast</go-button></go-card></div>
-        <div class="cmp" id="sidebar"><h3>go-sidebar</h3><p class="d">Barra lateral de app (usa position:fixed — contida via transform).</p><go-card><div style="height:14rem;overflow:hidden;transform:translateZ(0);position:relative;width:100%"><go-sidebar collapsible="icon"><section title="Demo"><option value="/a">Item A</option><option value="/b">Item B</option></section><div slot="content"><p>Conteúdo da app.</p></div></go-sidebar></div></go-card></div>
-
-        <p style="color:#6b7280;font-size:.85rem;margin-top:2rem">Diagnóstico: <span id="diag">a carregar…</span></p>
-      </main>
-    </div>
-
-    <script type="module">
-      const groups = {
-        'Form-inputs': ['checkbox','switch','input','textarea','slider','radio-group','select','number-field','pin-input','tags-input'],
-        'Layout': ['card','alert','badge','avatar','aspect-ratio','separator','skeleton','button','label','input-group','scroll-area','table','progress'],
-        'Disclosure': ['accordion','collapsible','tabs','stepper'],
-        'Overlays': ['dialog','alert-dialog','drawer','sheet','popover','hover-card','tooltip'],
-        'Navegação': ['breadcrumb','dropdown-menu','context-menu','menubar','navigation-menu','command','pagination'],
-        'Especiais': ['carousel','calendar','resizable','toggle','toggle-group','toaster','sidebar'],
-      }
-      const nav = document.getElementById('nav')
-      for (const [g, ids] of Object.entries(groups)) {
-        const h = document.createElement('div'); h.className = 'grp'; h.textContent = g; nav.appendChild(h)
-        for (const id of ids) {
-          const a = document.createElement('a'); a.href = '#' + id; a.textContent = 'go-' + id; nav.appendChild(a)
-        }
-      }
-      document.querySelectorAll('.grp[data-grp]').forEach((el) => { el.textContent = el.getAttribute('data-grp'); el.style.cssText = 'font-size:.8rem;text-transform:uppercase;color:#6b7280;font-weight:700;margin:1.5rem 0 .5rem' })
-      const allTags = [...new Set(Object.values(groups).flat().map((id) => 'go-' + id))]
-      await Promise.all(allTags.map((t) => customElements.whenDefined(t).catch(() => null)))
-      await new Promise((r) => setTimeout(r, 1200))
-      let dup = [], empty = []
-      for (const id of Object.values(groups).flat()) {
-        const sec = document.getElementById(id)
-        const live = sec && sec.querySelector('go-' + id)
-        if (!live || live.innerHTML.trim().length === 0) { if (id !== 'toaster') empty.push('go-' + id); continue }
-        // deteta duplo-render: nº de [role] / inputs deve ser razoável
-        const ctrls = sec.querySelectorAll('[role=checkbox],[role=switch],[role=radio]').length
-        if (ctrls > 3) dup.push('go-' + id + '(' + ctrls + ')')
-      }
-      document.getElementById('diag').textContent =
-        'go-card por demo: 48 | vazios: ' + (empty.length ? empty.join(',') : '0') +
-        ' | duplo-render: ' + (dup.length ? dup.join(',') : 'nenhum ✓')
-
-      // ── Tema (light/dark/system) — switcher = <go-toggle-group> ──────
-      const mql = window.matchMedia('(prefers-color-scheme: dark)')
-      function applyTheme(mode) {
-        const dark = mode === 'dark' || (mode === 'system' && mql.matches)
-        document.documentElement.classList.toggle('dark', dark)
-        localStorage.setItem('go-ui-theme', mode)
-      }
-      const themeEl = document.getElementById('theme')
-      themeEl.addEventListener('change', (e) => {
-        const m = e.detail && e.detail.value
-        if (m) applyTheme(m)
-      })
-      // Mudanças do sistema só afetam quando o modo é "system".
-      mql.addEventListener('change', () => {
-        if ((localStorage.getItem('go-ui-theme') || 'system') === 'system')
-          applyTheme('system')
-      })
-    </script>
+          <span slot="footer" style="color:var(--muted-foreground,#6b7280);font-size:.85rem;">Cancela quando quiseres.</span>
+        </go-card>
+      </section>
+    </main>
   </body>
 </html>

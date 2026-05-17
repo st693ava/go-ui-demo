@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="pt-PT">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sidebar — go-ui</title>
+    <link rel="icon" href="/dist/favicon.svg" />
+    <script>
+      window.__SITE_BASE__ = '../'
+      ;(function () {
+        var m = localStorage.getItem('go-ui-theme') || 'system'
+        var dark =
+          m === 'dark' ||
+          (m === 'system' &&
+            window.matchMedia('(prefers-color-scheme: dark)').matches)
+        document.documentElement.classList.toggle('dark', dark)
+      })()
+    </script>
+    <link rel="stylesheet" href="../go-ui.css" />
+    <script type="module" src="../go-ui.js"></script>
+    <link rel="stylesheet" href="../docs.css" />
+    <script type="module" src="../site-chrome.js"></script>
+    <script type="module" src="../docs.js"></script>
+  </head>
+  <body>
+    <go-toaster position="bottom-right"></go-toaster>
+    <main data-site-main>
+      <div class="docs">
+        <go-sidebar
+          mode="nav"
+          active="sidebar.html"
+          class="docs-nav"
+          aria-label="Navegação de componentes"
+        >
+          <section title="Começar">
+            <option value="../index.html">Introdução</option>
+            <option value="../installation.html">Instalação</option>
+            <option value="../components.html">Componentes</option>
+            <option value="../blocks.html">Blocks</option>
+            <option value="../charts.html">Charts</option>
+            <option value="../create.html">Create</option>
+          </section>
+          <section title="Form-inputs (FACE)">
+            <option value="checkbox.html">go-checkbox</option>
+            <option value="switch.html">go-switch</option>
+            <option value="input.html">go-input</option>
+            <option value="textarea.html">go-textarea</option>
+            <option value="slider.html">go-slider</option>
+            <option value="radio-group.html">go-radio-group</option>
+            <option value="select.html">go-select</option>
+            <option value="number-field.html">go-number-field</option>
+            <option value="pin-input.html">go-pin-input</option>
+            <option value="tags-input.html">go-tags-input</option>
+          </section>
+          <section title="Layout &amp; apresentação">
+            <option value="card.html">go-card</option>
+            <option value="alert.html">go-alert</option>
+            <option value="badge.html">go-badge</option>
+            <option value="avatar.html">go-avatar</option>
+            <option value="aspect-ratio.html">go-aspect-ratio</option>
+            <option value="separator.html">go-separator</option>
+            <option value="skeleton.html">go-skeleton</option>
+            <option value="button.html">go-button</option>
+            <option value="label.html">go-label</option>
+            <option value="input-group.html">go-input-group</option>
+            <option value="scroll-area.html">go-scroll-area</option>
+            <option value="table.html">go-table</option>
+            <option value="progress.html">go-progress</option>
+          </section>
+          <section title="Disclosure">
+            <option value="accordion.html">go-accordion</option>
+            <option value="collapsible.html">go-collapsible</option>
+            <option value="tabs.html">go-tabs</option>
+            <option value="stepper.html">go-stepper</option>
+          </section>
+          <section title="Overlays">
+            <option value="dialog.html">go-dialog</option>
+            <option value="alert-dialog.html">go-alert-dialog</option>
+            <option value="drawer.html">go-drawer</option>
+            <option value="sheet.html">go-sheet</option>
+            <option value="popover.html">go-popover</option>
+            <option value="hover-card.html">go-hover-card</option>
+            <option value="tooltip.html">go-tooltip</option>
+          </section>
+          <section title="Navegação &amp; menus">
+            <option value="breadcrumb.html">go-breadcrumb</option>
+            <option value="dropdown-menu.html">go-dropdown-menu</option>
+            <option value="context-menu.html">go-context-menu</option>
+            <option value="menubar.html">go-menubar</option>
+            <option value="navigation-menu.html">go-navigation-menu</option>
+            <option value="command.html">go-command</option>
+            <option value="pagination.html">go-pagination</option>
+          </section>
+          <section title="Especiais">
+            <option value="carousel.html">go-carousel</option>
+            <option value="calendar.html">go-calendar</option>
+            <option value="resizable.html">go-resizable</option>
+            <option value="toggle.html">go-toggle</option>
+            <option value="toggle-group.html">go-toggle-group</option>
+            <option value="toaster.html">go-toaster</option>
+            <option value="sidebar.html">go-sidebar</option>
+          </section>
+        </go-sidebar>
+
+        <div class="docs-content">
+          <p class="docs-bc">
+            <a href="../index.html">Docs</a>
+            <span aria-hidden="true">/</span>
+            <a href="../components.html">Componentes</a>
+            <span aria-hidden="true">/</span>
+            <b>Sidebar</b>
+          </p>
+          <h1 class="doc-h1">Sidebar</h1>
+          <p class="doc-lead">
+            Um componente de barra lateral composável, com temas e
+            personalizável.
+          </p>
+          <div class="docs-actions">
+            <button type="button" data-copy-page>Copiar página</button>
+            <span class="sp"></span>
+            <a href="toaster.html"><span>Anterior</span> Toaster</a>
+            <a href="../components.html">Seguinte <span>Componentes</span></a>
+          </div>
+
+          <!-- ── Preview/Code principal ──────────────────────────────── -->
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <div class="sb-shell-wrap">
+                  <go-sidebar mode="shell">
+                    <div slot="header" class="sb-brand">A minha app</div>
+                    <section title="Plataforma">
+                      <option value="#dashboard">Dashboard</option>
+                      <option value="#projetos">Projetos</option>
+                      <option value="#equipa">Equipa</option>
+                    </section>
+                    <section title="Conta">
+                      <option value="#definicoes">Definições</option>
+                      <option value="#faturacao">Faturação</option>
+                    </section>
+                    <div slot="content">
+                      <h3>Dashboard</h3>
+                      <p>
+                        Conteúdo principal da app. Clica no botão para
+                        recolher a barra lateral.
+                      </p>
+                    </div>
+                  </go-sidebar>
+                </div>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-sidebar mode="shell"&gt;
+  &lt;div slot="header"&gt;A minha app&lt;/div&gt;
+  &lt;section title="Plataforma"&gt;
+    &lt;option value="/dashboard"&gt;Dashboard&lt;/option&gt;
+    &lt;option value="/projetos"&gt;Projetos&lt;/option&gt;
+    &lt;option value="/equipa"&gt;Equipa&lt;/option&gt;
+  &lt;/section&gt;
+  &lt;section title="Conta"&gt;
+    &lt;option value="/definicoes"&gt;Definições&lt;/option&gt;
+    &lt;option value="/faturacao"&gt;Faturação&lt;/option&gt;
+  &lt;/section&gt;
+  &lt;div slot="content"&gt;
+    &lt;h3&gt;Dashboard&lt;/h3&gt;
+  &lt;/div&gt;
+&lt;/go-sidebar&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── Instalação ──────────────────────────────────────────── -->
+          <h2 id="instalacao">Instalação</h2>
+          <div class="tabs" data-tabs>
+            <div class="tabs-bar">
+              <button data-tab="npm" aria-selected="true">npm</button>
+              <button data-tab="pnpm" aria-selected="false">pnpm</button>
+              <button data-tab="yarn" aria-selected="false">yarn</button>
+              <button data-tab="bun" aria-selected="false">bun</button>
+              <button data-tab="manual" aria-selected="false">Manual</button>
+            </div>
+            <div class="tabs-panel" data-panel="npm" data-active>
+              <pre class="code" data-lang="bash">npm i github:st693ava/go-ui-web-components</pre>
+            </div>
+            <div class="tabs-panel" data-panel="pnpm">
+              <pre class="code" data-lang="bash">pnpm add github:st693ava/go-ui-web-components</pre>
+            </div>
+            <div class="tabs-panel" data-panel="yarn">
+              <pre class="code" data-lang="bash">yarn add github:st693ava/go-ui-web-components</pre>
+            </div>
+            <div class="tabs-panel" data-panel="bun">
+              <pre class="code" data-lang="bash">bun add github:st693ava/go-ui-web-components</pre>
+            </div>
+            <div class="tabs-panel" data-panel="manual">
+              <p class="tx">
+                Importa o registo uma vez no teu entry-point — regista todos os
+                Custom Elements, <code>&lt;go-sidebar&gt;</code> incluído:
+              </p>
+              <pre class="code" data-lang="ts">// main.ts / app.js
+import '@st693ava/go-ui'
+import '@st693ava/go-ui/style.css'</pre>
+            </div>
+          </div>
+
+          <!-- ── Estrutura ───────────────────────────────────────────── -->
+          <h2 id="estrutura">Estrutura</h2>
+          <p class="tx">
+            O <code>&lt;go-sidebar&gt;</code> é data-driven. Os itens
+            declaram-se com <code>&lt;section title="Grupo"&gt;</code> contendo
+            <code>&lt;option value="/url"&gt;Item&lt;/option&gt;</code>. As
+            regiões <code>slot="header"</code>, <code>slot="footer"</code> e
+            <code>slot="content"</code> preenchem topo, rodapé e área principal.
+            Clicar num item dispara o evento <code>navigate</code> com
+            <code>detail.value</code>.
+          </p>
+          <p class="tx">
+            Há dois modos: <code>mode="shell"</code> (default) — app-shell
+            completo com cabeçalho, área de conteúdo e barra
+            <code>position:fixed</code>; e <code>mode="nav"</code> — apenas a
+            coluna de navegação reutilizável (itens são <code>&lt;a
+            href&gt;</code> nativos), ideal como sidebar de página. O atributo
+            <code>active</code> realça o item cujo <code>value</code> coincide.
+          </p>
+
+          <!-- ── Uso ─────────────────────────────────────────────────── -->
+          <h2 id="uso">Uso</h2>
+          <pre class="code" data-lang="html">&lt;go-sidebar mode="nav" active="/dashboard"&gt;
+  &lt;section title="Plataforma"&gt;
+    &lt;option value="/dashboard"&gt;Dashboard&lt;/option&gt;
+    &lt;option value="/projetos"&gt;Projetos&lt;/option&gt;
+  &lt;/section&gt;
+&lt;/go-sidebar&gt;</pre>
+
+          <!-- ── Exemplos ────────────────────────────────────────────── -->
+          <h2 id="exemplos">Exemplos</h2>
+
+          <h3 id="modo-nav">Modo navegação</h3>
+          <p class="tx">
+            Com <code>mode="nav"</code> obténs só a coluna de navegação, sem
+            shell nem <code>position:fixed</code> — exatamente o que esta
+            página usa como barra lateral esquerda. Os itens são âncoras
+            nativas e <code>active</code> realça o atual.
+          </p>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <div class="sb-nav-wrap">
+                  <go-sidebar mode="nav" active="#projetos">
+                    <section title="Plataforma">
+                      <option value="#dashboard">Dashboard</option>
+                      <option value="#projetos">Projetos</option>
+                      <option value="#equipa">Equipa</option>
+                    </section>
+                    <section title="Conta">
+                      <option value="#definicoes">Definições</option>
+                      <option value="#sair" disabled>Sair</option>
+                    </section>
+                  </go-sidebar>
+                </div>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-sidebar mode="nav" active="/projetos"&gt;
+  &lt;section title="Plataforma"&gt;
+    &lt;option value="/dashboard"&gt;Dashboard&lt;/option&gt;
+    &lt;option value="/projetos"&gt;Projetos&lt;/option&gt;
+    &lt;option value="/equipa"&gt;Equipa&lt;/option&gt;
+  &lt;/section&gt;
+  &lt;section title="Conta"&gt;
+    &lt;option value="/definicoes"&gt;Definições&lt;/option&gt;
+    &lt;option value="/sair" disabled&gt;Sair&lt;/option&gt;
+  &lt;/section&gt;
+&lt;/go-sidebar&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <h3 id="com-rodape">Com cabeçalho e rodapé</h3>
+          <p class="tx">
+            As regiões <code>slot="header"</code> e
+            <code>slot="footer"</code> ficam fixas no topo e fundo da barra
+            (marca, perfil do utilizador, etc.).
+          </p>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <div class="sb-shell-wrap">
+                  <go-sidebar mode="shell">
+                    <div slot="header" class="sb-brand">Acme Inc.</div>
+                    <section title="Geral">
+                      <option value="#inicio">Início</option>
+                      <option value="#relatorios">Relatórios</option>
+                    </section>
+                    <div slot="footer" class="sb-user">jaime@acme.pt</div>
+                    <div slot="content">
+                      <h3>Início</h3>
+                      <p>Cabeçalho e rodapé fixos na barra lateral.</p>
+                    </div>
+                  </go-sidebar>
+                </div>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-sidebar mode="shell"&gt;
+  &lt;div slot="header"&gt;Acme Inc.&lt;/div&gt;
+  &lt;section title="Geral"&gt;
+    &lt;option value="/inicio"&gt;Início&lt;/option&gt;
+    &lt;option value="/relatorios"&gt;Relatórios&lt;/option&gt;
+  &lt;/section&gt;
+  &lt;div slot="footer"&gt;jaime@acme.pt&lt;/div&gt;
+  &lt;div slot="content"&gt;
+    &lt;h3&gt;Início&lt;/h3&gt;
+  &lt;/div&gt;
+&lt;/go-sidebar&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <h3 id="lado-direito">Lado direito</h3>
+          <p class="tx">
+            Usa <code>side="right"</code> para ancorar a barra à direita do
+            shell.
+          </p>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <div class="sb-shell-wrap">
+                  <go-sidebar mode="shell" side="right">
+                    <section title="Painel">
+                      <option value="#atividade">Atividade</option>
+                      <option value="#notificacoes">Notificações</option>
+                    </section>
+                    <div slot="content">
+                      <h3>Conteúdo</h3>
+                      <p>Barra lateral ancorada à direita.</p>
+                    </div>
+                  </go-sidebar>
+                </div>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-sidebar mode="shell" side="right"&gt;
+  &lt;section title="Painel"&gt;
+    &lt;option value="/atividade"&gt;Atividade&lt;/option&gt;
+    &lt;option value="/notificacoes"&gt;Notificações&lt;/option&gt;
+  &lt;/section&gt;
+  &lt;div slot="content"&gt;
+    &lt;h3&gt;Conteúdo&lt;/h3&gt;
+  &lt;/div&gt;
+&lt;/go-sidebar&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <nav class="docs-pager">
+            <a class="prev" href="toaster.html"
+              ><span>Anterior</span>Toaster</a
+            >
+            <a class="next" href="../components.html"
+              ><span>Seguinte</span>Componentes</a
+            >
+          </nav>
+        </div>
+
+        <aside class="docs-toc" id="toc" aria-label="Nesta página"></aside>
+      </div>
+
+      <style>
+        /* go-sidebar mode="shell" usa position:fixed (app-shell). Para o
+           mostrar inline numa página de docs, contém-no num wrapper com
+           altura fixa, overflow oculto e novo contexto de empilhamento
+           (transform) — o fixed passa a posicionar-se relativo ao wrapper.
+           Local a esta página. */
+        .sb-shell-wrap {
+          height: 16rem;
+          overflow: hidden;
+          transform: translateZ(0);
+          position: relative;
+          width: 100%;
+          border: 1px solid var(--border, #d4d4d8);
+          border-radius: 0.5rem;
+        }
+        .sb-nav-wrap {
+          width: 16rem;
+          border: 1px solid var(--border, #d4d4d8);
+          border-radius: 0.5rem;
+          overflow: hidden;
+        }
+        .sb-brand {
+          font-weight: 600;
+          padding: 0.25rem 0.5rem;
+        }
+        .sb-user {
+          font-size: 0.8125rem;
+          color: var(--muted-foreground, #6b7280);
+          padding: 0.25rem 0.5rem;
+        }
+        .sb-shell-wrap h3 {
+          margin: 0 0 0.25rem;
+          font-size: 1rem;
+          font-weight: 600;
+        }
+        .sb-shell-wrap p {
+          margin: 0;
+          font-size: 0.875rem;
+          color: var(--muted-foreground, #6b7280);
+        }
+      </style>
+    </main>
+  </body>
+</html>

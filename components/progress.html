@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="pt-PT">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Progress — go-ui</title>
+    <link rel="icon" href="/dist/favicon.svg" />
+    <script>
+      window.__SITE_BASE__ = '../'
+      ;(function () {
+        var m = localStorage.getItem('go-ui-theme') || 'system'
+        var dark =
+          m === 'dark' ||
+          (m === 'system' &&
+            window.matchMedia('(prefers-color-scheme: dark)').matches)
+        document.documentElement.classList.toggle('dark', dark)
+      })()
+    </script>
+    <link rel="stylesheet" href="../go-ui.css" />
+    <script type="module" src="../go-ui.js"></script>
+    <link rel="stylesheet" href="../docs.css" />
+    <script type="module" src="../site-chrome.js"></script>
+    <script type="module" src="../docs.js"></script>
+  </head>
+  <body>
+    <go-toaster position="bottom-right"></go-toaster>
+    <main data-site-main>
+      <div class="docs">
+        <go-sidebar
+          mode="nav"
+          active="progress.html"
+          class="docs-nav"
+          aria-label="Navegação de componentes"
+        >
+          <section title="Começar">
+            <option value="../index.html">Introdução</option>
+            <option value="../installation.html">Instalação</option>
+            <option value="../components.html">Componentes</option>
+            <option value="../blocks.html">Blocks</option>
+            <option value="../charts.html">Charts</option>
+            <option value="../create.html">Create</option>
+          </section>
+          <section title="Form-inputs (FACE)">
+            <option value="checkbox.html">go-checkbox</option>
+            <option value="switch.html">go-switch</option>
+            <option value="input.html">go-input</option>
+            <option value="textarea.html">go-textarea</option>
+            <option value="slider.html">go-slider</option>
+            <option value="radio-group.html">go-radio-group</option>
+            <option value="select.html">go-select</option>
+            <option value="number-field.html">go-number-field</option>
+            <option value="pin-input.html">go-pin-input</option>
+            <option value="tags-input.html">go-tags-input</option>
+          </section>
+          <section title="Layout &amp; apresentação">
+            <option value="card.html">go-card</option>
+            <option value="alert.html">go-alert</option>
+            <option value="badge.html">go-badge</option>
+            <option value="avatar.html">go-avatar</option>
+            <option value="aspect-ratio.html">go-aspect-ratio</option>
+            <option value="separator.html">go-separator</option>
+            <option value="skeleton.html">go-skeleton</option>
+            <option value="button.html">go-button</option>
+            <option value="label.html">go-label</option>
+            <option value="input-group.html">go-input-group</option>
+            <option value="scroll-area.html">go-scroll-area</option>
+            <option value="table.html">go-table</option>
+            <option value="progress.html">go-progress</option>
+          </section>
+          <section title="Disclosure">
+            <option value="accordion.html">go-accordion</option>
+            <option value="collapsible.html">go-collapsible</option>
+            <option value="tabs.html">go-tabs</option>
+            <option value="stepper.html">go-stepper</option>
+          </section>
+          <section title="Overlays">
+            <option value="dialog.html">go-dialog</option>
+            <option value="alert-dialog.html">go-alert-dialog</option>
+            <option value="drawer.html">go-drawer</option>
+            <option value="sheet.html">go-sheet</option>
+            <option value="popover.html">go-popover</option>
+            <option value="hover-card.html">go-hover-card</option>
+            <option value="tooltip.html">go-tooltip</option>
+          </section>
+          <section title="Navegação &amp; menus">
+            <option value="breadcrumb.html">go-breadcrumb</option>
+            <option value="dropdown-menu.html">go-dropdown-menu</option>
+            <option value="context-menu.html">go-context-menu</option>
+            <option value="menubar.html">go-menubar</option>
+            <option value="navigation-menu.html">go-navigation-menu</option>
+            <option value="command.html">go-command</option>
+            <option value="pagination.html">go-pagination</option>
+          </section>
+          <section title="Especiais">
+            <option value="carousel.html">go-carousel</option>
+            <option value="calendar.html">go-calendar</option>
+            <option value="resizable.html">go-resizable</option>
+            <option value="toggle.html">go-toggle</option>
+            <option value="toggle-group.html">go-toggle-group</option>
+            <option value="toaster.html">go-toaster</option>
+            <option value="sidebar.html">go-sidebar</option>
+          </section>
+        </go-sidebar>
+
+        <div class="docs-content">
+          <p class="docs-bc">
+            <a href="../index.html">Docs</a>
+            <span aria-hidden="true">/</span>
+            <a href="../components.html">Componentes</a>
+            <span aria-hidden="true">/</span>
+            <b>Progress</b>
+          </p>
+          <h1 class="doc-h1">Progress</h1>
+          <p class="doc-lead">
+            Mostra um indicador do progresso de conclusão de uma tarefa,
+            tipicamente como uma barra de progresso.
+          </p>
+          <div class="docs-actions">
+            <button type="button" data-copy-page>Copiar página</button>
+            <span class="sp"></span>
+            <a href="table.html"><span>Anterior</span> Table</a>
+            <a href="accordion.html">Seguinte <span>Accordion</span></a>
+          </div>
+
+          <!-- ── Preview/Code principal ──────────────────────────────── -->
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <div class="pg-box">
+                  <go-progress value="66"></go-progress>
+                </div>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-progress value="66"&gt;&lt;/go-progress&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── Instalação ──────────────────────────────────────────── -->
+          <h2 id="instalacao">Instalação</h2>
+          <div class="tabs" data-tabs>
+            <div class="tabs-bar">
+              <button data-tab="npm" aria-selected="true">npm</button>
+              <button data-tab="pnpm" aria-selected="false">pnpm</button>
+              <button data-tab="yarn" aria-selected="false">yarn</button>
+              <button data-tab="bun" aria-selected="false">bun</button>
+              <button data-tab="manual" aria-selected="false">Manual</button>
+            </div>
+            <div class="tabs-panel" data-panel="npm" data-active>
+              <pre class="code" data-lang="bash">npm i github:st693ava/go-ui-web-components</pre>
+            </div>
+            <div class="tabs-panel" data-panel="pnpm">
+              <pre class="code" data-lang="bash">pnpm add github:st693ava/go-ui-web-components</pre>
+            </div>
+            <div class="tabs-panel" data-panel="yarn">
+              <pre class="code" data-lang="bash">yarn add github:st693ava/go-ui-web-components</pre>
+            </div>
+            <div class="tabs-panel" data-panel="bun">
+              <pre class="code" data-lang="bash">bun add github:st693ava/go-ui-web-components</pre>
+            </div>
+            <div class="tabs-panel" data-panel="manual">
+              <p class="tx">
+                Importa o registo uma vez no teu entry-point — regista todos os
+                Custom Elements, <code>&lt;go-progress&gt;</code> incluído:
+              </p>
+              <pre class="code" data-lang="ts">// main.ts / app.js
+import '@st693ava/go-ui'
+import '@st693ava/go-ui/style.css'</pre>
+            </div>
+          </div>
+
+          <!-- ── Uso ─────────────────────────────────────────────────── -->
+          <h2 id="uso">Uso</h2>
+          <p class="tx">
+            O atributo <code>value</code> reflete o progresso de 0 a 100.
+            Atualiza-o dinamicamente via JavaScript para animar a barra.
+          </p>
+          <pre class="code" data-lang="html">&lt;go-progress value="33"&gt;&lt;/go-progress&gt;</pre>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <div class="pg-box">
+                  <go-progress value="33"></go-progress>
+                </div>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-progress value="33"&gt;&lt;/go-progress&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── Exemplos ────────────────────────────────────────────── -->
+          <h2 id="exemplos">Exemplos</h2>
+
+          <h3 id="niveis">Níveis</h3>
+          <p class="tx">
+            Vários valores de progresso, de vazio a completo.
+          </p>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <div class="pg-stack">
+                  <go-progress value="0"></go-progress>
+                  <go-progress value="25"></go-progress>
+                  <go-progress value="50"></go-progress>
+                  <go-progress value="75"></go-progress>
+                  <go-progress value="100"></go-progress>
+                </div>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-progress value="0"&gt;&lt;/go-progress&gt;
+&lt;go-progress value="25"&gt;&lt;/go-progress&gt;
+&lt;go-progress value="50"&gt;&lt;/go-progress&gt;
+&lt;go-progress value="75"&gt;&lt;/go-progress&gt;
+&lt;go-progress value="100"&gt;&lt;/go-progress&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <h3 id="animado">Animado</h3>
+          <p class="tx">
+            O <code>value</code> arranca em 13 e sobe para 66 após meio
+            segundo — atualizando o atributo via JavaScript, tal como no demo
+            original do shadcn-vue.
+          </p>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <div class="pg-box">
+                  <go-progress value="13" data-anim-progress></go-progress>
+                </div>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-progress value="13" id="p"&gt;&lt;/go-progress&gt;
+
+&lt;script&gt;
+  setTimeout(() =&gt; {
+    document.getElementById('p').setAttribute('value', '66')
+  }, 500)
+&lt;/script&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <h3 id="com-etiqueta">Com etiqueta</h3>
+          <p class="tx">
+            Compõe a barra com texto à volta para indicar a percentagem e o
+            contexto da tarefa.
+          </p>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <div class="pg-labeled">
+                  <div class="pg-head">
+                    <span>A enviar ficheiros…</span>
+                    <span>72%</span>
+                  </div>
+                  <go-progress value="72"></go-progress>
+                </div>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;div class="field"&gt;
+  &lt;div class="head"&gt;
+    &lt;span&gt;A enviar ficheiros…&lt;/span&gt;
+    &lt;span&gt;72%&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;go-progress value="72"&gt;&lt;/go-progress&gt;
+&lt;/div&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <nav class="docs-pager">
+            <a class="prev" href="table.html"
+              ><span>Anterior</span>Table</a
+            >
+            <a class="next" href="accordion.html"
+              ><span>Seguinte</span>Accordion</a
+            >
+          </nav>
+        </div>
+
+        <aside class="docs-toc" id="toc" aria-label="Nesta página"></aside>
+      </div>
+
+      <style>
+        /* Layout local: a barra/skin vem toda do go-progress; aqui só larguras
+           e a composição etiqueta+barra. */
+        .pg-box {
+          width: 60%;
+          min-width: 16rem;
+        }
+        .pg-stack {
+          display: flex;
+          flex-direction: column;
+          gap: 0.85rem;
+          width: 100%;
+          max-width: 24rem;
+        }
+        .pg-labeled {
+          width: 100%;
+          max-width: 24rem;
+        }
+        .pg-head {
+          display: flex;
+          justify-content: space-between;
+          font-size: 0.8rem;
+          color: var(--muted-foreground, #6b7280);
+          margin-bottom: 0.4rem;
+        }
+      </style>
+      <script type="module">
+        // Exemplo "Animado": atualiza o atributo value após 500ms, idêntico ao
+        // demo ProgressDemo do shadcn-vue (onMounted → setTimeout).
+        const el = document.querySelector('[data-anim-progress]')
+        if (el) setTimeout(() => el.setAttribute('value', '66'), 500)
+      </script>
+    </main>
+  </body>
+</html>

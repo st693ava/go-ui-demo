@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="pt-PT">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Componentes — go-ui</title>
+    <link rel="icon" href="/dist/favicon.svg" />
+    <script>
+      (function () {
+        var m = localStorage.getItem('go-ui-theme') || 'system'
+        var dark = m === 'dark' || (m === 'system' &&
+          window.matchMedia('(prefers-color-scheme: dark)').matches)
+        document.documentElement.classList.toggle('dark', dark)
+      })()
+    </script>
+    <link rel="stylesheet" href="./go-ui.css" />
+    <script type="module" src="./go-ui.js"></script>
+    <script type="module" src="./site-chrome.js"></script>
+    <style>
+      /* Shell de docs 3 colunas fiel ao shadcn-vue.com. */
+      main[data-site-main] { max-width: 88rem; padding: 0 1.5rem; }
+      .docs { display: grid; grid-template-columns: 15rem minmax(0, 1fr) 14rem;
+        gap: 2.5rem; align-items: start; }
+      /* Host do <go-sidebar mode="nav">. UM só border-right (a coluna).
+         O nav interno tem border:0 — evita a linha dupla. */
+      .docs-nav { display: block; position: sticky; top: 4.5rem;
+        align-self: start; max-height: calc(100vh - 5rem); overflow-y: auto;
+        padding: 2rem 1.25rem 2rem 0; font-size: .875rem;
+        border-right: 1px solid var(--border, #e5e7eb); }
+      .docs-content { min-width: 0; padding: 2.25rem 0 4rem; }
+      .docs-bc { font-size: .82rem; color: var(--muted-foreground, #6b7280);
+        margin: 0 0 1rem; }
+      .docs-bc b { color: var(--foreground, #0a0a0a); font-weight: 600; }
+      .doc-h1 { font-size: 2.1rem; letter-spacing: -.025em; margin: 0 0 .6rem;
+        font-weight: 700; }
+      .doc-lead { color: var(--muted-foreground, #6b7280); font-size: 1.1rem;
+        margin: 0 0 2rem; line-height: 1.6; }
+      .cat-grid { display: grid; grid-template-columns: repeat(2, 1fr);
+        gap: .85rem; margin: 0 0 3rem; }
+      .cat-grid a { border: 1px solid var(--border, #e5e7eb);
+        border-radius: 12px; padding: 1.1rem 1.2rem; text-decoration: none;
+        color: var(--foreground, #0a0a0a); transition: background .12s,
+        border-color .12s; }
+      .cat-grid a:hover { background: var(--muted, #f4f4f5);
+        border-color: color-mix(in oklab, var(--foreground) 22%, transparent); }
+      .cat-grid a strong { display: block; font-size: .95rem; margin-bottom: .25rem; }
+      .cat-grid a span { font-size: .82rem; color: var(--muted-foreground, #6b7280); }
+      .grp { font-size: 1.4rem; letter-spacing: -.02em;
+        color: var(--foreground, #0a0a0a); font-weight: 700;
+        margin: 3rem 0 1rem; padding-top: 2rem; scroll-margin-top: 4.5rem;
+        border-top: 1px solid var(--border, #e5e7eb); }
+      .grp:first-of-type { border-top: 0; padding-top: 0; margin-top: 1rem; }
+      .cmp { padding: 1rem 0 1.25rem; scroll-margin-top: 4.5rem;
+        border-bottom: 1px solid var(--border, #e5e7eb); }
+      .cmp h3 { font-size: 1.05rem; margin: 0 0 .25rem;
+        font-family: ui-monospace, monospace; display: flex; align-items: center;
+        gap: .5rem; }
+      .cmp .d { color: var(--muted-foreground, #6b7280); font-size: .9rem;
+        margin: 0 0 1rem; }
+      .stage { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; }
+      go-card { display: block; }
+      .docs-toc { position: sticky; top: 4.5rem; align-self: start;
+        font-size: .82rem; padding: 2.25rem 0; }
+      .docs-toc .t { font-weight: 600; color: var(--foreground, #0a0a0a);
+        margin: 0 0 .6rem; }
+      .docs-toc a { display: block; color: var(--muted-foreground, #6b7280);
+        text-decoration: none; padding: .22rem 0; line-height: 1.3; }
+      .docs-toc a:hover, .docs-toc a[aria-current="true"] {
+        color: var(--foreground, #0a0a0a); }
+      .docs-pager { display: flex; justify-content: space-between; gap: 1rem;
+        margin-top: 3rem; padding-top: 1.5rem;
+        border-top: 1px solid var(--border, #e5e7eb); }
+      .docs-pager a { display: flex; flex-direction: column; gap: .15rem;
+        border: 1px solid var(--border, #e5e7eb); border-radius: 10px;
+        padding: .7rem 1rem; text-decoration: none;
+        color: var(--foreground, #0a0a0a); font-size: .92rem; font-weight: 600; }
+      .docs-pager a:hover { background: var(--muted, #f4f4f5); }
+      .docs-pager a span { font-size: .72rem; font-weight: 500;
+        color: var(--muted-foreground, #6b7280); }
+      .docs-pager a.next { text-align: right; align-items: flex-end; }
+      .diag { color: var(--muted-foreground, #6b7280); font-size: .8rem;
+        margin-top: 2rem; }
+      @media (max-width: 1100px) {
+        .docs { grid-template-columns: 14rem minmax(0, 1fr); }
+        .docs-toc { display: none; }
+      }
+      @media (max-width: 820px) {
+        .docs { grid-template-columns: 1fr; }
+        .docs-nav { display: none; }
+        .cat-grid { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <go-toaster position="bottom-right"></go-toaster>
+    <main data-site-main>
+      <div class="docs">
+        <go-sidebar mode="nav" active="components.html" class="docs-nav" aria-label="Navegação de documentação">
+          <section title="Começar">
+            <option value="index.html">Introdução</option>
+            <option value="installation.html">Instalação</option>
+            <option value="components.html">Componentes</option>
+            <option value="blocks.html">Blocks</option>
+            <option value="charts.html">Charts</option>
+            <option value="create.html">Create</option>
+          </section>
+          <section title="Form-inputs (FACE)">
+            <option value="#checkbox">go-checkbox</option>
+            <option value="#switch">go-switch</option>
+            <option value="#input">go-input</option>
+            <option value="#textarea">go-textarea</option>
+            <option value="#slider">go-slider</option>
+            <option value="#radio-group">go-radio-group</option>
+            <option value="#select">go-select</option>
+            <option value="#number-field">go-number-field</option>
+            <option value="#pin-input">go-pin-input</option>
+            <option value="#tags-input">go-tags-input</option>
+          </section>
+          <section title="Layout & apresentação">
+            <option value="#card">go-card</option>
+            <option value="#alert">go-alert</option>
+            <option value="#badge">go-badge</option>
+            <option value="#avatar">go-avatar</option>
+            <option value="#aspect-ratio">go-aspect-ratio</option>
+            <option value="#separator">go-separator</option>
+            <option value="#skeleton">go-skeleton</option>
+            <option value="#button">go-button</option>
+            <option value="#label">go-label</option>
+            <option value="#input-group">go-input-group</option>
+            <option value="#scroll-area">go-scroll-area</option>
+            <option value="#table">go-table</option>
+            <option value="#progress">go-progress</option>
+          </section>
+          <section title="Disclosure">
+            <option value="#accordion">go-accordion</option>
+            <option value="#collapsible">go-collapsible</option>
+            <option value="#tabs">go-tabs</option>
+            <option value="#stepper">go-stepper</option>
+          </section>
+          <section title="Overlays">
+            <option value="#dialog">go-dialog</option>
+            <option value="#alert-dialog">go-alert-dialog</option>
+            <option value="#drawer">go-drawer</option>
+            <option value="#sheet">go-sheet</option>
+            <option value="#popover">go-popover</option>
+            <option value="#hover-card">go-hover-card</option>
+            <option value="#tooltip">go-tooltip</option>
+          </section>
+          <section title="Navegação & menus">
+            <option value="#breadcrumb">go-breadcrumb</option>
+            <option value="#dropdown-menu">go-dropdown-menu</option>
+            <option value="#context-menu">go-context-menu</option>
+            <option value="#menubar">go-menubar</option>
+            <option value="#navigation-menu">go-navigation-menu</option>
+            <option value="#command">go-command</option>
+            <option value="#pagination">go-pagination</option>
+          </section>
+          <section title="Especiais">
+            <option value="#carousel">go-carousel</option>
+            <option value="#calendar">go-calendar</option>
+            <option value="#resizable">go-resizable</option>
+            <option value="#toggle">go-toggle</option>
+            <option value="#toggle-group">go-toggle-group</option>
+            <option value="#toaster">go-toaster</option>
+            <option value="#sidebar">go-sidebar</option>
+          </section>
+        </go-sidebar>
+        <div class="docs-content">
+          <p class="docs-bc">Docs <span aria-hidden="true">/</span> <b>Componentes</b></p>
+          <h1 class="doc-h1">Componentes</h1>
+          <p class="doc-lead">
+            48 Web Components shadcn-vue (Reka UI) compilados para Custom
+            Elements no-Shadow. Cada cartão abre o componente vivo —
+            atributos para props, light-DOM
+            (<code>&lt;section&gt;</code>/<code>&lt;option&gt;</code>/<code>slot=</code>)
+            para conteúdo.
+          </p>
+
+          <div class="cat-grid" id="cardgrid"></div>
+
+      <div class="grp" id="g-form">Form-inputs (FACE)</div>
+      <form id="formdemo">
+      <div class="cmp" id="checkbox"><h3>go-checkbox <go-badge>FACE</go-badge></h3><p class="d">Checkbox form-associated.</p><go-card><div class="stage"><go-checkbox name="termos" required>Aceito os termos</go-checkbox></div></go-card></div>
+      <div class="cmp" id="switch"><h3>go-switch <go-badge>FACE</go-badge></h3><p class="d">Interruptor on/off.</p><go-card><div class="stage"><go-switch name="notif">Notificações</go-switch></div></go-card></div>
+      <div class="cmp" id="input"><h3>go-input <go-badge>FACE</go-badge></h3><p class="d">Campo de texto.</p><go-card><div class="stage"><go-input name="email" type="email" placeholder="nome@exemplo.pt"></go-input></div></go-card></div>
+      <div class="cmp" id="textarea"><h3>go-textarea <go-badge>FACE</go-badge></h3><p class="d">Área de texto.</p><go-card><div class="stage"><go-textarea name="bio" placeholder="Escreve algo..."></go-textarea></div></go-card></div>
+      <div class="cmp" id="slider"><h3>go-slider <go-badge>FACE</go-badge></h3><p class="d">Cursor de intervalo.</p><go-card><div class="stage" style="width:18rem"><go-slider name="vol" min="0" max="100" step="5" value="40"></go-slider></div></go-card></div>
+      <div class="cmp" id="radio-group"><h3>go-radio-group <go-badge>FACE</go-badge></h3><p class="d">Opções exclusivas.</p><go-card><div class="stage"><go-radio-group name="plano"><option value="free">Grátis</option><option value="pro">Pro</option></go-radio-group></div></go-card></div>
+      <div class="cmp" id="select"><h3>go-select <go-badge>FACE</go-badge></h3><p class="d">Seleção dropdown.</p><go-card><div class="stage"><go-select name="pais" placeholder="País"><option value="pt">Portugal</option><option value="es">Espanha</option></go-select></div></go-card></div>
+      <div class="cmp" id="number-field"><h3>go-number-field <go-badge>FACE</go-badge></h3><p class="d">Campo numérico.</p><go-card><div class="stage"><go-number-field name="qtd" min="0" max="99" value="1"></go-number-field></div></go-card></div>
+      <div class="cmp" id="pin-input"><h3>go-pin-input <go-badge>FACE</go-badge></h3><p class="d">Código OTP.</p><go-card><div class="stage"><go-pin-input name="otp" length="6"></go-pin-input></div></go-card></div>
+      <div class="cmp" id="tags-input"><h3>go-tags-input <go-badge>FACE</go-badge></h3><p class="d">Etiquetas múltiplas.</p><go-card><div class="stage"><go-tags-input name="skills" placeholder="Add skill..."></go-tags-input></div></go-card></div>
+      </form>
+
+      <div class="grp" id="g-layout">Layout &amp; apresentação</div>
+      <div class="cmp" id="card"><h3>go-card</h3><p class="d">Cartão de conteúdo.</p><go-card card-title="Plano Pro" card-description="Tudo o que precisas."><p>9€/mês.</p><go-button slot="footer">Subscrever</go-button></go-card></div>
+      <div class="cmp" id="alert"><h3>go-alert</h3><p class="d">Mensagem em destaque.</p><go-card><go-alert><div slot="title">Atenção</div><div slot="description">Lê antes de continuar.</div></go-alert></go-card></div>
+      <div class="cmp" id="badge"><h3>go-badge</h3><p class="d">Etiqueta curta.</p><go-card><div class="stage"><go-badge>Novo</go-badge><go-badge variant="secondary">Beta</go-badge><go-badge variant="destructive">Erro</go-badge></div></go-card></div>
+      <div class="cmp" id="avatar"><h3>go-avatar</h3><p class="d">Foto/iniciais.</p><go-card><div class="stage"><go-avatar fallback="PS" alt="Pedro"></go-avatar></div></go-card></div>
+      <div class="cmp" id="aspect-ratio"><h3>go-aspect-ratio</h3><p class="d">Proporção fixa.</p><go-card><div style="width:16rem"><go-aspect-ratio ratio="16/9"><div style="width:100%;height:100%;background:#e5e7eb;display:flex;align-items:center;justify-content:center;border-radius:8px">16:9</div></go-aspect-ratio></div></go-card></div>
+      <div class="cmp" id="separator"><h3>go-separator</h3><p class="d">Linha divisória.</p><go-card><div style="width:100%">Acima<go-separator></go-separator>Abaixo</div></go-card></div>
+      <div class="cmp" id="skeleton"><h3>go-skeleton</h3><p class="d">Placeholder de carregamento.</p><go-card><go-skeleton width="16rem" height="1.25rem"></go-skeleton></go-card></div>
+      <div class="cmp" id="button"><h3>go-button</h3><p class="d">Botão.</p><go-card><div class="stage"><go-button>Default</go-button><go-button variant="secondary">Secundário</go-button><go-button variant="outline">Outline</go-button><go-button variant="destructive">Apagar</go-button></div></go-card></div>
+      <div class="cmp" id="label"><h3>go-label</h3><p class="d">Etiqueta de campo.</p><go-card><go-label for="x">Nome de utilizador</go-label></go-card></div>
+      <div class="cmp" id="input-group"><h3>go-input-group</h3><p class="d">Input com adornos.</p><go-card><go-input-group><input placeholder="pesquisar..." style="border:0;outline:0;padding:.4rem" /></go-input-group></go-card></div>
+      <div class="cmp" id="scroll-area"><h3>go-scroll-area</h3><p class="d">Área com scroll.</p><go-card><go-scroll-area height="6rem" width="16rem"><p>Linha 1</p><p>Linha 2</p><p>Linha 3</p><p>Linha 4</p><p>Linha 5</p><p>Linha 6</p></go-scroll-area></go-card></div>
+      <div class="cmp" id="table"><h3>go-table</h3><p class="d">Tabela de dados.</p><go-card><go-table><table><thead><tr><th>Nome</th><th>Cargo</th></tr></thead><tbody><tr><td>Ana</td><td>Dev</td></tr><tr><td>Rui</td><td>Design</td></tr></tbody></table></go-table></go-card></div>
+      <div class="cmp" id="progress"><h3>go-progress</h3><p class="d">Barra de progresso.</p><go-card><go-progress value="65"></go-progress></go-card></div>
+
+      <div class="grp" id="g-disclosure">Disclosure</div>
+      <div class="cmp" id="accordion"><h3>go-accordion</h3><p class="d">Painéis expansíveis.</p><go-card><go-accordion type="single" collapsible style="width:100%"><section title="É acessível?" value="a"><p>Sim, WAI-ARIA via Reka.</p></section><section title="Qualquer stack?" value="b"><p>Sim — WC light-DOM.</p></section></go-accordion></go-card></div>
+      <div class="cmp" id="collapsible"><h3>go-collapsible</h3><p class="d">Mostrar/esconder.</p><go-card><go-collapsible><span slot="trigger">Detalhes</span><p>Conteúdo escondido.</p></go-collapsible></go-card></div>
+      <div class="cmp" id="tabs"><h3>go-tabs</h3><p class="d">Separadores.</p><go-card><go-tabs style="width:100%"><section title="Conta" value="a"><p>Definições da conta.</p></section><section title="Password" value="b"><p>Alterar password.</p></section></go-tabs></go-card></div>
+      <div class="cmp" id="stepper"><h3>go-stepper</h3><p class="d">Passos sequenciais.</p><go-card><go-stepper style="width:100%"><section title="Carrinho"><p>Itens.</p></section><section title="Envio"><p>Morada.</p></section><section title="Pagamento"><p>Cartão.</p></section></go-stepper></go-card></div>
+
+      <div class="grp" id="g-overlays">Overlays</div>
+      <div class="cmp" id="dialog"><h3>go-dialog</h3><p class="d">Modal.</p><go-card><go-dialog><span slot="trigger">Editar perfil</span><div slot="title">Editar perfil</div><div slot="description">Faz alterações.</div><div slot="content"><p>Formulário aqui.</p></div><div slot="footer"><go-button>Guardar</go-button></div></go-dialog></go-card></div>
+      <div class="cmp" id="alert-dialog"><h3>go-alert-dialog</h3><p class="d">Confirmação destrutiva.</p><go-card><go-alert-dialog><span slot="trigger">Apagar conta</span><div slot="title">Tens a certeza?</div><div slot="description">Irreversível.</div><div slot="footer"><button>Confirmar</button></div></go-alert-dialog></go-card></div>
+      <div class="cmp" id="drawer"><h3>go-drawer</h3><p class="d">Painel deslizante.</p><go-card><go-drawer><span slot="trigger">Abrir drawer</span><div slot="title">Drawer</div><div slot="content"><p>Conteúdo.</p></div></go-drawer></go-card></div>
+      <div class="cmp" id="sheet"><h3>go-sheet</h3><p class="d">Painel lateral.</p><go-card><go-sheet side="right"><span slot="trigger">Abrir sheet</span><div slot="title">Definições</div><div slot="content"><p>Conteúdo lateral.</p></div></go-sheet></go-card></div>
+      <div class="cmp" id="popover"><h3>go-popover</h3><p class="d">Balão de conteúdo.</p><go-card><go-popover><span slot="trigger">Mostrar popover</span><div slot="content"><p>Conteúdo flutuante.</p></div></go-popover></go-card></div>
+      <div class="cmp" id="hover-card"><h3>go-hover-card</h3><p class="d">Cartão ao passar o rato.</p><go-card><go-hover-card><span slot="trigger">@pedro</span><div slot="content"><p>Pedro Saraiva — Dev.</p></div></go-hover-card></go-card></div>
+      <div class="cmp" id="tooltip"><h3>go-tooltip</h3><p class="d">Dica.</p><go-card><go-tooltip><span slot="trigger">Passa o rato</span><span slot="content">Mais info</span></go-tooltip></go-card></div>
+
+      <div class="grp" id="g-nav">Navegação &amp; menus</div>
+      <div class="cmp" id="breadcrumb"><h3>go-breadcrumb</h3><p class="d">Trilho.</p><go-card><go-breadcrumb><option value="/">Início</option><option value="/docs">Docs</option><option value="/docs/c">Componentes</option></go-breadcrumb></go-card></div>
+      <div class="cmp" id="dropdown-menu"><h3>go-dropdown-menu</h3><p class="d">Menu de ações.</p><go-card><go-dropdown-menu><span slot="trigger">Abrir menu</span><option value="perfil">Perfil</option><option value="defs">Definições</option></go-dropdown-menu></go-card></div>
+      <div class="cmp" id="context-menu"><h3>go-context-menu</h3><p class="d">Menu de clique-direito.</p><go-card><go-context-menu><span slot="trigger" style="display:block;padding:1.5rem;border:1px dashed #ccc;border-radius:8px">Clica-direito</span><option value="copiar">Copiar</option></go-context-menu></go-card></div>
+      <div class="cmp" id="menubar"><h3>go-menubar</h3><p class="d">Barra de menus.</p><go-card><go-menubar><section title="Ficheiro"><option value="novo">Novo</option><option value="abrir">Abrir</option></section><section title="Editar"><option value="desfazer">Desfazer</option></section></go-menubar></go-card></div>
+      <div class="cmp" id="navigation-menu"><h3>go-navigation-menu</h3><p class="d">Navegação principal.</p><go-card><go-navigation-menu><section title="Produtos"><a href="#">Visão geral</a></section></go-navigation-menu></go-card></div>
+      <div class="cmp" id="command"><h3>go-command</h3><p class="d">Paleta de comandos.</p><go-card><go-command><option value="novo">Novo ficheiro</option><option value="abrir">Abrir...</option></go-command></go-card></div>
+      <div class="cmp" id="pagination"><h3>go-pagination</h3><p class="d">Paginação.</p><go-card><go-pagination total="95" items-per-page="10"></go-pagination></go-card></div>
+
+      <div class="grp" id="g-special">Especiais</div>
+      <div class="cmp" id="carousel"><h3>go-carousel</h3><p class="d">Carrossel.</p><go-card><div style="width:18rem"><go-carousel><section><div style="padding:3rem;background:#eee;border-radius:8px;text-align:center">Slide 1</div></section><section><div style="padding:3rem;background:#ddd;border-radius:8px;text-align:center">Slide 2</div></section></go-carousel></div></go-card></div>
+      <div class="cmp" id="calendar"><h3>go-calendar</h3><p class="d">Calendário.</p><go-card><go-calendar></go-calendar></go-card></div>
+      <div class="cmp" id="resizable"><h3>go-resizable</h3><p class="d">Painéis redimensionáveis.</p><go-card><div style="width:100%;height:8rem"><go-resizable direction="horizontal"><section><div style="padding:1rem">Painel A</div></section><section><div style="padding:1rem">Painel B</div></section></go-resizable></div></go-card></div>
+      <div class="cmp" id="toggle"><h3>go-toggle</h3><p class="d">Botão alternável.</p><go-card><div class="stage"><go-toggle>B</go-toggle></div></go-card></div>
+      <div class="cmp" id="toggle-group"><h3>go-toggle-group</h3><p class="d">Grupo alternável.</p><go-card><div class="stage"><go-toggle-group type="single"><option value="l">Esq</option><option value="c">Centro</option><option value="r">Dir</option></go-toggle-group></div></go-card></div>
+      <div class="cmp" id="toaster"><h3>go-toaster</h3><p class="d">Notificações toast.</p><go-card><go-button onclick="window.goToast && window.goToast.success('Guardado com sucesso!')">Disparar toast</go-button></go-card></div>
+      <div class="cmp" id="sidebar"><h3>go-sidebar</h3><p class="d">Barra lateral de app (position:fixed — contida via transform).</p><go-card><div style="height:14rem;overflow:hidden;transform:translateZ(0);position:relative;width:100%"><go-sidebar collapsible="icon"><section title="Demo"><option value="/a">Item A</option><option value="/b">Item B</option></section><div slot="content"><p>Conteúdo da app.</p></div></go-sidebar></div></go-card></div>
+
+          <p class="diag">Diagnóstico de montagem: <span id="diag">a carregar…</span></p>
+
+          <nav class="docs-pager">
+            <a class="prev" href="installation.html"><span>Anterior</span>Instalação</a>
+            <a class="next" href="blocks.html"><span>Seguinte</span>Blocks</a>
+          </nav>
+        </div>
+        <aside class="docs-toc" id="toc" aria-label="Nesta página"></aside>
+      </div>
+    </main>
+
+    <script type="module">
+      const GROUP_LABEL = {
+        'g-form': 'Form-inputs (FACE)',
+        'g-layout': 'Layout & apresentação',
+        'g-disclosure': 'Disclosure',
+        'g-overlays': 'Overlays',
+        'g-nav': 'Navegação & menus',
+        'g-special': 'Especiais',
+      }
+      const groups = {
+        'Form-inputs': ['checkbox','switch','input','textarea','slider','radio-group','select','number-field','pin-input','tags-input'],
+        'Layout': ['card','alert','badge','avatar','aspect-ratio','separator','skeleton','button','label','input-group','scroll-area','table','progress'],
+        'Disclosure': ['accordion','collapsible','tabs','stepper'],
+        'Overlays': ['dialog','alert-dialog','drawer','sheet','popover','hover-card','tooltip'],
+        'Navegação': ['breadcrumb','dropdown-menu','context-menu','menubar','navigation-menu','command','pagination'],
+        'Especiais': ['carousel','calendar','resizable','toggle','toggle-group','toaster','sidebar'],
+      }
+      const groupOf = {
+        'Form-inputs': 'g-form', 'Layout': 'g-layout', 'Disclosure': 'g-disclosure',
+        'Overlays': 'g-overlays', 'Navegação': 'g-nav', 'Especiais': 'g-special',
+      }
+
+      // Sidebar esquerda agora é <go-sidebar mode="nav"> estático (dogfood).
+      const mk = (tag, cls, txt) => {
+        const e = document.createElement(tag)
+        if (cls) e.className = cls
+        if (txt != null) e.textContent = txt
+        return e
+      }
+
+      // ── Grelha de cartões (centro, liga à demo viva) ────────────────
+      const grid = document.getElementById('cardgrid')
+      const DESC = {
+        checkbox:'Checkbox form-associated', switch:'Interruptor on/off',
+        input:'Campo de texto', textarea:'Área de texto', slider:'Cursor de intervalo',
+        'radio-group':'Opções exclusivas', select:'Seleção dropdown',
+        'number-field':'Campo numérico', 'pin-input':'Código OTP',
+        'tags-input':'Etiquetas múltiplas', card:'Cartão de conteúdo',
+        alert:'Mensagem em destaque', badge:'Etiqueta curta', avatar:'Foto/iniciais',
+        'aspect-ratio':'Proporção fixa', separator:'Divisória', skeleton:'Placeholder',
+        button:'Botão', label:'Etiqueta de campo', 'input-group':'Input com adornos',
+        'scroll-area':'Área com scroll', table:'Tabela', progress:'Progresso',
+        accordion:'Painéis expansíveis', collapsible:'Mostrar/esconder',
+        tabs:'Separadores', stepper:'Passos', dialog:'Modal',
+        'alert-dialog':'Confirmação', drawer:'Painel deslizante', sheet:'Painel lateral',
+        popover:'Balão', 'hover-card':'Cartão ao hover', tooltip:'Dica',
+        breadcrumb:'Trilho', 'dropdown-menu':'Menu de ações',
+        'context-menu':'Clique-direito', menubar:'Barra de menus',
+        'navigation-menu':'Navegação', command:'Paleta de comandos',
+        pagination:'Paginação', carousel:'Carrossel', calendar:'Calendário',
+        resizable:'Painéis redimensionáveis', toggle:'Alternável',
+        'toggle-group':'Grupo alternável', toaster:'Toasts', sidebar:'App-shell',
+      }
+      for (const id of Object.values(groups).flat()) {
+        const a = document.createElement('a')
+        a.href = '#' + id
+        a.innerHTML = '<strong>go-' + id + '</strong><span>' +
+          (DESC[id] || '') + '</span>'
+        grid.appendChild(a)
+      }
+
+      // ── TOC direita (categorias) ────────────────────────────────────
+      const toc = document.getElementById('toc')
+      toc.appendChild(mk('p', 't', 'Nesta página'))
+      for (const gid of Object.keys(GROUP_LABEL)) {
+        const a = mk('a', null, GROUP_LABEL[gid])
+        a.href = '#' + gid
+        toc.appendChild(a)
+      }
+
+      // ── Scrollspy: marca grupo activo na TOC ─────────────────────────
+      const secEls = Object.keys(GROUP_LABEL)
+        .map((gid) => document.getElementById(gid))
+        .filter(Boolean)
+      const tocLinks = [...toc.querySelectorAll('a')]
+      const spy = () => {
+        let cur = secEls[0]?.id
+        for (const s of secEls) if (s.getBoundingClientRect().top < 120) cur = s.id
+        tocLinks.forEach((a) =>
+          a.toggleAttribute('aria-current', a.getAttribute('href') === '#' + cur),
+        )
+      }
+      document.addEventListener('scroll', spy, { passive: true })
+      spy()
+
+      // ── Diagnóstico de montagem ─────────────────────────────────────
+      const allTags = [...new Set(Object.values(groups).flat().map((id) => 'go-' + id))]
+      await Promise.all(allTags.map((t) => customElements.whenDefined(t).catch(() => null)))
+      await new Promise((r) => setTimeout(r, 1200))
+      let dup = [], empty = []
+      for (const id of Object.values(groups).flat()) {
+        const sec = document.getElementById(id)
+        const live = sec && sec.querySelector('go-' + id)
+        if (!live || live.innerHTML.trim().length === 0) { if (id !== 'toaster') empty.push('go-' + id); continue }
+        const ctrls = sec.querySelectorAll('[role=checkbox],[role=switch],[role=radio]').length
+        if (ctrls > 3) dup.push('go-' + id + '(' + ctrls + ')')
+      }
+      document.getElementById('diag').textContent =
+        '48 componentes | vazios: ' + (empty.length ? empty.join(',') : '0') +
+        ' | duplo-render: ' + (dup.length ? dup.join(',') : 'nenhum ✓')
+    </script>
+  </body>
+</html>

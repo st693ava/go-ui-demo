@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="pt-PT">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menubar — go-ui</title>
+    <link rel="icon" href="/dist/favicon.svg" />
+    <script>
+      window.__SITE_BASE__ = '../'
+      ;(function () {
+        var m = localStorage.getItem('go-ui-theme') || 'system'
+        var dark =
+          m === 'dark' ||
+          (m === 'system' &&
+            window.matchMedia('(prefers-color-scheme: dark)').matches)
+        document.documentElement.classList.toggle('dark', dark)
+      })()
+    </script>
+    <link rel="stylesheet" href="../go-ui.css" />
+    <script type="module" src="../go-ui.js"></script>
+    <link rel="stylesheet" href="../docs.css" />
+    <script type="module" src="../site-chrome.js"></script>
+    <script type="module" src="../docs.js"></script>
+  </head>
+  <body>
+    <go-toaster position="bottom-right"></go-toaster>
+    <main data-site-main>
+      <div class="docs">
+        <go-sidebar
+          mode="nav"
+          active="menubar.html"
+          class="docs-nav"
+          aria-label="Navegação de componentes"
+        >
+          <section title="Começar">
+            <option value="../index.html">Introdução</option>
+            <option value="../installation.html">Instalação</option>
+            <option value="../components.html">Componentes</option>
+            <option value="../blocks.html">Blocks</option>
+            <option value="../charts.html">Charts</option>
+            <option value="../create.html">Create</option>
+          </section>
+          <section title="Form-inputs (FACE)">
+            <option value="checkbox.html">go-checkbox</option>
+            <option value="switch.html">go-switch</option>
+            <option value="input.html">go-input</option>
+            <option value="textarea.html">go-textarea</option>
+            <option value="slider.html">go-slider</option>
+            <option value="radio-group.html">go-radio-group</option>
+            <option value="select.html">go-select</option>
+            <option value="number-field.html">go-number-field</option>
+            <option value="pin-input.html">go-pin-input</option>
+            <option value="tags-input.html">go-tags-input</option>
+          </section>
+          <section title="Layout &amp; apresentação">
+            <option value="card.html">go-card</option>
+            <option value="alert.html">go-alert</option>
+            <option value="badge.html">go-badge</option>
+            <option value="avatar.html">go-avatar</option>
+            <option value="aspect-ratio.html">go-aspect-ratio</option>
+            <option value="separator.html">go-separator</option>
+            <option value="skeleton.html">go-skeleton</option>
+            <option value="button.html">go-button</option>
+            <option value="label.html">go-label</option>
+            <option value="input-group.html">go-input-group</option>
+            <option value="scroll-area.html">go-scroll-area</option>
+            <option value="table.html">go-table</option>
+            <option value="progress.html">go-progress</option>
+          </section>
+          <section title="Disclosure">
+            <option value="accordion.html">go-accordion</option>
+            <option value="collapsible.html">go-collapsible</option>
+            <option value="tabs.html">go-tabs</option>
+            <option value="stepper.html">go-stepper</option>
+          </section>
+          <section title="Overlays">
+            <option value="dialog.html">go-dialog</option>
+            <option value="alert-dialog.html">go-alert-dialog</option>
+            <option value="drawer.html">go-drawer</option>
+            <option value="sheet.html">go-sheet</option>
+            <option value="popover.html">go-popover</option>
+            <option value="hover-card.html">go-hover-card</option>
+            <option value="tooltip.html">go-tooltip</option>
+          </section>
+          <section title="Navegação &amp; menus">
+            <option value="breadcrumb.html">go-breadcrumb</option>
+            <option value="dropdown-menu.html">go-dropdown-menu</option>
+            <option value="context-menu.html">go-context-menu</option>
+            <option value="menubar.html">go-menubar</option>
+            <option value="navigation-menu.html">go-navigation-menu</option>
+            <option value="command.html">go-command</option>
+            <option value="pagination.html">go-pagination</option>
+          </section>
+          <section title="Especiais">
+            <option value="carousel.html">go-carousel</option>
+            <option value="calendar.html">go-calendar</option>
+            <option value="resizable.html">go-resizable</option>
+            <option value="toggle.html">go-toggle</option>
+            <option value="toggle-group.html">go-toggle-group</option>
+            <option value="toaster.html">go-toaster</option>
+            <option value="sidebar.html">go-sidebar</option>
+          </section>
+        </go-sidebar>
+
+        <div class="docs-content">
+          <p class="docs-bc">
+            <a href="../index.html">Docs</a>
+            <span aria-hidden="true">/</span>
+            <a href="../components.html">Componentes</a>
+            <span aria-hidden="true">/</span>
+            <b>Menubar</b>
+          </p>
+          <h1 class="doc-h1">Menubar</h1>
+          <p class="doc-lead">
+            Um menu visualmente persistente, comum em aplicações de secretária,
+            que dá acesso rápido a um conjunto consistente de comandos.
+          </p>
+          <div class="docs-actions">
+            <button type="button" data-copy-page>Copiar página</button>
+            <span class="sp"></span>
+            <a href="context-menu.html"
+              ><span>Anterior</span> Context Menu</a
+            >
+            <a href="navigation-menu.html"
+              >Seguinte <span>Navigation Menu</span></a
+            >
+          </div>
+
+          <!-- ── Preview/Code principal ──────────────────────────────── -->
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <go-menubar>
+                  <section title="Ficheiro">
+                    <option value="novo-separador">Novo separador</option>
+                    <option value="nova-janela">Nova janela</option>
+                    <option value="partilhar">Partilhar</option>
+                    <option value="imprimir">Imprimir</option>
+                  </section>
+                  <section title="Editar">
+                    <option value="desfazer">Desfazer</option>
+                    <option value="refazer">Refazer</option>
+                    <option value="cortar">Cortar</option>
+                    <option value="copiar">Copiar</option>
+                    <option value="colar">Colar</option>
+                  </section>
+                  <section title="Ver">
+                    <option value="recarregar">Recarregar</option>
+                    <option value="forcar-recarregar">Forçar recarregar</option>
+                    <option value="ecra-inteiro">Ecrã inteiro</option>
+                  </section>
+                </go-menubar>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-menubar&gt;
+  &lt;section title="Ficheiro"&gt;
+    &lt;option value="novo-separador"&gt;Novo separador&lt;/option&gt;
+    &lt;option value="nova-janela"&gt;Nova janela&lt;/option&gt;
+    &lt;option value="partilhar"&gt;Partilhar&lt;/option&gt;
+    &lt;option value="imprimir"&gt;Imprimir&lt;/option&gt;
+  &lt;/section&gt;
+  &lt;section title="Editar"&gt;
+    &lt;option value="desfazer"&gt;Desfazer&lt;/option&gt;
+    &lt;option value="refazer"&gt;Refazer&lt;/option&gt;
+    &lt;option value="cortar"&gt;Cortar&lt;/option&gt;
+    &lt;option value="copiar"&gt;Copiar&lt;/option&gt;
+    &lt;option value="colar"&gt;Colar&lt;/option&gt;
+  &lt;/section&gt;
+  &lt;section title="Ver"&gt;
+    &lt;option value="recarregar"&gt;Recarregar&lt;/option&gt;
+    &lt;option value="forcar-recarregar"&gt;Forçar recarregar&lt;/option&gt;
+    &lt;option value="ecra-inteiro"&gt;Ecrã inteiro&lt;/option&gt;
+  &lt;/section&gt;
+&lt;/go-menubar&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── Instalação ──────────────────────────────────────────── -->
+          <h2 id="instalacao">Instalação</h2>
+          <div class="tabs" data-tabs>
+            <div class="tabs-bar">
+              <button data-tab="npm" aria-selected="true">npm</button>
+              <button data-tab="pnpm" aria-selected="false">pnpm</button>
+              <button data-tab="yarn" aria-selected="false">yarn</button>
+              <button data-tab="bun" aria-selected="false">bun</button>
+              <button data-tab="manual" aria-selected="false">Manual</button>
+            </div>
+            <div class="tabs-panel" data-panel="npm" data-active>
+              <pre class="code" data-lang="bash">npm i github:st693ava/go-ui-web-components</pre>
+            </div>
+            <div class="tabs-panel" data-panel="pnpm">
+              <pre class="code" data-lang="bash">pnpm add github:st693ava/go-ui-web-components</pre>
+            </div>
+            <div class="tabs-panel" data-panel="yarn">
+              <pre class="code" data-lang="bash">yarn add github:st693ava/go-ui-web-components</pre>
+            </div>
+            <div class="tabs-panel" data-panel="bun">
+              <pre class="code" data-lang="bash">bun add github:st693ava/go-ui-web-components</pre>
+            </div>
+            <div class="tabs-panel" data-panel="manual">
+              <p class="tx">
+                Importa o registo uma vez no teu entry-point — regista todos os
+                Custom Elements, <code>&lt;go-menubar&gt;</code> incluído:
+              </p>
+              <pre class="code" data-lang="ts">// main.ts / app.js
+import '@st693ava/go-ui'
+import '@st693ava/go-ui/style.css'</pre>
+            </div>
+          </div>
+
+          <!-- ── Uso ─────────────────────────────────────────────────── -->
+          <h2 id="uso">Uso</h2>
+          <p class="tx">
+            Cada <code>&lt;section title="..."&gt;</code> torna-se um menu da
+            barra; o <code>title</code> é a etiqueta do botão. As
+            <code>&lt;option value="x"&gt;</code> dentro de cada section são os
+            itens desse menu. Ao selecionar, o elemento dispara um evento
+            <code>select</code> com <code>detail.value</code>.
+          </p>
+          <pre class="code" data-lang="html">&lt;go-menubar&gt;
+  &lt;section title="Ficheiro"&gt;
+    &lt;option value="novo"&gt;Novo&lt;/option&gt;
+    &lt;option value="abrir"&gt;Abrir&lt;/option&gt;
+  &lt;/section&gt;
+  &lt;section title="Editar"&gt;
+    &lt;option value="copiar"&gt;Copiar&lt;/option&gt;
+  &lt;/section&gt;
+&lt;/go-menubar&gt;</pre>
+          <pre class="code" data-lang="ts">document
+  .querySelector('go-menubar')
+  .addEventListener('select', (e) =&gt; {
+    console.log(e.detail.value) // 'novo' | 'abrir' | 'copiar' | ...
+  })</pre>
+
+          <!-- ── Exemplos ────────────────────────────────────────────── -->
+          <h2 id="exemplos">Exemplos</h2>
+
+          <h3 id="aplicacao">Barra de aplicação</h3>
+          <p class="tx">
+            Os menus clássicos de uma aplicação de secretária, com vários
+            comandos por menu.
+          </p>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <go-menubar>
+                  <section title="Ficheiro">
+                    <option value="novo">Novo</option>
+                    <option value="abrir">Abrir</option>
+                    <option value="guardar">Guardar</option>
+                    <option value="guardar-como">Guardar como…</option>
+                  </section>
+                  <section title="Editar">
+                    <option value="desfazer">Desfazer</option>
+                    <option value="refazer">Refazer</option>
+                    <option value="localizar">Localizar</option>
+                  </section>
+                  <section title="Conta">
+                    <option value="perfil">Perfil</option>
+                    <option value="definicoes">Definições</option>
+                    <option value="sair">Terminar sessão</option>
+                  </section>
+                </go-menubar>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-menubar&gt;
+  &lt;section title="Ficheiro"&gt;
+    &lt;option value="novo"&gt;Novo&lt;/option&gt;
+    &lt;option value="abrir"&gt;Abrir&lt;/option&gt;
+    &lt;option value="guardar"&gt;Guardar&lt;/option&gt;
+    &lt;option value="guardar-como"&gt;Guardar como…&lt;/option&gt;
+  &lt;/section&gt;
+  &lt;section title="Editar"&gt;
+    &lt;option value="desfazer"&gt;Desfazer&lt;/option&gt;
+    &lt;option value="refazer"&gt;Refazer&lt;/option&gt;
+    &lt;option value="localizar"&gt;Localizar&lt;/option&gt;
+  &lt;/section&gt;
+  &lt;section title="Conta"&gt;
+    &lt;option value="perfil"&gt;Perfil&lt;/option&gt;
+    &lt;option value="definicoes"&gt;Definições&lt;/option&gt;
+    &lt;option value="sair"&gt;Terminar sessão&lt;/option&gt;
+  &lt;/section&gt;
+&lt;/go-menubar&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <h3 id="item-desativado">Item desativado</h3>
+          <p class="tx">
+            Marca uma <code>&lt;option&gt;</code> com <code>disabled</code> para
+            a tornar não selecionável dentro do seu menu.
+          </p>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <go-menubar>
+                  <section title="Ficheiro">
+                    <option value="novo">Novo</option>
+                    <option value="abrir">Abrir</option>
+                    <option value="guardar" disabled>Guardar</option>
+                  </section>
+                  <section title="Ver">
+                    <option value="zoom-in">Aumentar</option>
+                    <option value="zoom-out">Reduzir</option>
+                    <option value="repor" disabled>Repor zoom</option>
+                  </section>
+                </go-menubar>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-menubar&gt;
+  &lt;section title="Ficheiro"&gt;
+    &lt;option value="novo"&gt;Novo&lt;/option&gt;
+    &lt;option value="abrir"&gt;Abrir&lt;/option&gt;
+    &lt;option value="guardar" disabled&gt;Guardar&lt;/option&gt;
+  &lt;/section&gt;
+  &lt;section title="Ver"&gt;
+    &lt;option value="zoom-in"&gt;Aumentar&lt;/option&gt;
+    &lt;option value="zoom-out"&gt;Reduzir&lt;/option&gt;
+    &lt;option value="repor" disabled&gt;Repor zoom&lt;/option&gt;
+  &lt;/section&gt;
+&lt;/go-menubar&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <nav class="docs-pager">
+            <a class="prev" href="context-menu.html"
+              ><span>Anterior</span>Context Menu</a
+            >
+            <a class="next" href="navigation-menu.html"
+              ><span>Seguinte</span>Navigation Menu</a
+            >
+          </nav>
+        </div>
+
+        <aside class="docs-toc" id="toc" aria-label="Nesta página"></aside>
+      </div>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="pt-PT">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Command — go-ui</title>
+    <link rel="icon" href="/dist/favicon.svg" />
+    <script>
+      window.__SITE_BASE__ = '../'
+      ;(function () {
+        var m = localStorage.getItem('go-ui-theme') || 'system'
+        var dark =
+          m === 'dark' ||
+          (m === 'system' &&
+            window.matchMedia('(prefers-color-scheme: dark)').matches)
+        document.documentElement.classList.toggle('dark', dark)
+      })()
+    </script>
+    <link rel="stylesheet" href="../go-ui.css" />
+    <script type="module" src="../go-ui.js"></script>
+    <link rel="stylesheet" href="../docs.css" />
+    <script type="module" src="../site-chrome.js"></script>
+    <script type="module" src="../docs.js"></script>
+  </head>
+  <body>
+    <go-toaster position="bottom-right"></go-toaster>
+    <main data-site-main>
+      <div class="docs">
+        <go-sidebar
+          mode="nav"
+          active="command.html"
+          class="docs-nav"
+          aria-label="Navegação de componentes"
+        >
+          <section title="Começar">
+            <option value="../index.html">Introdução</option>
+            <option value="../installation.html">Instalação</option>
+            <option value="../components.html">Componentes</option>
+            <option value="../blocks.html">Blocks</option>
+            <option value="../charts.html">Charts</option>
+            <option value="../create.html">Create</option>
+          </section>
+          <section title="Form-inputs (FACE)">
+            <option value="checkbox.html">go-checkbox</option>
+            <option value="switch.html">go-switch</option>
+            <option value="input.html">go-input</option>
+            <option value="textarea.html">go-textarea</option>
+            <option value="slider.html">go-slider</option>
+            <option value="radio-group.html">go-radio-group</option>
+            <option value="select.html">go-select</option>
+            <option value="number-field.html">go-number-field</option>
+            <option value="pin-input.html">go-pin-input</option>
+            <option value="tags-input.html">go-tags-input</option>
+          </section>
+          <section title="Layout &amp; apresentação">
+            <option value="card.html">go-card</option>
+            <option value="alert.html">go-alert</option>
+            <option value="badge.html">go-badge</option>
+            <option value="avatar.html">go-avatar</option>
+            <option value="aspect-ratio.html">go-aspect-ratio</option>
+            <option value="separator.html">go-separator</option>
+            <option value="skeleton.html">go-skeleton</option>
+            <option value="button.html">go-button</option>
+            <option value="label.html">go-label</option>
+            <option value="input-group.html">go-input-group</option>
+            <option value="scroll-area.html">go-scroll-area</option>
+            <option value="table.html">go-table</option>
+            <option value="progress.html">go-progress</option>
+          </section>
+          <section title="Disclosure">
+            <option value="accordion.html">go-accordion</option>
+            <option value="collapsible.html">go-collapsible</option>
+            <option value="tabs.html">go-tabs</option>
+            <option value="stepper.html">go-stepper</option>
+          </section>
+          <section title="Overlays">
+            <option value="dialog.html">go-dialog</option>
+            <option value="alert-dialog.html">go-alert-dialog</option>
+            <option value="drawer.html">go-drawer</option>
+            <option value="sheet.html">go-sheet</option>
+            <option value="popover.html">go-popover</option>
+            <option value="hover-card.html">go-hover-card</option>
+            <option value="tooltip.html">go-tooltip</option>
+          </section>
+          <section title="Navegação &amp; menus">
+            <option value="breadcrumb.html">go-breadcrumb</option>
+            <option value="dropdown-menu.html">go-dropdown-menu</option>
+            <option value="context-menu.html">go-context-menu</option>
+            <option value="menubar.html">go-menubar</option>
+            <option value="navigation-menu.html">go-navigation-menu</option>
+            <option value="command.html">go-command</option>
+            <option value="pagination.html">go-pagination</option>
+          </section>
+          <section title="Especiais">
+            <option value="carousel.html">go-carousel</option>
+            <option value="calendar.html">go-calendar</option>
+            <option value="resizable.html">go-resizable</option>
+            <option value="toggle.html">go-toggle</option>
+            <option value="toggle-group.html">go-toggle-group</option>
+            <option value="toaster.html">go-toaster</option>
+            <option value="sidebar.html">go-sidebar</option>
+          </section>
+        </go-sidebar>
+
+        <div class="docs-content">
+          <p class="docs-bc">
+            <a href="../index.html">Docs</a>
+            <span aria-hidden="true">/</span>
+            <a href="../components.html">Componentes</a>
+            <span aria-hidden="true">/</span>
+            <b>Command</b>
+          </p>
+          <h1 class="doc-h1">Command</h1>
+          <p class="doc-lead">
+            Menu de comandos rápido, componível e sem estilo imposto para Vue.
+          </p>
+          <div class="docs-actions">
+            <button type="button" data-copy-page>Copiar página</button>
+            <span class="sp"></span>
+            <a href="navigation-menu.html"
+              ><span>Anterior</span> Navigation Menu</a
+            >
+            <a href="pagination.html">Seguinte <span>Pagination</span></a>
+          </div>
+
+          <!-- ── Preview/Code principal ──────────────────────────────── -->
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <go-command class="cmd-box">
+                  <option value="calendario">Calendário</option>
+                  <option value="emoji">Procurar emoji</option>
+                  <option value="calculadora">Calculadora</option>
+                  <option value="perfil">Perfil</option>
+                  <option value="faturacao">Faturação</option>
+                  <option value="definicoes">Definições</option>
+                </go-command>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-command&gt;
+  &lt;option value="calendario"&gt;Calendário&lt;/option&gt;
+  &lt;option value="emoji"&gt;Procurar emoji&lt;/option&gt;
+  &lt;option value="calculadora"&gt;Calculadora&lt;/option&gt;
+  &lt;option value="perfil"&gt;Perfil&lt;/option&gt;
+  &lt;option value="faturacao"&gt;Faturação&lt;/option&gt;
+  &lt;option value="definicoes"&gt;Definições&lt;/option&gt;
+&lt;/go-command&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── Instalação ──────────────────────────────────────────── -->
+          <h2 id="instalacao">Instalação</h2>
+          <div class="tabs" data-tabs>
+            <div class="tabs-bar">
+              <button data-tab="npm" aria-selected="true">npm</button>
+              <button data-tab="pnpm" aria-selected="false">pnpm</button>
+              <button data-tab="yarn" aria-selected="false">yarn</button>
+              <button data-tab="bun" aria-selected="false">bun</button>
+              <button data-tab="manual" aria-selected="false">Manual</button>
+            </div>
+            <div class="tabs-panel" data-panel="npm" data-active>
+              <pre class="code" data-lang="bash">npm i github:st693ava/go-ui-web-components</pre>
+            </div>
+            <div class="tabs-panel" data-panel="pnpm">
+              <pre class="code" data-lang="bash">pnpm add github:st693ava/go-ui-web-components</pre>
+            </div>
+            <div class="tabs-panel" data-panel="yarn">
+              <pre class="code" data-lang="bash">yarn add github:st693ava/go-ui-web-components</pre>
+            </div>
+            <div class="tabs-panel" data-panel="bun">
+              <pre class="code" data-lang="bash">bun add github:st693ava/go-ui-web-components</pre>
+            </div>
+            <div class="tabs-panel" data-panel="manual">
+              <p class="tx">
+                Importa o registo uma vez no teu entry-point — regista todos os
+                Custom Elements, <code>&lt;go-command&gt;</code> incluído:
+              </p>
+              <pre class="code" data-lang="ts">// main.ts / app.js
+import '@st693ava/go-ui'
+import '@st693ava/go-ui/style.css'</pre>
+            </div>
+          </div>
+
+          <!-- ── Uso ─────────────────────────────────────────────────── -->
+          <h2 id="uso">Uso</h2>
+          <p class="tx">
+            Cada <code>&lt;option value="x"&gt;Etiqueta&lt;/option&gt;</code> é
+            um comando. O campo de pesquisa filtra a lista em tempo real; se não
+            houver correspondência mostra-se uma mensagem de vazio. Ao
+            selecionar, o elemento dispara um evento <code>select</code> com
+            <code>detail.value</code>.
+          </p>
+          <pre class="code" data-lang="html">&lt;go-command&gt;
+  &lt;option value="novo-ficheiro"&gt;Novo ficheiro&lt;/option&gt;
+  &lt;option value="abrir"&gt;Abrir…&lt;/option&gt;
+  &lt;option value="guardar" disabled&gt;Guardar&lt;/option&gt;
+&lt;/go-command&gt;</pre>
+          <pre class="code" data-lang="ts">document
+  .querySelector('go-command')
+  .addEventListener('select', (e) =&gt; {
+    console.log(e.detail.value) // 'novo-ficheiro' | 'abrir' | ...
+  })</pre>
+
+          <!-- ── Exemplos ────────────────────────────────────────────── -->
+          <h2 id="exemplos">Exemplos</h2>
+
+          <h3 id="paleta">Paleta de comandos</h3>
+          <p class="tx">
+            Uma lista de comandos pesquisável. Escreve no campo para filtrar os
+            resultados.
+          </p>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <go-command class="cmd-box">
+                  <option value="novo-ficheiro">Novo ficheiro</option>
+                  <option value="abrir-pasta">Abrir pasta</option>
+                  <option value="guardar-tudo">Guardar tudo</option>
+                  <option value="fechar-aba">Fechar separador</option>
+                  <option value="reabrir-aba">Reabrir separador</option>
+                </go-command>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-command&gt;
+  &lt;option value="novo-ficheiro"&gt;Novo ficheiro&lt;/option&gt;
+  &lt;option value="abrir-pasta"&gt;Abrir pasta&lt;/option&gt;
+  &lt;option value="guardar-tudo"&gt;Guardar tudo&lt;/option&gt;
+  &lt;option value="fechar-aba"&gt;Fechar separador&lt;/option&gt;
+  &lt;option value="reabrir-aba"&gt;Reabrir separador&lt;/option&gt;
+&lt;/go-command&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <h3 id="item-desativado">Item desativado</h3>
+          <p class="tx">
+            Marca um comando com o atributo <code>disabled</code> para o tornar
+            não selecionável.
+          </p>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <go-command class="cmd-box">
+                  <option value="abrir">Abrir…</option>
+                  <option value="exportar">Exportar</option>
+                  <option value="publicar" disabled>Publicar</option>
+                  <option value="definicoes">Definições</option>
+                </go-command>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-command&gt;
+  &lt;option value="abrir"&gt;Abrir…&lt;/option&gt;
+  &lt;option value="exportar"&gt;Exportar&lt;/option&gt;
+  &lt;option value="publicar" disabled&gt;Publicar&lt;/option&gt;
+  &lt;option value="definicoes"&gt;Definições&lt;/option&gt;
+&lt;/go-command&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <h3 id="dialog">Em diálogo</h3>
+          <p class="tx">
+            Compõe <code>&lt;go-command&gt;</code> dentro de
+            <code>&lt;go-dialog&gt;</code> para uma paleta de comandos modal,
+            invocável por atalho de teclado.
+          </p>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <go-dialog>
+                  <span slot="trigger" class="cmd-dialog-trigger"
+                    >Abrir paleta de comandos</span
+                  >
+                  <go-command class="cmd-box">
+                    <option value="ir-inicio">Ir para Início</option>
+                    <option value="ir-perfil">Ir para Perfil</option>
+                    <option value="novo-projeto">Novo projeto</option>
+                    <option value="tema-escuro">Alternar tema escuro</option>
+                  </go-command>
+                </go-dialog>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-dialog&gt;
+  &lt;span slot="trigger"&gt;Abrir paleta de comandos&lt;/span&gt;
+  &lt;go-command&gt;
+    &lt;option value="ir-inicio"&gt;Ir para Início&lt;/option&gt;
+    &lt;option value="ir-perfil"&gt;Ir para Perfil&lt;/option&gt;
+    &lt;option value="novo-projeto"&gt;Novo projeto&lt;/option&gt;
+    &lt;option value="tema-escuro"&gt;Alternar tema escuro&lt;/option&gt;
+  &lt;/go-command&gt;
+&lt;/go-dialog&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <nav class="docs-pager">
+            <a class="prev" href="navigation-menu.html"
+              ><span>Anterior</span>Navigation Menu</a
+            >
+            <a class="next" href="pagination.html"
+              ><span>Seguinte</span>Pagination</a
+            >
+          </nav>
+        </div>
+
+        <aside class="docs-toc" id="toc" aria-label="Nesta página"></aside>
+      </div>
+
+      <style>
+        /* Largura local da paleta nos previews — go-command não impõe
+           contentor; estes exemplos limitam-no a uma caixa legível. */
+        .cmd-box {
+          display: block;
+          width: 100%;
+          max-width: 28rem;
+          border: 1px solid var(--border, #d4d4d8);
+          border-radius: 0.6rem;
+          overflow: hidden;
+        }
+        .cmd-dialog-trigger {
+          display: inline-flex;
+          align-items: center;
+          padding: 0.45rem 0.9rem;
+          font-size: 0.875rem;
+          font-weight: 500;
+          border: 1px solid var(--border, #d4d4d8);
+          border-radius: 0.5rem;
+          background: var(--background, #fff);
+          color: var(--foreground, #0a0a0a);
+          cursor: pointer;
+        }
+        .cmd-dialog-trigger:hover {
+          background: var(--muted, #f4f4f5);
+        }
+      </style>
+    </main>
+  </body>
+</html>

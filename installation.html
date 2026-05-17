@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="pt-PT">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Instalação — go-ui</title>
+    <link rel="icon" href="/dist/favicon.svg" />
+    <script>
+      (function () {
+        var m = localStorage.getItem('go-ui-theme') || 'system'
+        var dark = m === 'dark' || (m === 'system' &&
+          window.matchMedia('(prefers-color-scheme: dark)').matches)
+        document.documentElement.classList.toggle('dark', dark)
+      })()
+    </script>
+    <link rel="stylesheet" href="./go-ui.css" />
+    <script type="module" src="./go-ui.js"></script>
+    <script type="module" src="./site-chrome.js"></script>
+    <style>
+      .doc-h1 { font-size: 2rem; letter-spacing: -.02em; margin: 0 0 .5rem; }
+      .doc-lead { color: var(--muted-foreground, #6b7280); font-size: 1.05rem;
+        margin: 0 0 2rem; max-width: 44rem; line-height: 1.6; }
+      h2.doc { font-size: 1.35rem; letter-spacing: -.01em;
+        margin: 2.5rem 0 1rem; padding-top: .5rem; }
+      p.doc { line-height: 1.65; max-width: 44rem; }
+      pre.code { background: var(--muted, #f4f4f5);
+        border: 1px solid var(--border, #e5e7eb); border-radius: 10px;
+        padding: 1rem 1.1rem; overflow-x: auto; font-size: .85rem;
+        font-family: ui-monospace, "SF Mono", Menlo, monospace; line-height: 1.6; }
+      pre.code .c { color: var(--muted-foreground, #6b7280); }
+      .pick { display: grid; grid-template-columns: repeat(5, 1fr); gap: .75rem;
+        margin: 1rem 0 2rem; }
+      .pick a { border: 1px solid var(--border, #e5e7eb); border-radius: 10px;
+        padding: 1rem .75rem; text-align: center; text-decoration: none;
+        color: var(--foreground, #0a0a0a); font-size: .9rem; font-weight: 600;
+        transition: border-color .12s, background .12s; }
+      .pick a:hover { background: var(--muted, #f4f4f5); }
+      .pick a span { display: block; font-size: 1.4rem; margin-bottom: .35rem; }
+      .callout { border: 1px solid var(--border, #e5e7eb);
+        border-left: 3px solid var(--foreground, #0a0a0a); border-radius: 8px;
+        padding: 1rem 1.1rem; margin: 1.5rem 0; font-size: .92rem;
+        background: var(--muted, #f4f4f5); max-width: 44rem; }
+      @media (max-width: 720px) { .pick { grid-template-columns: repeat(2, 1fr); } }
+    </style>
+  </head>
+  <body>
+    <go-toaster position="bottom-right"></go-toaster>
+    <main data-site-main>
+      <h1 class="doc-h1">Instalação</h1>
+      <p class="doc-lead">
+        go-ui distribui-se como um único bundle ESM auto-contido (Vue + Reka
+        embutidos). Não precisas de bundler nem de framework no consumidor —
+        um <code>import</code> regista os 48+ Custom Elements.
+      </p>
+
+      <h2 class="doc">Escolhe o teu ambiente</h2>
+      <div class="pick">
+        <a href="#npm"><span>📦</span>npm / git</a>
+        <a href="#cdn"><span>🌐</span>HTML puro</a>
+        <a href="#vite"><span>⚡</span>Vite / SPA</a>
+        <a href="#laravel"><span>🔺</span>Laravel</a>
+        <a href="#astro"><span>🚀</span>Astro</a>
+      </div>
+
+      <go-tabs default-value="npm" style="display:block;max-width:44rem">
+        <section title="npm / git" value="npm">
+          <p class="doc" id="npm">Instala directamente do repositório privado:</p>
+          <pre class="code" data-lang="bash">npm i github:st693ava/go-ui-web-components</pre>
+          <p class="doc">No teu entry-point, importa o registo uma vez:</p>
+          <pre class="code" data-lang="ts">// main.ts / app.js
+import '@st693ava/go-ui'
+import '@st693ava/go-ui/style.css'</pre>
+          <p class="doc">Já podes usar qualquer elemento no HTML:</p>
+          <pre class="code" data-lang="html">&lt;go-button&gt;Olá&lt;/go-button&gt;
+&lt;go-input name="email" type="email"&gt;&lt;/go-input&gt;</pre>
+        </section>
+        <section title="HTML puro" value="cdn">
+          <p class="doc" id="cdn">Sem build. Aponta para o bundle e o CSS:</p>
+          <pre class="code" data-lang="html">&lt;link rel="stylesheet" href="go-ui.css" /&gt;
+&lt;script type="module" src="go-ui.js"&gt;&lt;/script&gt;
+
+&lt;go-card card-title="Pronto"&gt;Funciona em HTML puro.&lt;/go-card&gt;</pre>
+          <div class="callout">
+            Os componentes pesados (<code>go-chart</code>, <code>go-data-table</code>)
+            chegam em chunks lazy ao lado do <code>go-ui.js</code> — serve a pasta
+            <code>dist/</code> inteira.
+          </div>
+        </section>
+        <section title="Vite / SPA" value="vite">
+          <p class="doc" id="vite">Em qualquer SPA (Vue, React, Svelte, vanilla):</p>
+          <pre class="code" data-lang="bash">npm i github:st693ava/go-ui-web-components</pre>
+          <pre class="code" data-lang="ts">// src/main.ts
+import '@st693ava/go-ui'
+import '@st693ava/go-ui/style.css'</pre>
+          <p class="doc">
+            Os Custom Elements não colidem com o framework — são light-DOM e o
+            estado vive em Reka, não no teu runtime.
+          </p>
+        </section>
+        <section title="Laravel" value="laravel">
+          <p class="doc" id="laravel">Via Vite do Laravel (resources/js/app.js):</p>
+          <pre class="code" data-lang="ts">import '@st693ava/go-ui'
+import '@st693ava/go-ui/style.css'</pre>
+          <p class="doc">
+            Usa os elementos directamente nas Blade views. Os inputs são FACE,
+            por isso integram-se em <code>&lt;form&gt;</code> e no request normal
+            do Laravel sem JS adicional.
+          </p>
+        </section>
+        <section title="Astro" value="astro">
+          <p class="doc" id="astro">Importa o registo num script de cliente:</p>
+          <pre class="code" data-lang="astro">---
+// Layout.astro
+---
+&lt;script&gt;
+  import '@st693ava/go-ui'
+&lt;/script&gt;
+&lt;link rel="stylesheet" href="/node_modules/@st693ava/go-ui/dist/go-ui.css" /&gt;</pre>
+        </section>
+      </go-tabs>
+
+      <h2 class="doc">Tema light / dark</h2>
+      <p class="doc">
+        O tema resolve-se por uma classe <code>.dark</code> no
+        <code>&lt;html&gt;</code> e tokens OKLCH. Default = sistema. Alterna no
+        canto superior direito desta página.
+      </p>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="pt-PT">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Navigation Menu — go-ui</title>
+    <link rel="icon" href="/dist/favicon.svg" />
+    <script>
+      window.__SITE_BASE__ = '../'
+      ;(function () {
+        var m = localStorage.getItem('go-ui-theme') || 'system'
+        var dark =
+          m === 'dark' ||
+          (m === 'system' &&
+            window.matchMedia('(prefers-color-scheme: dark)').matches)
+        document.documentElement.classList.toggle('dark', dark)
+      })()
+    </script>
+    <link rel="stylesheet" href="../go-ui.css" />
+    <script type="module" src="../go-ui.js"></script>
+    <link rel="stylesheet" href="../docs.css" />
+    <script type="module" src="../site-chrome.js"></script>
+    <script type="module" src="../docs.js"></script>
+  </head>
+  <body>
+    <go-toaster position="bottom-right"></go-toaster>
+    <main data-site-main>
+      <div class="docs">
+        <go-sidebar
+          mode="nav"
+          active="navigation-menu.html"
+          class="docs-nav"
+          aria-label="Navegação de componentes"
+        >
+          <section title="Começar">
+            <option value="../index.html">Introdução</option>
+            <option value="../installation.html">Instalação</option>
+            <option value="../components.html">Componentes</option>
+            <option value="../blocks.html">Blocks</option>
+            <option value="../charts.html">Charts</option>
+            <option value="../create.html">Create</option>
+          </section>
+          <section title="Form-inputs (FACE)">
+            <option value="checkbox.html">go-checkbox</option>
+            <option value="switch.html">go-switch</option>
+            <option value="input.html">go-input</option>
+            <option value="textarea.html">go-textarea</option>
+            <option value="slider.html">go-slider</option>
+            <option value="radio-group.html">go-radio-group</option>
+            <option value="select.html">go-select</option>
+            <option value="number-field.html">go-number-field</option>
+            <option value="pin-input.html">go-pin-input</option>
+            <option value="tags-input.html">go-tags-input</option>
+          </section>
+          <section title="Layout &amp; apresentação">
+            <option value="card.html">go-card</option>
+            <option value="alert.html">go-alert</option>
+            <option value="badge.html">go-badge</option>
+            <option value="avatar.html">go-avatar</option>
+            <option value="aspect-ratio.html">go-aspect-ratio</option>
+            <option value="separator.html">go-separator</option>
+            <option value="skeleton.html">go-skeleton</option>
+            <option value="button.html">go-button</option>
+            <option value="label.html">go-label</option>
+            <option value="input-group.html">go-input-group</option>
+            <option value="scroll-area.html">go-scroll-area</option>
+            <option value="table.html">go-table</option>
+            <option value="progress.html">go-progress</option>
+          </section>
+          <section title="Disclosure">
+            <option value="accordion.html">go-accordion</option>
+            <option value="collapsible.html">go-collapsible</option>
+            <option value="tabs.html">go-tabs</option>
+            <option value="stepper.html">go-stepper</option>
+          </section>
+          <section title="Overlays">
+            <option value="dialog.html">go-dialog</option>
+            <option value="alert-dialog.html">go-alert-dialog</option>
+            <option value="drawer.html">go-drawer</option>
+            <option value="sheet.html">go-sheet</option>
+            <option value="popover.html">go-popover</option>
+            <option value="hover-card.html">go-hover-card</option>
+            <option value="tooltip.html">go-tooltip</option>
+          </section>
+          <section title="Navegação &amp; menus">
+            <option value="breadcrumb.html">go-breadcrumb</option>
+            <option value="dropdown-menu.html">go-dropdown-menu</option>
+            <option value="context-menu.html">go-context-menu</option>
+            <option value="menubar.html">go-menubar</option>
+            <option value="navigation-menu.html">go-navigation-menu</option>
+            <option value="command.html">go-command</option>
+            <option value="pagination.html">go-pagination</option>
+          </section>
+          <section title="Especiais">
+            <option value="carousel.html">go-carousel</option>
+            <option value="calendar.html">go-calendar</option>
+            <option value="resizable.html">go-resizable</option>
+            <option value="toggle.html">go-toggle</option>
+            <option value="toggle-group.html">go-toggle-group</option>
+            <option value="toaster.html">go-toaster</option>
+            <option value="sidebar.html">go-sidebar</option>
+          </section>
+        </go-sidebar>
+
+        <div class="docs-content">
+          <p class="docs-bc">
+            <a href="../index.html">Docs</a>
+            <span aria-hidden="true">/</span>
+            <a href="../components.html">Componentes</a>
+            <span aria-hidden="true">/</span>
+            <b>Navigation Menu</b>
+          </p>
+          <h1 class="doc-h1">Navigation Menu</h1>
+          <p class="doc-lead">
+            Uma coleção de ligações para navegar em sites.
+          </p>
+          <div class="docs-actions">
+            <button type="button" data-copy-page>Copiar página</button>
+            <span class="sp"></span>
+            <a href="menubar.html"><span>Anterior</span> Menubar</a>
+            <a href="command.html">Seguinte <span>Command</span></a>
+          </div>
+
+          <!-- ── Preview/Code principal ──────────────────────────────── -->
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <go-navigation-menu>
+                  <section title="Começar">
+                    <div class="nm-panel">
+                      <a href="../index.html" class="nm-feature">
+                        <strong>go-ui</strong>
+                        <span
+                          >Componentes Web acessíveis, prontos a usar e
+                          totalmente personalizáveis.</span
+                        >
+                      </a>
+                      <a href="../installation.html" class="nm-link">
+                        <strong>Instalação</strong>
+                        <span>Como instalar e configurar a biblioteca.</span>
+                      </a>
+                      <a href="../components.html" class="nm-link">
+                        <strong>Componentes</strong>
+                        <span>Catálogo completo de componentes go-*.</span>
+                      </a>
+                    </div>
+                  </section>
+                  <section title="Componentes">
+                    <div class="nm-grid">
+                      <a href="dropdown-menu.html" class="nm-link">
+                        <strong>Dropdown Menu</strong>
+                        <span>Ações acionadas por um botão.</span>
+                      </a>
+                      <a href="dialog.html" class="nm-link">
+                        <strong>Dialog</strong>
+                        <span>Janela modal sobreposta.</span>
+                      </a>
+                      <a href="tooltip.html" class="nm-link">
+                        <strong>Tooltip</strong>
+                        <span>Dica contextual ao passar o rato.</span>
+                      </a>
+                      <a href="tabs.html" class="nm-link">
+                        <strong>Tabs</strong>
+                        <span>Painéis comutáveis por separadores.</span>
+                      </a>
+                    </div>
+                  </section>
+                  <section title="Documentação"></section>
+                </go-navigation-menu>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-navigation-menu&gt;
+  &lt;section title="Começar"&gt;
+    &lt;div class="nm-panel"&gt;
+      &lt;a href="/" class="nm-feature"&gt;
+        &lt;strong&gt;go-ui&lt;/strong&gt;
+        &lt;span&gt;Componentes Web acessíveis e personalizáveis.&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a href="/installation"&gt;Instalação&lt;/a&gt;
+      &lt;a href="/components"&gt;Componentes&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+  &lt;section title="Componentes"&gt;
+    &lt;div class="nm-grid"&gt;
+      &lt;a href="/dropdown-menu"&gt;Dropdown Menu&lt;/a&gt;
+      &lt;a href="/dialog"&gt;Dialog&lt;/a&gt;
+      &lt;a href="/tooltip"&gt;Tooltip&lt;/a&gt;
+      &lt;a href="/tabs"&gt;Tabs&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+  &lt;section title="Documentação"&gt;&lt;/section&gt;
+&lt;/go-navigation-menu&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── Instalação ──────────────────────────────────────────── -->
+          <h2 id="instalacao">Instalação</h2>
+          <div class="tabs" data-tabs>
+            <div class="tabs-bar">
+              <button data-tab="npm" aria-selected="true">npm</button>
+              <button data-tab="pnpm" aria-selected="false">pnpm</button>
+              <button data-tab="yarn" aria-selected="false">yarn</button>
+              <button data-tab="bun" aria-selected="false">bun</button>
+              <button data-tab="manual" aria-selected="false">Manual</button>
+            </div>
+            <div class="tabs-panel" data-panel="npm" data-active>
+              <pre class="code" data-lang="bash">npm i github:st693ava/go-ui-web-components</pre>
+            </div>
+            <div class="tabs-panel" data-panel="pnpm">
+              <pre class="code" data-lang="bash">pnpm add github:st693ava/go-ui-web-components</pre>
+            </div>
+            <div class="tabs-panel" data-panel="yarn">
+              <pre class="code" data-lang="bash">yarn add github:st693ava/go-ui-web-components</pre>
+            </div>
+            <div class="tabs-panel" data-panel="bun">
+              <pre class="code" data-lang="bash">bun add github:st693ava/go-ui-web-components</pre>
+            </div>
+            <div class="tabs-panel" data-panel="manual">
+              <p class="tx">
+                Importa o registo uma vez no teu entry-point — regista todos os
+                Custom Elements, <code>&lt;go-navigation-menu&gt;</code>
+                incluído:
+              </p>
+              <pre class="code" data-lang="ts">// main.ts / app.js
+import '@st693ava/go-ui'
+import '@st693ava/go-ui/style.css'</pre>
+            </div>
+          </div>
+
+          <!-- ── Uso ─────────────────────────────────────────────────── -->
+          <h2 id="uso">Uso</h2>
+          <p class="tx">
+            Cada <code>&lt;section title="..."&gt;</code> é um item da barra. Se
+            a section tiver conteúdo, o <code>title</code> torna-se um trigger
+            que abre um painel com esse conteúdo. Uma section vazia torna-se um
+            link simples sem painel.
+          </p>
+          <pre class="code" data-lang="html">&lt;go-navigation-menu&gt;
+  &lt;section title="Produtos"&gt;
+    &lt;a href="/app"&gt;Aplicação&lt;/a&gt;
+    &lt;a href="/api"&gt;API&lt;/a&gt;
+  &lt;/section&gt;
+  &lt;section title="Preços"&gt;&lt;/section&gt;
+&lt;/go-navigation-menu&gt;</pre>
+
+          <!-- ── Exemplos ────────────────────────────────────────────── -->
+          <h2 id="exemplos">Exemplos</h2>
+
+          <h3 id="painel-rico">Painel rico</h3>
+          <p class="tx">
+            Um item com conteúdo HTML livre no painel — ideal para um menu de
+            destaque com descrição.
+          </p>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <go-navigation-menu>
+                  <section title="Recursos">
+                    <div class="nm-panel">
+                      <a href="../charts.html" class="nm-feature">
+                        <strong>Charts</strong>
+                        <span
+                          >Visualizações de dados componíveis para os teus
+                          dashboards.</span
+                        >
+                      </a>
+                      <a href="../blocks.html" class="nm-link">
+                        <strong>Blocks</strong>
+                        <span>Secções de página prontas a colar.</span>
+                      </a>
+                      <a href="../create.html" class="nm-link">
+                        <strong>Create</strong>
+                        <span>Compõe a tua própria interface.</span>
+                      </a>
+                    </div>
+                  </section>
+                </go-navigation-menu>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-navigation-menu&gt;
+  &lt;section title="Recursos"&gt;
+    &lt;div class="nm-panel"&gt;
+      &lt;a href="/charts" class="nm-feature"&gt;
+        &lt;strong&gt;Charts&lt;/strong&gt;
+        &lt;span&gt;Visualizações de dados componíveis.&lt;/span&gt;
+      &lt;/a&gt;
+      &lt;a href="/blocks"&gt;Blocks&lt;/a&gt;
+      &lt;a href="/create"&gt;Create&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+&lt;/go-navigation-menu&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <h3 id="link-simples">Links simples</h3>
+          <p class="tx">
+            Sections vazias renderizam-se como itens de navegação diretos, sem
+            painel dropdown.
+          </p>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <go-navigation-menu>
+                  <section title="Início"></section>
+                  <section title="Preços"></section>
+                  <section title="Contacto"></section>
+                </go-navigation-menu>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-navigation-menu&gt;
+  &lt;section title="Início"&gt;&lt;/section&gt;
+  &lt;section title="Preços"&gt;&lt;/section&gt;
+  &lt;section title="Contacto"&gt;&lt;/section&gt;
+&lt;/go-navigation-menu&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <h3 id="misto">Painéis e links combinados</h3>
+          <p class="tx">
+            Mistura sections com painel e sections vazias na mesma barra.
+          </p>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <go-navigation-menu>
+                  <section title="Produtos">
+                    <div class="nm-grid">
+                      <a href="../components.html" class="nm-link">
+                        <strong>Componentes</strong>
+                        <span>Catálogo go-*.</span>
+                      </a>
+                      <a href="../blocks.html" class="nm-link">
+                        <strong>Blocks</strong>
+                        <span>Secções prontas.</span>
+                      </a>
+                    </div>
+                  </section>
+                  <section title="Preços"></section>
+                  <section title="Documentação"></section>
+                </go-navigation-menu>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-navigation-menu&gt;
+  &lt;section title="Produtos"&gt;
+    &lt;div class="nm-grid"&gt;
+      &lt;a href="/components"&gt;Componentes&lt;/a&gt;
+      &lt;a href="/blocks"&gt;Blocks&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+  &lt;section title="Preços"&gt;&lt;/section&gt;
+  &lt;section title="Documentação"&gt;&lt;/section&gt;
+&lt;/go-navigation-menu&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <nav class="docs-pager">
+            <a class="prev" href="menubar.html"
+              ><span>Anterior</span>Menubar</a
+            >
+            <a class="next" href="command.html"
+              ><span>Seguinte</span>Command</a
+            >
+          </nav>
+        </div>
+
+        <aside class="docs-toc" id="toc" aria-label="Nesta página"></aside>
+      </div>
+
+      <style>
+        /* Estilo local do conteúdo dos painéis nos previews — o painel de
+           go-navigation-menu é HTML author-controlled; estas regras dão skin
+           aos links/cartões dentro dele. */
+        .nm-panel {
+          display: grid;
+          gap: 0.5rem;
+          width: 22rem;
+          padding: 0.5rem;
+        }
+        .nm-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 0.5rem;
+          width: 26rem;
+          padding: 0.5rem;
+        }
+        .nm-panel a,
+        .nm-grid a {
+          display: flex;
+          flex-direction: column;
+          gap: 0.15rem;
+          padding: 0.6rem 0.75rem;
+          border-radius: 0.45rem;
+          text-decoration: none;
+          color: var(--foreground, #0a0a0a);
+          transition: background 0.12s;
+        }
+        .nm-panel a:hover,
+        .nm-grid a:hover {
+          background: var(--muted, #f4f4f5);
+        }
+        .nm-panel a strong,
+        .nm-grid a strong {
+          font-size: 0.9rem;
+        }
+        .nm-panel a span,
+        .nm-grid a span {
+          font-size: 0.8rem;
+          color: var(--muted-foreground, #6b7280);
+          line-height: 1.35;
+        }
+        .nm-feature {
+          background: var(--muted, #f4f4f5);
+          min-height: 7rem;
+          justify-content: flex-end;
+        }
+        .nm-feature strong {
+          font-size: 1.05rem !important;
+        }
+      </style>
+    </main>
+  </body>
+</html>

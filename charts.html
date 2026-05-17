@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="pt-PT">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Charts — go-ui</title>
+    <link rel="icon" href="/dist/favicon.svg" />
+    <script>
+      (function () {
+        var m = localStorage.getItem('go-ui-theme') || 'system'
+        var dark = m === 'dark' || (m === 'system' &&
+          window.matchMedia('(prefers-color-scheme: dark)').matches)
+        document.documentElement.classList.toggle('dark', dark)
+      })()
+    </script>
+    <link rel="stylesheet" href="./go-ui.css" />
+    <script type="module" src="./go-ui.js"></script>
+    <script type="module" src="./site-chrome.js"></script>
+    <style>
+      .doc-h1 { font-size: 2rem; letter-spacing: -.02em; margin: 0 0 .5rem; }
+      .doc-lead { color: var(--muted-foreground, #6b7280); font-size: 1.05rem;
+        margin: 0 0 1.5rem; max-width: 46rem; line-height: 1.6; }
+      .ch-cats { display: flex; gap: .5rem; flex-wrap: wrap; margin: 0 0 2rem;
+        border-bottom: 1px solid var(--border, #e5e7eb); padding-bottom: 1rem; }
+      .ch-cats a { font-size: .9rem; text-decoration: none; padding: .35rem .8rem;
+        border-radius: 999px; color: var(--muted-foreground, #6b7280);
+        border: 1px solid transparent; }
+      .ch-cats a[aria-current] { color: var(--foreground, #0a0a0a);
+        border-color: var(--border, #e5e7eb); background: var(--muted, #f4f4f5);
+        font-weight: 600; }
+      .ch-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+      .ch-todo { padding: 3rem 2rem; text-align: center;
+        color: var(--muted-foreground, #6b7280); font-size: .95rem; }
+      .ch-trend { font-size: .85rem; color: var(--muted-foreground, #6b7280); }
+      @media (max-width: 860px) { .ch-grid { grid-template-columns: 1fr; } }
+    </style>
+  </head>
+  <body>
+    <go-toaster position="bottom-right"></go-toaster>
+    <main data-site-main>
+      <h1 class="doc-h1">Charts &amp; Graphs</h1>
+      <p class="doc-lead">
+        Gráficos bonitos com <code>go-chart</code> — backed por Unovis num
+        chunk lazy próprio (só descarrega nesta página). Tema light/dark
+        herdado dos tokens go-ui.
+      </p>
+
+      <nav class="ch-cats">
+        <a href="#area" aria-current="true">Área</a>
+        <a href="#bar">Barras</a>
+        <a href="#line">Linha</a>
+        <a href="#pie">Pie / Donut</a>
+      </nav>
+
+      <section id="area">
+        <h2 style="font-size:1.35rem;margin:0 0 1rem;">Área</h2>
+        <div class="ch-grid" data-charts="area">
+          <go-card>
+            <go-chart type="area" title="Area Chart" description="Total de visitantes nos últimos 6 meses"></go-chart>
+            <div slot="footer" class="ch-trend">Em alta 5.2% este mês · Janeiro – Junho 2024</div>
+          </go-card>
+          <go-card>
+            <go-chart type="area-interactive" title="Area Chart · Interactive" description="Toggle de intervalo (3m / 30d / 7d)"></go-chart>
+          </go-card>
+          <go-card>
+            <go-chart type="area-gradient" title="Area Chart · Gradient" description="Preenchimento em gradiente"></go-chart>
+            <div slot="footer" class="ch-trend">Em alta 5.2% este mês · Janeiro – Junho 2024</div>
+          </go-card>
+          <go-card>
+            <go-chart type="area" title="Area Chart · Axes" description="Eixos X/Y visíveis"></go-chart>
+            <div slot="footer" class="ch-trend">Total de visitantes nos últimos 6 meses</div>
+          </go-card>
+        </div>
+      </section>
+
+      <section id="bar" style="margin-top:2.5rem">
+        <h2 style="font-size:1.35rem;margin:0 0 1rem;">Barras</h2>
+        <div class="ch-grid" data-charts="bar">
+          <go-card>
+            <go-chart type="bar" title="Bar Chart" description="Janeiro – Junho 2024"></go-chart>
+            <div slot="footer" class="ch-trend">Em alta 5.2% este mês</div>
+          </go-card>
+        </div>
+      </section>
+
+      <section id="line" style="margin-top:2.5rem">
+        <h2 style="font-size:1.35rem;margin:0 0 1rem;">Linha</h2>
+        <div class="ch-grid" data-charts="line">
+          <go-card>
+            <go-chart type="line" title="Line Chart" description="Janeiro – Junho 2024"></go-chart>
+            <div slot="footer" class="ch-trend">Em alta 5.2% este mês</div>
+          </go-card>
+        </div>
+      </section>
+
+      <section id="pie" style="margin-top:2.5rem">
+        <h2 style="font-size:1.35rem;margin:0 0 1rem;">Pie / Donut</h2>
+        <div class="ch-grid" data-charts="pie">
+          <go-card>
+            <go-chart type="pie" title="Donut Chart" description="Visitantes por browser"></go-chart>
+            <div slot="footer" class="ch-trend">Em alta 5.2% este mês</div>
+          </go-card>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

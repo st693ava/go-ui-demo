@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="pt-PT">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create — go-ui</title>
+    <link rel="icon" href="/dist/favicon.svg" />
+    <script>
+      (function () {
+        var m = localStorage.getItem('go-ui-theme') || 'system'
+        var dark = m === 'dark' || (m === 'system' &&
+          window.matchMedia('(prefers-color-scheme: dark)').matches)
+        document.documentElement.classList.toggle('dark', dark)
+      })()
+    </script>
+    <link rel="stylesheet" href="./go-ui.css" />
+    <script type="module" src="./go-ui.js"></script>
+    <script type="module" src="./site-chrome.js"></script>
+    <style>
+      .doc-h1 { font-size: 2rem; letter-spacing: -.02em; margin: 0 0 .5rem; }
+      .doc-lead { color: var(--muted-foreground, #6b7280); font-size: 1.05rem;
+        margin: 0 0 2rem; max-width: 46rem; line-height: 1.6; }
+
+      .create-grid { display: grid; grid-template-columns: 19rem 1fr;
+        gap: 1.5rem; align-items: start; }
+      @media (max-width: 860px) { .create-grid { grid-template-columns: 1fr; } }
+
+      .create-panel { border: 1px solid var(--border, #e5e7eb);
+        border-radius: var(--radius, 12px); padding: 1.4rem 1.35rem;
+        background: var(--card, #fff); position: sticky; top: 5.5rem; }
+      @media (max-width: 860px) { .create-panel { position: static; } }
+
+      .cust-group { padding: 1.1rem 0; border-bottom: 1px solid var(--border, #e5e7eb); }
+      .cust-group:first-of-type { padding-top: 0; }
+      .cust-group:last-of-type { border-bottom: 0; padding-bottom: 0; }
+      .cust-label { display: flex; align-items: baseline;
+        justify-content: space-between; font-size: .8rem; font-weight: 600;
+        letter-spacing: .01em; margin: 0 0 .65rem;
+        text-transform: uppercase; color: var(--muted-foreground, #6b7280); }
+      .cust-label b { font-weight: 600; font-variant-numeric: tabular-nums;
+        color: var(--foreground, #0a0a0a); text-transform: none;
+        font-size: .85rem; }
+
+      .swatch-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .55rem; }
+      .swatch { display: flex; align-items: center; gap: .5rem;
+        font-size: .85rem; color: var(--foreground, #0a0a0a);
+        cursor: pointer; user-select: none; padding: .15rem 0; }
+      .swatch .dot { width: 1rem; height: 1rem; border-radius: 999px;
+        border: 1px solid color-mix(in oklch, var(--foreground) 18%, transparent);
+        flex: none; }
+
+      .preview-head { display: flex; align-items: baseline;
+        justify-content: space-between; margin: 0 0 1.1rem; flex-wrap: wrap;
+        gap: .5rem; }
+      .preview-head h2 { font-size: 1.05rem; letter-spacing: -.01em; margin: 0; }
+      .preview-head span { font-size: .85rem;
+        color: var(--muted-foreground, #6b7280); }
+      .create-preview { border: 1px solid var(--border, #e5e7eb);
+        border-radius: var(--radius, 12px); padding: 1.75rem;
+        background: var(--background, #fff); }
+
+      .pv-stack { display: grid; gap: 1.5rem; }
+      .pv-row { display: flex; flex-wrap: wrap; gap: .65rem; align-items: center; }
+      .pv-block { display: grid; gap: .55rem; }
+      .pv-block h3 { font-size: .78rem; font-weight: 600;
+        text-transform: uppercase; letter-spacing: .02em;
+        color: var(--muted-foreground, #6b7280); margin: 0; }
+      .pv-form { display: grid; gap: .85rem; max-width: 22rem; }
+      .pv-field { display: grid; gap: .4rem; }
+      .pv-field label { font-size: .82rem; font-weight: 500;
+        color: var(--foreground, #0a0a0a); }
+      .pv-toggles { display: grid; gap: .85rem; padding-top: .25rem; }
+    </style>
+  </head>
+  <body>
+    <go-toaster position="bottom-right"></go-toaster>
+    <main data-site-main>
+      <h1 class="doc-h1">Create</h1>
+      <p class="doc-lead">
+        Playground de tema. Ajusta o raio base, o modo e a cor de destaque —
+        cada controlo escreve nos tokens OKLCH do documento e os
+        go-components à direita reagem ao vivo. Equivalente ao construtor de
+        projecto do shadcn-vue, feito 100% com a nossa biblioteca.
+      </p>
+
+      <div class="create-grid">
+        <aside class="create-panel" data-create="customizer">
+          <div class="cust-group">
+            <div class="cust-label">
+              <span>Raio base</span><b id="radius-out">10px</b>
+            </div>
+            <go-slider name="radius" min="0" max="16" step="1" value="10"
+              style="display:block"></go-slider>
+          </div>
+
+          <div class="cust-group">
+            <div class="cust-label"><span>Modo</span></div>
+            <go-toggle-group type="single" variant="outline" value="system"
+              data-create="mode" style="display:block">
+              <option value="light">Claro</option>
+              <option value="dark">Escuro</option>
+              <option value="system">Sistema</option>
+            </go-toggle-group>
+          </div>
+
+          <div class="cust-group">
+            <div class="cust-label"><span>Cor de destaque</span></div>
+            <go-radio-group name="accent" value="neutral" data-create="accent">
+              <option value="neutral">Neutral</option>
+              <option value="blue">Azul</option>
+              <option value="green">Verde</option>
+              <option value="orange">Laranja</option>
+            </go-radio-group>
+            <div class="swatch-grid" aria-hidden="true" style="margin-top:.85rem">
+              <span class="swatch"><span class="dot"
+                style="background:oklch(.205 0 0)"></span>Neutral</span>
+              <span class="swatch"><span class="dot"
+                style="background:oklch(.62 .19 259)"></span>Azul</span>
+              <span class="swatch"><span class="dot"
+                style="background:oklch(.65 .17 152)"></span>Verde</span>
+              <span class="swatch"><span class="dot"
+                style="background:oklch(.70 .19 47)"></span>Laranja</span>
+            </div>
+          </div>
+        </aside>
+
+        <section class="create-preview" data-create="preview">
+          <div class="preview-head">
+            <h2>Pré-visualização</h2>
+            <span>Tudo reage a <code>--radius</code> e <code>--primary</code></span>
+          </div>
+
+          <div class="pv-stack">
+            <go-card card-title="Conta"
+              card-description="Gere a tua subscrição e dados de acesso."
+              style="display:block">
+              <form class="pv-form" data-create="account"
+                onsubmit="return false">
+                <div class="pv-field">
+                  <label for="acc-name">Nome</label>
+                  <go-input name="name" type="text" value="Pedro Saraiva"
+                    placeholder="O teu nome"></go-input>
+                </div>
+                <div class="pv-field">
+                  <label for="acc-email">Email</label>
+                  <go-input name="email" type="email"
+                    placeholder="tu@exemplo.pt"></go-input>
+                </div>
+                <div class="pv-row">
+                  <go-button type="submit" data-toast="save">
+                    Guardar alterações
+                  </go-button>
+                  <go-button variant="outline" type="reset">
+                    Cancelar
+                  </go-button>
+                </div>
+              </form>
+            </go-card>
+
+            <div class="pv-block">
+              <h3>Botões</h3>
+              <div class="pv-row">
+                <go-button>Default</go-button>
+                <go-button variant="secondary">Secundário</go-button>
+                <go-button variant="outline">Contorno</go-button>
+                <go-button variant="destructive">Apagar</go-button>
+                <go-button variant="ghost">Ghost</go-button>
+              </div>
+            </div>
+
+            <div class="pv-block">
+              <h3>Badges</h3>
+              <div class="pv-row">
+                <go-badge>Activo</go-badge>
+                <go-badge variant="secondary">Beta</go-badge>
+                <go-badge variant="outline">Rascunho</go-badge>
+                <go-badge variant="destructive">Expirado</go-badge>
+              </div>
+            </div>
+
+            <div class="pv-block">
+              <h3>Preferências</h3>
+              <div class="pv-toggles">
+                <go-switch name="notify" value="on">
+                  Notificações por email
+                </go-switch>
+                <go-checkbox name="newsletter" value="yes">
+                  Subscrever a newsletter mensal
+                </go-checkbox>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script type="module">
+      const root = document.documentElement
+
+      // Cores de destaque (par primary / ring em OKLCH).
+      const ACCENTS = {
+        neutral: { primary: 'oklch(.205 0 0)',       ring: 'oklch(.205 0 0)' },
+        blue:    { primary: 'oklch(.62 .19 259)',    ring: 'oklch(.62 .19 259)' },
+        green:   { primary: 'oklch(.65 .17 152)',    ring: 'oklch(.65 .17 152)' },
+        orange:  { primary: 'oklch(.70 .19 47)',     ring: 'oklch(.70 .19 47)' },
+      }
+
+      // ── Raio base (go-slider → --radius) ────────────────────────────────
+      const slider = document.querySelector('go-slider[name="radius"]')
+      const radiusOut = document.getElementById('radius-out')
+      function readSliderValue(detail) {
+        // Vue defineEmits → CustomEvent.detail = [ <emit-arg> ]; o arg do
+        // go-slider é number[]. Aceita também detail liso por robustez.
+        let v = detail
+        while (Array.isArray(v)) v = v[0]
+        return Number(v)
+      }
+      slider?.addEventListener('change', (e) => {
+        const px = readSliderValue(e.detail)
+        if (Number.isNaN(px)) return
+        root.style.setProperty('--radius', px + 'px')
+        if (radiusOut) radiusOut.textContent = px + 'px'
+      })
+
+      // ── Modo (go-toggle-group → .dark + localStorage) ───────────────────
+      function applyMode(mode) {
+        const dark = mode === 'dark' ||
+          (mode === 'system' &&
+            window.matchMedia('(prefers-color-scheme: dark)').matches)
+        root.classList.toggle('dark', dark)
+        localStorage.setItem('go-ui-theme', mode)
+      }
+      const modeGroup = document.querySelector('[data-create="mode"]')
+      modeGroup?.addEventListener('change', (e) => {
+        const mode = e.detail && e.detail.value
+        if (mode) applyMode(mode)
+      })
+
+      // ── Cor de destaque (go-radio-group → --primary / --ring) ───────────
+      function applyAccent(key) {
+        const a = ACCENTS[key]
+        if (!a) return
+        root.style.setProperty('--primary', a.primary)
+        root.style.setProperty('--ring', a.ring)
+      }
+      const accentGroup = document.querySelector('[data-create="accent"]')
+      accentGroup?.addEventListener('change', (e) => {
+        // go-radio-group emite via Vue: detail = [ '<value>' ].
+        let v = e.detail
+        while (Array.isArray(v)) v = v[0]
+        if (typeof v === 'string') applyAccent(v)
+      })
+
+      // ── Feedback do formulário (toast) ──────────────────────────────────
+      document.querySelector('[data-toast="save"]')
+        ?.addEventListener('click', () => {
+          window.goToast?.success('Alterações guardadas', {
+            description: 'O teu perfil foi actualizado.',
+          })
+        })
+    </script>
+  </body>
+</html>
