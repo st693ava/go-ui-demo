@@ -24464,7 +24464,10 @@ var gS = /* @__PURE__ */ W({
 		function l(e) {
 			i.value = String(e ?? ""), c(i.value), r("input", i.value);
 		}
-		return p(() => {
+		return C(() => n.value, (e) => {
+			let t = e ?? "";
+			t !== i.value && (i.value = t, c(t));
+		}), p(() => {
 			s && (s._reset = () => {
 				i.value = n.value ?? "", c(i.value);
 			}, s._disabledChange = (e) => {
@@ -26123,30 +26126,37 @@ var gS = /* @__PURE__ */ W({
 }), NC = ["innerHTML"], PC = /* @__PURE__ */ W({
 	__name: "Dialog.ce",
 	setup(e) {
-		let t = _e()?._light.slots ?? {};
-		return (e, n) => (o(), F(B(bC), null, {
+		let t = _e(), n = t?._light.slots ?? {};
+		function r(e) {
+			t?.dispatchEvent(new CustomEvent(e ? "go:open" : "go:close", {
+				bubbles: !0,
+				composed: !0,
+				detail: { open: e }
+			}));
+		}
+		return (e, t) => (o(), F(B(bC), { "onUpdate:open": r }, {
 			default: u(() => [G(B(MC), null, {
-				default: u(() => [v(e.$slots, "trigger", {}, () => [n[0] ||= H("Abrir", -1)])]),
+				default: u(() => [v(e.$slots, "trigger", {}, () => [t[0] ||= H("Abrir", -1)])]),
 				_: 3
 			}), G(B(DC), null, {
 				default: u(() => [
-					B(t).title || B(t).description ? (o(), F(B(AC), { key: 0 }, {
-						default: u(() => [B(t).title ? (o(), F(B(jC), {
+					B(n).title || B(n).description ? (o(), F(B(AC), { key: 0 }, {
+						default: u(() => [B(n).title ? (o(), F(B(jC), {
 							key: 0,
-							innerHTML: B(t).title
-						}, null, 8, ["innerHTML"])) : N("", !0), B(t).description ? (o(), F(B(OC), {
+							innerHTML: B(n).title
+						}, null, 8, ["innerHTML"])) : N("", !0), B(n).description ? (o(), F(B(OC), {
 							key: 1,
-							innerHTML: B(t).description
+							innerHTML: B(n).description
 						}, null, 8, ["innerHTML"])) : N("", !0)]),
 						_: 1
 					})) : N("", !0),
-					B(t).content ? (o(), D("div", {
+					B(n).content ? (o(), D("div", {
 						key: 1,
-						innerHTML: B(t).content
+						innerHTML: B(n).content
 					}, null, 8, NC)) : N("", !0),
-					B(t).footer ? (o(), F(B(kC), {
+					B(n).footer ? (o(), F(B(kC), {
 						key: 2,
-						innerHTML: B(t).footer
+						innerHTML: B(n).footer
 					}, null, 8, ["innerHTML"])) : N("", !0)
 				]),
 				_: 1
@@ -27482,30 +27492,37 @@ var gS = /* @__PURE__ */ W({
 }), iT = ["innerHTML"], aT = /* @__PURE__ */ W({
 	__name: "AlertDialog.ce",
 	setup(e) {
-		let t = _e()?._light.slots ?? {};
-		return (e, n) => (o(), F(B(Zw), null, {
+		let t = _e(), n = t?._light.slots ?? {};
+		function r(e) {
+			t?.dispatchEvent(new CustomEvent(e ? "go:open" : "go:close", {
+				bubbles: !0,
+				composed: !0,
+				detail: { open: e }
+			}));
+		}
+		return (e, t) => (o(), F(B(Zw), { "onUpdate:open": r }, {
 			default: u(() => [G(B(rT), null, {
-				default: u(() => [v(e.$slots, "trigger", {}, () => [n[0] ||= H("Abrir", -1)])]),
+				default: u(() => [v(e.$slots, "trigger", {}, () => [t[0] ||= H("Abrir", -1)])]),
 				_: 3
 			}), G(B(Qw), null, {
 				default: u(() => [
 					G(B(tT), null, {
-						default: u(() => [B(t).title ? (o(), F(B(nT), {
+						default: u(() => [B(n).title ? (o(), F(B(nT), {
 							key: 0,
-							innerHTML: B(t).title
-						}, null, 8, ["innerHTML"])) : N("", !0), B(t).description ? (o(), F(B($w), {
+							innerHTML: B(n).title
+						}, null, 8, ["innerHTML"])) : N("", !0), B(n).description ? (o(), F(B($w), {
 							key: 1,
-							innerHTML: B(t).description
+							innerHTML: B(n).description
 						}, null, 8, ["innerHTML"])) : N("", !0)]),
 						_: 1
 					}),
-					B(t).content ? (o(), D("div", {
+					B(n).content ? (o(), D("div", {
 						key: 0,
-						innerHTML: B(t).content
+						innerHTML: B(n).content
 					}, null, 8, iT)) : N("", !0),
-					B(t).footer ? (o(), F(B(eT), {
+					B(n).footer ? (o(), F(B(eT), {
 						key: 1,
-						innerHTML: B(t).footer
+						innerHTML: B(n).footer
 					}, null, 8, ["innerHTML"])) : N("", !0)
 				]),
 				_: 1
@@ -28351,30 +28368,37 @@ var IT = /* @__PURE__ */ W({
 }), GT = ["innerHTML"], KT = /* @__PURE__ */ W({
 	__name: "Drawer.ce",
 	setup(e) {
-		let t = _e()?._light.slots ?? {};
-		return (e, n) => (o(), F(B(LT), null, {
+		let t = _e(), n = t?._light.slots ?? {};
+		function r(e) {
+			t?.dispatchEvent(new CustomEvent(e ? "go:open" : "go:close", {
+				bubbles: !0,
+				composed: !0,
+				detail: { open: e }
+			}));
+		}
+		return (e, t) => (o(), F(B(LT), { "onUpdate:open": r }, {
 			default: u(() => [G(B(WT), null, {
-				default: u(() => [v(e.$slots, "trigger", {}, () => [n[0] ||= H("Abrir", -1)])]),
+				default: u(() => [v(e.$slots, "trigger", {}, () => [t[0] ||= H("Abrir", -1)])]),
 				_: 3
 			}), G(B(zT), null, {
 				default: u(() => [
 					G(B(HT), null, {
-						default: u(() => [B(t).title ? (o(), F(B(UT), {
+						default: u(() => [B(n).title ? (o(), F(B(UT), {
 							key: 0,
-							innerHTML: B(t).title
-						}, null, 8, ["innerHTML"])) : N("", !0), B(t).description ? (o(), F(B(BT), {
+							innerHTML: B(n).title
+						}, null, 8, ["innerHTML"])) : N("", !0), B(n).description ? (o(), F(B(BT), {
 							key: 1,
-							innerHTML: B(t).description
+							innerHTML: B(n).description
 						}, null, 8, ["innerHTML"])) : N("", !0)]),
 						_: 1
 					}),
-					B(t).content ? (o(), D("div", {
+					B(n).content ? (o(), D("div", {
 						key: 0,
-						innerHTML: B(t).content
+						innerHTML: B(n).content
 					}, null, 8, GT)) : N("", !0),
-					B(t).footer ? (o(), F(B(VT), {
+					B(n).footer ? (o(), F(B(VT), {
 						key: 1,
-						innerHTML: B(t).footer
+						innerHTML: B(n).footer
 					}, null, 8, ["innerHTML"])) : N("", !0)
 				]),
 				_: 1
@@ -28576,7 +28600,14 @@ var IT = /* @__PURE__ */ W({
 	__name: "Sheet.ce",
 	setup(e) {
 		let t = _e(), n = t?._light.slots ?? {}, r = t?.getAttribute("side") ?? "right";
-		return (e, t) => (o(), F(B(qT), null, {
+		function i(e) {
+			t?.dispatchEvent(new CustomEvent(e ? "go:open" : "go:close", {
+				bubbles: !0,
+				composed: !0,
+				detail: { open: e }
+			}));
+		}
+		return (e, t) => (o(), F(B(qT), { "onUpdate:open": i }, {
 			default: u(() => [G(B(eE), null, {
 				default: u(() => [v(e.$slots, "trigger", {}, () => [t[0] ||= H("Abrir", -1)])]),
 				_: 3
@@ -28692,13 +28723,20 @@ var IT = /* @__PURE__ */ W({
 }), oE = ["innerHTML"], sE = /* @__PURE__ */ W({
 	__name: "Popover.ce",
 	setup(e) {
-		let t = _e()?._light, n = t?.slots ?? {};
-		return (e, r) => (o(), F(B(rE), null, {
+		let t = _e(), n = t?._light, r = n?.slots ?? {};
+		function i(e) {
+			t?.dispatchEvent(new CustomEvent(e ? "go:open" : "go:close", {
+				bubbles: !0,
+				composed: !0,
+				detail: { open: e }
+			}));
+		}
+		return (e, t) => (o(), F(B(rE), { "onUpdate:open": i }, {
 			default: u(() => [G(B(aE), null, {
-				default: u(() => [v(e.$slots, "trigger", {}, () => [r[0] ||= H("Abrir", -1)])]),
+				default: u(() => [v(e.$slots, "trigger", {}, () => [t[0] ||= H("Abrir", -1)])]),
 				_: 3
 			}), G(B(iE), null, {
-				default: u(() => [R("div", { innerHTML: B(n).content ?? B(t)?.defaultHtml ?? "" }, null, 8, oE)]),
+				default: u(() => [R("div", { innerHTML: B(r).content ?? B(n)?.defaultHtml ?? "" }, null, 8, oE)]),
 				_: 1
 			})]),
 			_: 3
@@ -32262,6 +32300,7 @@ var WO = /* @__PURE__ */ W({
 	setup(e) {
 		let t = e, n = gs(K(t, "class"));
 		return (e, r) => (o(), F(B(Ff), L({
+			type: "button",
 			"data-slot": "calendar-cell-trigger",
 			class: B($)(B(TC)({ variant: "ghost" }), "size-8 p-0 font-normal aria-selected:opacity-100 cursor-default", "[&[data-today]:not([data-selected])]:bg-accent [&[data-today]:not([data-selected])]:text-accent-foreground", "data-[selected]:bg-primary data-[selected]:text-primary-foreground data-[selected]:opacity-100 data-[selected]:hover:bg-primary data-[selected]:hover:text-primary-foreground data-[selected]:focus:bg-primary data-[selected]:focus:text-primary-foreground", "data-[disabled]:text-muted-foreground data-[disabled]:opacity-50", "data-[unavailable]:text-destructive-foreground data-[unavailable]:line-through", "data-[outside-view]:text-muted-foreground", t.class)
 		}, B(n)), {
@@ -32434,6 +32473,7 @@ var WO = /* @__PURE__ */ W({
 	setup(e) {
 		let t = e, n = gs(K(t, "class"));
 		return (e, r) => (o(), F(B(Uf), L({
+			type: "button",
 			"data-slot": "calendar-next-button",
 			class: B($)(B(TC)({ variant: "outline" }), "size-7 bg-transparent p-0 opacity-50 hover:opacity-100", t.class)
 		}, B(n)), {
@@ -32458,6 +32498,7 @@ var WO = /* @__PURE__ */ W({
 	setup(e) {
 		let t = e, n = gs(K(t, "class"));
 		return (e, r) => (o(), F(B(Wf), L({
+			type: "button",
 			"data-slot": "calendar-prev-button",
 			class: B($)(B(TC)({ variant: "outline" }), "size-7 bg-transparent p-0 opacity-50 hover:opacity-100", t.class)
 		}, B(n)), {
@@ -32468,28 +32509,53 @@ var WO = /* @__PURE__ */ W({
 }), wk = /* @__PURE__ */ W({
 	__name: "Calendar.ce",
 	props: {
+		name: { type: String },
 		locale: { type: String },
-		layout: { type: String }
+		layout: { type: String },
+		value: { type: String }
 	},
-	setup(e) {
-		let t = e, n = _e(), r = k(void 0);
-		function i(e) {
-			let t;
+	emits: ["change"],
+	setup(e, { emit: t }) {
+		let n = e, r = t, i = _e();
+		function a(e) {
+			if (e) try {
+				return sa(e);
+			} catch {
+				return;
+			}
+		}
+		let s = k(a(n.value));
+		function c(e) {
+			i?._internals?.setFormValue(e || null);
+		}
+		function l(e) {
+			let t = "";
 			if (e && typeof e == "object" && "year" in e) {
 				let n = e;
 				t = `${n.year}-${String(n.month).padStart(2, "0")}-${String(n.day).padStart(2, "0")}`;
 			} else t = String(e ?? "");
-			r.value = t, n?.dispatchEvent(new CustomEvent("change", {
+			s.value = a(t), c(t), i?.dispatchEvent(new CustomEvent("change", {
 				detail: t,
 				bubbles: !0,
 				composed: !0
-			}));
+			})), r("change", t);
 		}
-		return p(() => {}), (e, n) => (o(), F(B(fk), {
-			locale: t.locale ?? "en",
-			layout: t.layout,
-			"onUpdate:modelValue": i
-		}, null, 8, ["locale", "layout"]));
+		return C(() => n.value, (e) => {
+			s.value = a(e), c(e ?? "");
+		}), p(() => {
+			i && (i._reset = () => {
+				s.value = a(n.value), c(n.value ?? "");
+			}), c(n.value ?? "");
+		}), (e, t) => (o(), F(B(fk), {
+			"model-value": s.value,
+			locale: n.locale ?? "en",
+			layout: n.layout,
+			"onUpdate:modelValue": l
+		}, null, 8, [
+			"model-value",
+			"locale",
+			"layout"
+		]));
 	}
 }), Tk = /* @__PURE__ */ W({
 	__name: "Pagination",
@@ -33943,25 +34009,38 @@ var WO = /* @__PURE__ */ W({
 			}
 		}
 		let a = k(!1), s = k(i(t.value)), c = z(() => new Intl.DateTimeFormat(t.locale === "en" ? "en-US" : "pt-PT", { dateStyle: "long" })), l = z(() => s.value ? c.value.format(s.value.toDate(di())) : t.placeholder ?? "Escolher data");
-		function d() {
-			let e = s.value, t = e ? `${e.year}-${String(e.month).padStart(2, "0")}-${String(e.day).padStart(2, "0")}` : "";
-			n?.dispatchEvent(new CustomEvent("change", {
+		function d(e) {
+			return e ? `${e.year}-${String(e.month).padStart(2, "0")}-${String(e.day).padStart(2, "0")}` : "";
+		}
+		function m(e) {
+			n?._internals?.setFormValue(e || null);
+		}
+		function h() {
+			let e = d(s.value);
+			m(e), n?.dispatchEvent(new CustomEvent("change", {
 				bubbles: !0,
 				composed: !0,
-				detail: { value: t }
+				detail: { value: e }
 			}));
 		}
-		function p(e) {
+		C(() => t.value, (e) => {
+			s.value = i(e), m(e ?? "");
+		}), p(() => {
+			n && (n._reset = () => {
+				s.value = i(t.value), m(t.value ?? "");
+			}), m(d(s.value));
+		});
+		function g(e) {
 			if (e && typeof e == "object" && "year" in e) {
 				let t = e;
 				s.value = new ha(t.year, t.month, t.day);
 			} else s.value = void 0;
-			a.value = !1, d();
+			a.value = !1, h();
 		}
-		function m(e) {
-			s.value = i(e), a.value = !1, d();
+		function _(e) {
+			s.value = i(e), a.value = !1, h();
 		}
-		let h = ai(di());
+		let v = ai(di());
 		return (e, n) => (o(), F(B(rE), {
 			open: a.value,
 			"onUpdate:open": n[1] ||= (e) => a.value = e
@@ -33980,12 +34059,12 @@ var WO = /* @__PURE__ */ W({
 					key: e.value,
 					type: "button",
 					class: "ring-offset-background focus-visible:ring-ring inline-flex h-8 items-center rounded-md px-3 text-left text-sm font-normal transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
-					onClick: (t) => m(e.value)
+					onClick: (t) => _(e.value)
 				}, U(e.label), 9, hj))), 128))])) : N("", !0), G(B(fk), {
 					modelValue: s.value,
-					"onUpdate:modelValue": [n[0] ||= (e) => s.value = e, p],
+					"onUpdate:modelValue": [n[0] ||= (e) => s.value = e, g],
 					locale: t.locale ?? "pt",
-					"default-placeholder": B(h),
+					"default-placeholder": B(v),
 					layout: "month-and-year",
 					"initial-focus": ""
 				}, null, 8, [
@@ -34031,15 +34110,22 @@ var WO = /* @__PURE__ */ W({
 			return e ? `${e.year}-${String(e.month).padStart(2, "0")}-${String(e.day).padStart(2, "0")}` : "";
 		}
 		let s = k(i(t.value));
-		C(() => t.value, (e) => {
-			s.value = i(e);
-		});
 		function c(e) {
+			e.start && e.end ? n?._internals?.setFormValue(`${a(e.start)}/${a(e.end)}`) : n?._internals?.setFormValue(null);
+		}
+		C(() => t.value, (e) => {
+			let t = i(e);
+			s.value = t, c(t);
+		});
+		function l(e) {
 			let t = e ?? {}, r = t.start, i = t.end;
 			s.value = {
 				start: r,
 				end: i
-			}, r && i && n?.dispatchEvent(new CustomEvent("change", {
+			}, c({
+				start: r,
+				end: i
+			}), r && i && n?.dispatchEvent(new CustomEvent("change", {
 				bubbles: !0,
 				composed: !0,
 				detail: {
@@ -34048,9 +34134,14 @@ var WO = /* @__PURE__ */ W({
 				}
 			}));
 		}
-		return (e, n) => (o(), F(B(Bm), {
+		return p(() => {
+			n && (n._reset = () => {
+				let e = i(t.value);
+				s.value = e, c(e);
+			}), c(s.value);
+		}), (e, n) => (o(), F(B(Bm), {
 			modelValue: s.value,
-			"onUpdate:modelValue": [n[0] ||= (e) => s.value = e, c],
+			"onUpdate:modelValue": [n[0] ||= (e) => s.value = e, l],
 			"data-slot": "range-calendar",
 			class: "p-3",
 			locale: t.locale ?? "pt",
@@ -34065,12 +34156,14 @@ var WO = /* @__PURE__ */ W({
 					"data-slot": "range-calendar-heading",
 					class: "text-sm font-medium"
 				}), R("div", _j, [G(B(Zm), {
+					type: "button",
 					"data-slot": "range-calendar-prev-button",
 					class: I(B($)(B(TC)({ variant: "outline" }), "absolute left-1", "size-7 bg-transparent p-0 opacity-50 hover:opacity-100"))
 				}, {
 					default: u(() => [G(B(Qn), { class: "size-4" })]),
 					_: 1
 				}, 8, ["class"]), G(B(Xm), {
+					type: "button",
 					"data-slot": "range-calendar-next-button",
 					class: I(B($)(B(TC)({ variant: "outline" }), "absolute right-1", "size-7 bg-transparent p-0 opacity-50 hover:opacity-100"))
 				}, {
@@ -34112,6 +34205,7 @@ var WO = /* @__PURE__ */ W({
 							class: "relative p-0 text-center text-sm focus-within:relative focus-within:z-20 [&:has([data-selected])]:bg-accent first:[&:has([data-selected])]:rounded-l-md last:[&:has([data-selected])]:rounded-r-md [&:has([data-selected][data-selection-end])]:rounded-r-md [&:has([data-selected][data-selection-start])]:rounded-l-md"
 						}, {
 							default: u(() => [G(B(Hm), {
+								type: "button",
 								day: t,
 								month: e.value,
 								"data-slot": "range-calendar-trigger",
@@ -34136,52 +34230,85 @@ var WO = /* @__PURE__ */ W({
 			"number-of-months"
 		]));
 	}
-}), bj = ["data-slot", "innerHTML"], xj = "bg-muted text-muted-foreground pointer-events-none inline-flex h-5 w-fit min-w-5 items-center justify-center gap-1 rounded-sm px-1 font-sans text-xs font-medium select-none [&_svg:not([class*='size-'])]:size-3 [[data-slot=tooltip-content]_&]:bg-background/20 [[data-slot=tooltip-content]_&]:text-background dark:[[data-slot=tooltip-content]_&]:bg-background/10", Sj = "inline-flex items-center gap-1", Cj = /* @__PURE__ */ W({
+}), bj = ["data-variant"], xj = /* @__PURE__ */ W({
+	__name: "Typography.ce",
+	props: { variant: {
+		default: "prose",
+		type: String
+	} },
+	setup(e) {
+		let t = e, n = [
+			"[&_h1]:scroll-m-20 [&_h1]:text-4xl [&_h1]:font-extrabold [&_h1]:tracking-tight [&_h1]:text-balance",
+			"[&_h2]:scroll-m-20 [&_h2]:border-b [&_h2]:pb-2 [&_h2]:text-3xl [&_h2]:font-semibold [&_h2]:tracking-tight [&_h2]:transition-colors [&_h2:first-child]:mt-0 [&_h2]:mt-10",
+			"[&_h3]:scroll-m-20 [&_h3]:text-2xl [&_h3]:font-semibold [&_h3]:tracking-tight [&_h3]:mt-8",
+			"[&_h4]:scroll-m-20 [&_h4]:text-xl [&_h4]:font-semibold [&_h4]:tracking-tight",
+			"[&_p]:leading-7 [&_p:not(:first-child)]:mt-6",
+			"[&_a]:text-primary [&_a]:font-medium [&_a]:underline [&_a]:underline-offset-4",
+			"[&_blockquote]:mt-6 [&_blockquote]:border-l-2 [&_blockquote]:pl-6 [&_blockquote]:italic",
+			"[&_ul]:my-6 [&_ul]:ml-6 [&_ul]:list-disc [&_ul>li]:mt-2",
+			"[&_table]:w-full [&_table]:my-6 [&_table]:overflow-y-auto [&_table]:block",
+			"[&_tr]:m-0 [&_tr]:border-t [&_tr]:p-0 [&_tr:nth-child(even)]:bg-muted",
+			"[&_th]:border [&_th]:px-4 [&_th]:py-2 [&_th]:text-left [&_th]:font-bold [&_th[align=center]]:text-center [&_th[align=right]]:text-right",
+			"[&_td]:border [&_td]:px-4 [&_td]:py-2 [&_td]:text-left [&_td[align=center]]:text-center [&_td[align=right]]:text-right",
+			"[&_code]:relative [&_code]:rounded [&_code]:bg-muted [&_code]:px-[0.3rem] [&_code]:py-[0.2rem] [&_code]:font-mono [&_code]:text-sm [&_code]:font-semibold"
+		].join(" "), r = {
+			lead: "text-xl text-muted-foreground",
+			large: "text-lg font-semibold",
+			small: "text-sm font-medium leading-none",
+			muted: "text-sm text-muted-foreground"
+		}, i = z(() => t.variant === "prose" ? n : r[t.variant]);
+		return (e, n) => (o(), D("div", {
+			"data-slot": "typography",
+			"data-variant": t.variant,
+			class: I(i.value)
+		}, [v(e.$slots, "default")], 10, bj));
+	}
+}), Sj = ["data-slot", "innerHTML"], Cj = "bg-muted text-muted-foreground pointer-events-none inline-flex h-5 w-fit min-w-5 items-center justify-center gap-1 rounded-sm px-1 font-sans text-xs font-medium select-none [&_svg:not([class*='size-'])]:size-3 [[data-slot=tooltip-content]_&]:bg-background/20 [[data-slot=tooltip-content]_&]:text-background dark:[[data-slot=tooltip-content]_&]:bg-background/10", wj = "inline-flex items-center gap-1", Tj = /* @__PURE__ */ W({
 	__name: "Kbd.ce",
 	props: { group: { type: Boolean } },
 	setup(e) {
-		let t = e, n = (_e()?._light.defaultHtml ?? "").trim(), r = z(() => t.group ? Sj : xj), i = z(() => t.group ? "kbd-group" : "kbd");
+		let t = e, n = (_e()?._light.defaultHtml ?? "").trim(), r = z(() => t.group ? wj : Cj), i = z(() => t.group ? "kbd-group" : "kbd");
 		return (e, t) => (o(), D("kbd", {
 			"data-slot": i.value,
 			class: I(r.value),
 			innerHTML: B(n)
-		}, null, 10, bj));
+		}, null, 10, Sj));
 	}
-}), wj = ["data-orientation"], Tj = "flex w-fit items-stretch [&>*]:focus-visible:z-10 [&>*]:focus-visible:relative [&>[data-slot=select-trigger]:not([class*='w-'])]:w-fit [&>input]:flex-1 has-[select[aria-hidden=true]:last-child]:[&>[data-slot=select-trigger]:last-of-type]:rounded-r-md has-[>[data-slot=button-group]]:gap-2", Ej = /* @__PURE__ */ W({
+}), Ej = ["data-orientation"], Dj = "flex w-fit items-stretch [&>*]:focus-visible:z-10 [&>*]:focus-visible:relative [&>[data-slot=select-trigger]:not([class*='w-'])]:w-fit [&>input]:flex-1 has-[select[aria-hidden=true]:last-child]:[&>[data-slot=select-trigger]:last-of-type]:rounded-r-md has-[>[data-slot=button-group]]:gap-2", Oj = /* @__PURE__ */ W({
 	__name: "ButtonGroup.ce",
 	props: { orientation: { type: String } },
 	setup(e) {
 		let t = e, n = z(() => t.orientation ?? "horizontal"), r = {
 			horizontal: "[&>*:not(:first-child)]:rounded-l-none [&>*:not(:first-child)]:border-l-0 [&>*:not(:last-child)]:rounded-r-none [&>*:not(:first-child)>button]:rounded-l-none [&>*:not(:first-child)>button]:border-l-0 [&>*:not(:last-child)>button]:rounded-r-none",
 			vertical: "flex-col [&>*:not(:first-child)]:rounded-t-none [&>*:not(:first-child)]:border-t-0 [&>*:not(:last-child)]:rounded-b-none [&>*:not(:first-child)>button]:rounded-t-none [&>*:not(:first-child)>button]:border-t-0 [&>*:not(:last-child)>button]:rounded-b-none"
-		}, i = z(() => $(Tj, r[n.value]));
+		}, i = z(() => $(Dj, r[n.value]));
 		return (e, t) => (o(), D("div", {
 			role: "group",
 			"data-slot": "button-group",
 			"data-orientation": n.value,
 			class: I(i.value)
-		}, [v(e.$slots, "default")], 10, wj));
+		}, [v(e.$slots, "default")], 10, Ej));
 	}
-}), Dj = {
+}), kj = {
 	"data-slot": "empty",
 	class: "flex min-w-0 flex-1 flex-col items-center justify-center gap-6 rounded-lg border-dashed p-6 text-center text-balance md:p-12"
-}, Oj = {
+}, Aj = {
 	key: 0,
 	"data-slot": "empty-header",
 	class: "flex max-w-sm flex-col items-center gap-2 text-center"
-}, kj = ["data-variant", "innerHTML"], Aj = {
+}, jj = ["data-variant", "innerHTML"], Mj = {
 	key: 1,
 	"data-slot": "empty-title",
 	class: "text-lg font-medium tracking-tight"
-}, jj = {
+}, Nj = {
 	key: 2,
 	"data-slot": "empty-description",
 	class: "text-muted-foreground text-sm/relaxed [&>a]:underline [&>a]:underline-offset-4 [&>a:hover]:text-primary"
-}, Mj = {
+}, Pj = {
 	key: 1,
 	"data-slot": "empty-content",
 	class: "flex w-full max-w-sm min-w-0 flex-col items-center gap-4 text-sm text-balance"
-}, Nj = /* @__PURE__ */ W({
+}, Fj = /* @__PURE__ */ W({
 	__name: "Empty.ce",
 	props: {
 		emptyTitle: { type: String },
@@ -34190,31 +34317,31 @@ var WO = /* @__PURE__ */ W({
 	},
 	setup(e) {
 		let t = e, n = _e()?._light, r = n?.slots ?? {}, i = z(() => !!n?.defaultHtml?.trim()), a = z(() => !!r.media), s = z(() => a.value || !!t.emptyTitle || !!t.emptyDescription), c = z(() => $("mb-2 flex shrink-0 items-center justify-center [&_svg]:pointer-events-none [&_svg]:shrink-0", (t.mediaVariant ?? "default") === "icon" ? "bg-muted text-foreground flex size-10 shrink-0 items-center justify-center rounded-lg [&_svg:not([class*='size-'])]:size-6" : "bg-transparent"));
-		return (t, n) => (o(), D("div", Dj, [s.value ? (o(), D("div", Oj, [
+		return (t, n) => (o(), D("div", kj, [s.value ? (o(), D("div", Aj, [
 			a.value ? (o(), D("div", {
 				key: 0,
 				"data-slot": "empty-icon",
 				"data-variant": e.mediaVariant ?? "default",
 				class: I(c.value),
 				innerHTML: B(r).media
-			}, null, 10, kj)) : N("", !0),
-			e.emptyTitle ? (o(), D("div", Aj, U(e.emptyTitle), 1)) : N("", !0),
-			e.emptyDescription ? (o(), D("p", jj, U(e.emptyDescription), 1)) : N("", !0)
-		])) : N("", !0), i.value ? (o(), D("div", Mj, [v(t.$slots, "default")])) : N("", !0)]));
+			}, null, 10, jj)) : N("", !0),
+			e.emptyTitle ? (o(), D("div", Mj, U(e.emptyTitle), 1)) : N("", !0),
+			e.emptyDescription ? (o(), D("p", Nj, U(e.emptyDescription), 1)) : N("", !0)
+		])) : N("", !0), i.value ? (o(), D("div", Pj, [v(t.$slots, "default")])) : N("", !0)]));
 	}
-}), Pj = ["data-variant", "data-size"], Fj = ["innerHTML"], Ij = ["innerHTML"], Lj = {
+}), Ij = ["data-variant", "data-size"], Lj = ["innerHTML"], Rj = ["innerHTML"], zj = {
 	key: 2,
 	"data-slot": "item-content",
 	class: "flex flex-1 flex-col gap-1 [&+[data-slot=item-content]]:flex-none"
-}, Rj = {
+}, Bj = {
 	key: 0,
 	"data-slot": "item-title",
 	class: "flex w-fit items-center gap-2 text-sm leading-snug font-medium"
-}, zj = ["innerHTML"], Bj = {
+}, Vj = ["innerHTML"], Hj = {
 	key: 1,
 	"data-slot": "item-description",
 	class: "text-muted-foreground line-clamp-2 text-sm leading-normal font-normal text-balance [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
-}, Vj = ["innerHTML"], Hj = ["innerHTML"], Uj = ["innerHTML"], Wj = ["innerHTML"], Gj = "group/item flex items-center border border-transparent text-sm rounded-md transition-colors [a]:hover:bg-accent/50 [a]:transition-colors duration-100 flex-wrap outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]", Kj = "flex shrink-0 items-center justify-center gap-2 group-has-[[data-slot=item-description]]/item:self-start [&_svg]:pointer-events-none group-has-[[data-slot=item-description]]/item:translate-y-0.5", qj = /* @__PURE__ */ W({
+}, Uj = ["innerHTML"], Wj = ["innerHTML"], Gj = ["innerHTML"], Kj = ["innerHTML"], qj = "group/item flex items-center border border-transparent text-sm rounded-md transition-colors [a]:hover:bg-accent/50 [a]:transition-colors duration-100 flex-wrap outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]", Jj = "flex shrink-0 items-center justify-center gap-2 group-has-[[data-slot=item-description]]/item:self-start [&_svg]:pointer-events-none group-has-[[data-slot=item-description]]/item:translate-y-0.5", Yj = /* @__PURE__ */ W({
 	__name: "Item.ce",
 	props: {
 		variant: { type: String },
@@ -34230,7 +34357,7 @@ var WO = /* @__PURE__ */ W({
 		}, m = {
 			default: "p-4 gap-4",
 			sm: "py-3 px-4 gap-2.5"
-		}, h = z(() => $(Gj, p[t.variant ?? "default"] ?? p.default, m[t.size ?? "default"] ?? m.default));
+		}, h = z(() => $(qj, p[t.variant ?? "default"] ?? p.default, m[t.size ?? "default"] ?? m.default));
 		return (e, n) => (o(), D("div", {
 			"data-slot": "item",
 			"data-variant": t.variant ?? "default",
@@ -34242,46 +34369,46 @@ var WO = /* @__PURE__ */ W({
 				"data-slot": "item-header",
 				class: "flex basis-full items-center justify-between gap-2",
 				innerHTML: B(r).header
-			}, null, 8, Fj)) : N("", !0),
+			}, null, 8, Lj)) : N("", !0),
 			i ? (o(), D("div", {
 				key: 1,
 				"data-slot": "item-media",
 				"data-variant": "default",
-				class: I(Kj),
+				class: I(Jj),
 				innerHTML: B(r).media
-			}, null, 8, Ij)) : N("", !0),
-			B(f) ? (o(), D("div", Lj, [
-				B(l) ? (o(), D("div", Rj, [B(r).title ? (o(), D("span", {
+			}, null, 8, Rj)) : N("", !0),
+			B(f) ? (o(), D("div", zj, [
+				B(l) ? (o(), D("div", Bj, [B(r).title ? (o(), D("span", {
 					key: 0,
 					innerHTML: B(r).title
-				}, null, 8, zj)) : (o(), D(V, { key: 1 }, [H(U(t.itemTitle), 1)], 64))])) : N("", !0),
-				B(u) ? (o(), D("p", Bj, [B(r).description ? (o(), D("span", {
+				}, null, 8, Vj)) : (o(), D(V, { key: 1 }, [H(U(t.itemTitle), 1)], 64))])) : N("", !0),
+				B(u) ? (o(), D("p", Hj, [B(r).description ? (o(), D("span", {
 					key: 0,
 					innerHTML: B(r).description
-				}, null, 8, Vj)) : (o(), D(V, { key: 1 }, [H(U(t.itemDescription), 1)], 64))])) : N("", !0),
+				}, null, 8, Uj)) : (o(), D(V, { key: 1 }, [H(U(t.itemDescription), 1)], 64))])) : N("", !0),
 				!B(l) && !B(u) && B(d) ? (o(), D("div", {
 					key: 2,
 					innerHTML: B(d)
-				}, null, 8, Hj)) : N("", !0)
+				}, null, 8, Wj)) : N("", !0)
 			])) : N("", !0),
 			a ? (o(), D("div", {
 				key: 3,
 				"data-slot": "item-actions",
 				class: "flex items-center gap-2",
 				innerHTML: B(r).actions
-			}, null, 8, Uj)) : N("", !0),
+			}, null, 8, Gj)) : N("", !0),
 			c ? (o(), D("div", {
 				key: 4,
 				"data-slot": "item-footer",
 				class: "flex basis-full items-center justify-between gap-2",
 				innerHTML: B(r).footer
-			}, null, 8, Wj)) : N("", !0)
-		], 10, Pj));
+			}, null, 8, Kj)) : N("", !0)
+		], 10, Ij));
 	}
-}), Jj = {
+}), Xj = {
 	class: "group/native-select relative w-fit has-[select:disabled]:opacity-50",
 	"data-slot": "native-select-wrapper"
-}, Yj = ["disabled", "required"], Xj = ["label", "disabled"], Zj = ["value", "disabled"], Qj = ["value", "disabled"], $j = /* @__PURE__ */ W({
+}, Zj = ["disabled", "required"], Qj = ["label", "disabled"], $j = ["value", "disabled"], eM = ["value", "disabled"], tM = /* @__PURE__ */ W({
 	__name: "NativeSelect.ce",
 	props: {
 		name: { type: String },
@@ -34345,7 +34472,7 @@ var WO = /* @__PURE__ */ W({
 			}, i._disabledChange = (e) => {
 				d.value = e;
 			}), m(u.value);
-		}), (t, n) => (o(), D("div", Jj, [T(R("select", {
+		}), (t, n) => (o(), D("div", Xj, [T(R("select", {
 			"onUpdate:modelValue": n[0] ||= (e) => u.value = e,
 			disabled: e.disabled || d.value,
 			required: e.required,
@@ -34364,18 +34491,23 @@ var WO = /* @__PURE__ */ W({
 			disabled: e.disabled,
 			"data-slot": "native-select-option",
 			class: "bg-[Canvas] text-[CanvasText]"
-		}, U(e.label), 9, Zj))), 128))], 8, Xj)) : (o(), D("option", {
+		}, U(e.label), 9, $j))), 128))], 8, Qj)) : (o(), D("option", {
 			key: 1,
 			value: e.opt.value,
 			disabled: e.opt.disabled,
 			"data-slot": "native-select-option",
 			class: "bg-[Canvas] text-[CanvasText]"
-		}, U(e.opt.label), 9, Qj))], 64))), 128))], 40, Yj), [[oe, u.value]]), G(B(Zn), {
+		}, U(e.opt.label), 9, eM))], 64))), 128))], 40, Zj), [[oe, u.value]]), G(B(Zn), {
 			class: "text-muted-foreground top-1/2 right-2.5 size-4 -translate-y-1/2 pointer-events-none absolute select-none",
 			"aria-hidden": "true",
 			"data-slot": "native-select-icon"
 		})]));
 	}
 });
-Et(vS, "go-checkbox"), Et(xS, "go-switch"), Et(CS, "go-input"), Et(TS, "go-textarea"), Et(OS, "go-slider"), Et(MS, "go-radio-group"), Et(VS, "go-select"), Et(qS, "go-number-field"), Et(QS, "go-pin-input"), Et(iC, "go-tags-input"), Et($j, "go-native-select"), Dt(pC, "go-card"), Dt(yC, "go-accordion"), Dt(PC, "go-dialog"), Dt(zC, "go-alert"), Dt(HC, "go-aspect-ratio"), Dt(JC, "go-avatar"), Dt($C, "go-badge"), Dt(sw, "go-breadcrumb"), Dt(lw, "go-separator"), Dt(dw, "go-skeleton"), Dt(pw, "go-button"), Dt(hw, "go-progress"), Dt(gw, "go-label"), Dt(Cw, "go-input-group"), Dt(Ew, "go-scroll-area"), Dt(Ow, "go-table"), Dt(Fw, "go-tabs"), Dt(Vw, "go-collapsible"), Dt(Xw, "go-stepper"), Dt(aT, "go-alert-dialog"), Dt(KT, "go-drawer"), Dt(nE, "go-sheet"), Dt(sE, "go-popover"), Dt(fE, "go-hover-card"), Dt(vE, "go-tooltip"), Dt(AE, "go-dropdown-menu"), Dt(KE, "go-context-menu"), Dt(cD, "go-menubar"), Dt(bD, "go-navigation-menu"), Dt(FD, "go-command"), Dt(XO, "go-carousel"), Dt(wk, "go-calendar"), Dt(jk, "go-pagination"), Dt(Lk, "go-resizable"), Dt(Hk, "go-toggle"), Dt(Gk, "go-toggle-group"), Dt(qk, "go-toaster"), Dt(DA, "go-sidebar"), Dt(AA, "go-chart"), Dt(NA, "go-data-table"), Dt(zA, "go-form-field"), Dt(BA, "go-spinner"), Dt(dj, "go-field"), Dt(pj, "go-combobox"), Dt(gj, "go-date-picker"), Dt(yj, "go-range-calendar"), Dt(Cj, "go-kbd"), Dt(Ej, "go-button-group"), Dt(Nj, "go-empty"), Dt(qj, "go-item"), globalThis.goToast = je;
+Et(vS, "go-checkbox"), Et(xS, "go-switch"), Et(CS, "go-input"), Et(TS, "go-textarea"), Et(OS, "go-slider"), Et(MS, "go-radio-group"), Et(VS, "go-select"), Et(qS, "go-number-field"), Et(QS, "go-pin-input"), Et(iC, "go-tags-input"), Et(tM, "go-native-select"), Dt(pC, "go-card"), Dt(yC, "go-accordion"), Dt(PC, "go-dialog"), Dt(zC, "go-alert"), Dt(HC, "go-aspect-ratio"), Dt(JC, "go-avatar"), Dt($C, "go-badge"), Dt(sw, "go-breadcrumb"), Dt(lw, "go-separator"), Dt(dw, "go-skeleton"), Dt(pw, "go-button"), Dt(hw, "go-progress"), Dt(gw, "go-label"), Dt(Cw, "go-input-group"), Dt(Ew, "go-scroll-area"), Dt(Ow, "go-table"), Dt(Fw, "go-tabs"), Dt(Vw, "go-collapsible"), Dt(Xw, "go-stepper"), Dt(aT, "go-alert-dialog"), Dt(KT, "go-drawer"), Dt(nE, "go-sheet"), Dt(sE, "go-popover"), Dt(fE, "go-hover-card"), Dt(vE, "go-tooltip"), Dt(AE, "go-dropdown-menu"), Dt(KE, "go-context-menu"), Dt(cD, "go-menubar"), Dt(bD, "go-navigation-menu"), Dt(FD, "go-command"), Dt(XO, "go-carousel"), Et(wk, "go-calendar"), Dt(jk, "go-pagination"), Dt(Lk, "go-resizable"), Dt(Hk, "go-toggle"), Dt(Gk, "go-toggle-group"), Dt(qk, "go-toaster"), Dt(DA, "go-sidebar"), Dt(AA, "go-chart"), Dt(NA, "go-data-table"), Dt(zA, "go-form-field"), Dt(BA, "go-spinner"), Dt(dj, "go-field"), Dt(pj, "go-combobox"), Et(gj, "go-date-picker"), Et(yj, "go-range-calendar"), Dt(xj, "go-typography"), Dt(Tj, "go-kbd"), Dt(Oj, "go-button-group"), Dt(Fj, "go-empty"), Dt(Yj, "go-item"), document.addEventListener("go:open", () => {
+	let e = globalThis.htmx;
+	e && requestAnimationFrame(() => requestAnimationFrame(() => {
+		document.querySelectorAll("[data-state=\"open\"][data-slot$=\"-content\"]").forEach((t) => e.process(t));
+	}));
+}), globalThis.goToast = je;
 //#endregion

@@ -1,0 +1,619 @@
+<!doctype html>
+<html lang="pt-PT">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form — go-ui</title>
+    <link rel="icon" href="/dist/favicon.svg" />
+    <script>
+      window.__SITE_BASE__ = '../'
+      ;(function () {
+        var m = localStorage.getItem('go-ui-theme') || 'system'
+        var dark =
+          m === 'dark' ||
+          (m === 'system' &&
+            window.matchMedia('(prefers-color-scheme: dark)').matches)
+        document.documentElement.classList.toggle('dark', dark)
+      })()
+    </script>
+    <link rel="stylesheet" href="../go-ui.css" />
+    <script type="module" src="../go-ui.js"></script>
+    <link rel="stylesheet" href="../docs.css" />
+    <script type="module" src="../site-chrome.js"></script>
+    <script type="module" src="../docs.js"></script>
+  </head>
+  <body>
+    <go-toaster position="bottom-right"></go-toaster>
+    <main data-site-main>
+      <div class="docs">
+        <go-sidebar
+          mode="nav"
+          active="form.html"
+          class="docs-nav"
+          aria-label="Navegação de componentes"
+        >
+          <section title="Começar">
+            <option value="../index.html">Introdução</option>
+            <option value="../installation.html">Instalação</option>
+            <option value="../components.html">Componentes</option>
+            <option value="../blocks.html">Blocks</option>
+            <option value="../charts.html">Charts</option>
+            <option value="../create.html">Create</option>
+          </section>
+          <section title="Form-inputs (FACE)">
+            <option value="checkbox.html">go-checkbox</option>
+            <option value="switch.html">go-switch</option>
+            <option value="input.html">go-input</option>
+            <option value="textarea.html">go-textarea</option>
+            <option value="slider.html">go-slider</option>
+            <option value="radio-group.html">go-radio-group</option>
+            <option value="select.html">go-select</option>
+            <option value="number-field.html">go-number-field</option>
+            <option value="pin-input.html">go-pin-input</option>
+            <option value="tags-input.html">go-tags-input</option>
+            <option value="native-select.html">go-native-select</option>
+            <option value="field.html">go-field</option>
+            <option value="input-otp.html">Input OTP</option>
+            <option value="combobox.html">go-combobox</option>
+            <option value="date-picker.html">go-date-picker</option>
+            <option value="form.html">Form</option>
+          </section>
+          <section title="Layout &amp; apresentação">
+            <option value="card.html">go-card</option>
+            <option value="alert.html">go-alert</option>
+            <option value="badge.html">go-badge</option>
+            <option value="avatar.html">go-avatar</option>
+            <option value="aspect-ratio.html">go-aspect-ratio</option>
+            <option value="separator.html">go-separator</option>
+            <option value="skeleton.html">go-skeleton</option>
+            <option value="button.html">go-button</option>
+            <option value="label.html">go-label</option>
+            <option value="input-group.html">go-input-group</option>
+            <option value="scroll-area.html">go-scroll-area</option>
+            <option value="table.html">go-table</option>
+            <option value="progress.html">go-progress</option>
+            <option value="button-group.html">go-button-group</option>
+            <option value="spinner.html">go-spinner</option>
+            <option value="kbd.html">go-kbd</option>
+            <option value="empty.html">go-empty</option>
+            <option value="item.html">go-item</option>
+            <option value="typography.html">go-typography</option>
+          </section>
+          <section title="Disclosure">
+            <option value="accordion.html">go-accordion</option>
+            <option value="collapsible.html">go-collapsible</option>
+            <option value="tabs.html">go-tabs</option>
+            <option value="stepper.html">go-stepper</option>
+          </section>
+          <section title="Overlays">
+            <option value="dialog.html">go-dialog</option>
+            <option value="alert-dialog.html">go-alert-dialog</option>
+            <option value="drawer.html">go-drawer</option>
+            <option value="sheet.html">go-sheet</option>
+            <option value="popover.html">go-popover</option>
+            <option value="hover-card.html">go-hover-card</option>
+            <option value="tooltip.html">go-tooltip</option>
+          </section>
+          <section title="Navegação &amp; menus">
+            <option value="breadcrumb.html">go-breadcrumb</option>
+            <option value="dropdown-menu.html">go-dropdown-menu</option>
+            <option value="context-menu.html">go-context-menu</option>
+            <option value="menubar.html">go-menubar</option>
+            <option value="navigation-menu.html">go-navigation-menu</option>
+            <option value="command.html">go-command</option>
+            <option value="pagination.html">go-pagination</option>
+          </section>
+          <section title="Especiais">
+            <option value="carousel.html">go-carousel</option>
+            <option value="calendar.html">go-calendar</option>
+            <option value="range-calendar.html">go-range-calendar</option>
+            <option value="resizable.html">go-resizable</option>
+            <option value="toggle.html">go-toggle</option>
+            <option value="toggle-group.html">go-toggle-group</option>
+            <option value="toaster.html">go-toaster</option>
+            <option value="sidebar.html">go-sidebar</option>
+          </section>
+        </go-sidebar>
+
+        <div class="docs-content">
+          <p class="docs-bc">
+            <a href="../index.html">Docs</a>
+            <span aria-hidden="true">/</span>
+            <a href="../components.html">Componentes</a>
+            <span aria-hidden="true">/</span>
+            <b>Form</b>
+          </p>
+          <h1 class="doc-h1">Form</h1>
+          <p class="doc-lead">
+            Construir formulários com validação nativa e form-inputs FACE — sem
+            biblioteca de forms.
+          </p>
+          <div class="docs-actions">
+            <button type="button" data-copy-page>Copiar página</button>
+            <span class="sp"></span>
+            <a href="field.html"><span>Anterior</span> Field</a>
+            <a href="input-otp.html">Seguinte <span>Input OTP</span></a>
+          </div>
+
+          <!-- ── Preview/Code principal ──────────────────────────────── -->
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <form
+                  class="fm-form"
+                  onsubmit="event.preventDefault();var d=new FormData(event.target);this.querySelector('[data-out]').textContent=JSON.stringify(Object.fromEntries(d),null,2)"
+                >
+                  <go-field
+                    label="Nome de utilizador"
+                    for="fm-username"
+                    description="Este é o teu nome público."
+                  >
+                    <go-input
+                      id="fm-username"
+                      name="username"
+                      placeholder="goncalo"
+                      required
+                      minlength="3"
+                      autocomplete="off"
+                    ></go-input>
+                  </go-field>
+                  <go-button type="submit">Submeter</go-button>
+                  <pre class="fm-out" data-out>{}</pre>
+                </form>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;form id="profile"&gt;
+  &lt;go-field label="Nome de utilizador" for="username"
+    description="Este é o teu nome público."&gt;
+    &lt;go-input
+      id="username"
+      name="username"
+      placeholder="goncalo"
+      required
+      minlength="3"&gt;&lt;/go-input&gt;
+  &lt;/go-field&gt;
+  &lt;go-button type="submit"&gt;Submeter&lt;/go-button&gt;
+&lt;/form&gt;
+
+&lt;script&gt;
+  document.getElementById('profile')
+    .addEventListener('submit', (e) =&gt; {
+      e.preventDefault()
+      // checkValidity()/reportValidity() já correu nativamente;
+      // chega aqui só com dados válidos.
+      const data = Object.fromEntries(new FormData(e.target))
+      console.log(data) // { username: 'goncalo' }
+    })
+&lt;/script&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── Instalação ──────────────────────────────────────────── -->
+          <h2 id="instalacao">Instalação</h2>
+          <div class="tabs" data-tabs>
+            <div class="tabs-bar">
+              <button data-tab="npm" aria-selected="true">npm</button>
+              <button data-tab="pnpm" aria-selected="false">pnpm</button>
+              <button data-tab="yarn" aria-selected="false">yarn</button>
+              <button data-tab="bun" aria-selected="false">bun</button>
+              <button data-tab="manual" aria-selected="false">Manual</button>
+            </div>
+            <div class="tabs-panel" data-panel="npm" data-active>
+              <pre class="code" data-lang="bash">npm i github:st693ava/go-ui-web-components</pre>
+            </div>
+            <div class="tabs-panel" data-panel="pnpm">
+              <pre class="code" data-lang="bash">pnpm add github:st693ava/go-ui-web-components</pre>
+            </div>
+            <div class="tabs-panel" data-panel="yarn">
+              <pre class="code" data-lang="bash">yarn add github:st693ava/go-ui-web-components</pre>
+            </div>
+            <div class="tabs-panel" data-panel="bun">
+              <pre class="code" data-lang="bash">bun add github:st693ava/go-ui-web-components</pre>
+            </div>
+            <div class="tabs-panel" data-panel="manual">
+              <p class="tx">
+                Não há um componente <code>&lt;go-form&gt;</code>: usas o
+                <code>&lt;form&gt;</code> nativo. Importa o registo uma vez no
+                teu entry-point — regista todos os Custom Elements
+                form-associated (<code>&lt;go-input&gt;</code>,
+                <code>&lt;go-checkbox&gt;</code>, etc.):
+              </p>
+              <pre class="code" data-lang="ts">// main.ts / app.js
+import '@st693ava/go-ui'
+import '@st693ava/go-ui/style.css'</pre>
+            </div>
+          </div>
+
+          <!-- ── Uso ─────────────────────────────────────────────────── -->
+          <h2 id="uso">Uso</h2>
+          <p class="tx">
+            Os formulários são complicados — uma das coisas mais comuns que
+            constróis numa aplicação web e, ao mesmo tempo, das mais complexas.
+            Um formulário bem desenhado é semanticamente correto, fácil de
+            navegar por teclado, acessível com atributos ARIA e rótulos
+            corretos, e suporta validação no cliente e no servidor.
+          </p>
+          <p class="tx">
+            Ao contrário do shadcn-vue — que usa
+            <code>vee-validate</code> + <code>zod</code> — o go-ui
+            <strong>não traz nenhuma biblioteca de forms</strong>. Cada input
+            go-* é um <em>Form-Associated Custom Element</em> (FACE): regista-se
+            no <code>&lt;form&gt;</code> nativo pelo seu <code>name</code>,
+            participa em <code>FormData</code>, e expõe validação de constraints
+            via <code>required</code>, <code>minlength</code>,
+            <code>maxlength</code>, <code>pattern</code>, <code>min</code>,
+            <code>max</code>, <code>step</code>, <code>type="email"</code>, etc.
+            O navegador trata de <code>checkValidity()</code>,
+            <code>reportValidity()</code> e do bloqueio do submit — sem JS de
+            ligação, sem schema, sem hooks.
+          </p>
+
+          <h3 id="anatomia">Anatomia</h3>
+          <p class="tx">
+            Compõe um <code>&lt;form&gt;</code> nativo, opcionalmente com
+            <code>&lt;go-field&gt;</code> para rótulo, descrição e mensagem de
+            erro, e qualquer input go-* FACE no interior.
+          </p>
+          <pre class="code" data-lang="html">&lt;form&gt;
+  &lt;go-field
+    label="Rótulo"
+    for="campo"
+    description="Texto de ajuda."
+    error="Mensagem de erro."
+  &gt;
+    &lt;!-- qualquer input go-* FACE ou um input nativo --&gt;
+    &lt;go-input id="campo" name="campo" required&gt;&lt;/go-input&gt;
+  &lt;/go-field&gt;
+  &lt;go-button type="submit"&gt;Submeter&lt;/go-button&gt;
+&lt;/form&gt;</pre>
+
+          <!-- ── Exemplos ────────────────────────────────────────────── -->
+          <h2 id="exemplos">Exemplos</h2>
+
+          <h3 id="input-go">Input go-* (FACE)</h3>
+          <p class="tx">
+            Os inputs go-* integram-se no <code>&lt;form&gt;</code> nativo pelo
+            <code>name</code>. Com <code>required</code> e
+            <code>type="email"</code>, o navegador valida e bloqueia o submit
+            até os dados estarem corretos.
+          </p>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <form
+                  class="fm-form"
+                  onsubmit="event.preventDefault();var d=new FormData(event.target);this.querySelector('[data-out]').textContent=JSON.stringify(Object.fromEntries(d),null,2)"
+                >
+                  <go-field
+                    label="Nome de utilizador"
+                    for="fm-c-username"
+                    description="Este é o teu nome público."
+                  >
+                    <go-input
+                      id="fm-c-username"
+                      name="username"
+                      placeholder="goncalo"
+                      required
+                      autocomplete="off"
+                    ></go-input>
+                  </go-field>
+                  <go-field label="E-mail" for="fm-c-email">
+                    <go-input
+                      id="fm-c-email"
+                      name="email"
+                      type="email"
+                      placeholder="nome@exemplo.pt"
+                      required
+                      autocomplete="off"
+                    ></go-input>
+                  </go-field>
+                  <go-button type="submit">Submeter</go-button>
+                  <pre class="fm-out" data-out>{}</pre>
+                </form>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;form&gt;
+  &lt;go-field label="Nome de utilizador" for="username"
+    description="Este é o teu nome público."&gt;
+    &lt;go-input id="username" name="username" required&gt;&lt;/go-input&gt;
+  &lt;/go-field&gt;
+  &lt;go-field label="E-mail" for="email"&gt;
+    &lt;go-input id="email" name="email" type="email" required&gt;&lt;/go-input&gt;
+  &lt;/go-field&gt;
+  &lt;go-button type="submit"&gt;Submeter&lt;/go-button&gt;
+&lt;/form&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <h3 id="input-nativo">Input nativo</h3>
+          <p class="tx">
+            Não precisas de componentes go-* para participar num
+            <code>&lt;form&gt;</code> com validação — um
+            <code>&lt;input&gt;</code> nativo funciona exatamente da mesma
+            forma. Os inputs go-* são FACE para serem
+            <em>intermutáveis</em> com os elementos nativos.
+          </p>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <form
+                  class="fm-form"
+                  onsubmit="event.preventDefault();var d=new FormData(event.target);this.querySelector('[data-out]').textContent=JSON.stringify(Object.fromEntries(d),null,2)"
+                >
+                  <go-field
+                    label="Nome de utilizador"
+                    for="fm-n-username"
+                    description="Este é o teu nome público."
+                  >
+                    <input
+                      id="fm-n-username"
+                      name="username"
+                      class="fm-native"
+                      placeholder="goncalo"
+                      required
+                      minlength="3"
+                      autocomplete="off"
+                    />
+                  </go-field>
+                  <go-button type="submit">Submeter</go-button>
+                  <pre class="fm-out" data-out>{}</pre>
+                </form>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;form&gt;
+  &lt;go-field label="Nome de utilizador" for="username"
+    description="Este é o teu nome público."&gt;
+    &lt;input id="username" name="username" required minlength="3" /&gt;
+  &lt;/go-field&gt;
+  &lt;go-button type="submit"&gt;Submeter&lt;/go-button&gt;
+&lt;/form&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <h3 id="checkbox-radio-select">Checkbox, radio e select</h3>
+          <p class="tx">
+            Vários form-inputs FACE num único <code>&lt;form&gt;</code>. Cada um
+            entra no <code>FormData</code> pelo seu <code>name</code>;
+            <code>required</code> bloqueia o submit até haver escolha.
+          </p>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <form
+                  class="fm-form"
+                  onsubmit="event.preventDefault();var d=new FormData(event.target);this.querySelector('[data-out]').textContent=JSON.stringify(Object.fromEntries(d),null,2)"
+                >
+                  <go-field label="País" for="fm-country">
+                    <go-select
+                      id="fm-country"
+                      name="country"
+                      placeholder="Seleciona um país"
+                      required
+                    >
+                      <option value="pt">Portugal</option>
+                      <option value="es">Espanha</option>
+                      <option value="fr">França</option>
+                      <option value="de">Alemanha</option>
+                    </go-select>
+                  </go-field>
+                  <go-field label="Densidade">
+                    <go-radio-group name="density" value="comfortable">
+                      <option value="default">Padrão</option>
+                      <option value="comfortable">Confortável</option>
+                      <option value="compact">Compacto</option>
+                    </go-radio-group>
+                  </go-field>
+                  <go-checkbox name="terms" required
+                    >Aceito os termos e condições</go-checkbox
+                  >
+                  <go-button type="submit">Submeter</go-button>
+                  <pre class="fm-out" data-out>{}</pre>
+                </form>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;form&gt;
+  &lt;go-field label="País" for="country"&gt;
+    &lt;go-select id="country" name="country"
+      placeholder="Seleciona um país" required&gt;
+      &lt;option value="pt"&gt;Portugal&lt;/option&gt;
+      &lt;option value="es"&gt;Espanha&lt;/option&gt;
+      &lt;option value="fr"&gt;França&lt;/option&gt;
+    &lt;/go-select&gt;
+  &lt;/go-field&gt;
+  &lt;go-field label="Densidade"&gt;
+    &lt;go-radio-group name="density" value="comfortable"&gt;
+      &lt;option value="default"&gt;Padrão&lt;/option&gt;
+      &lt;option value="comfortable"&gt;Confortável&lt;/option&gt;
+      &lt;option value="compact"&gt;Compacto&lt;/option&gt;
+    &lt;/go-radio-group&gt;
+  &lt;/go-field&gt;
+  &lt;go-checkbox name="terms" required&gt;Aceito os termos&lt;/go-checkbox&gt;
+  &lt;go-button type="submit"&gt;Submeter&lt;/go-button&gt;
+&lt;/form&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <h3 id="mensagens-de-erro">Mensagens de erro de validação</h3>
+          <p class="tx">
+            A validação de constraints é nativa: tenta submeter vazio e o
+            navegador mostra a sua bolha de erro. Para uma mensagem
+            persistente, usa o atributo <code>error</code> de
+            <code>&lt;go-field&gt;</code> — é o equivalente direto ao
+            <code>&lt;FormMessage /&gt;</code> do shadcn, mas sem schema.
+          </p>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <form
+                  class="fm-form"
+                  onsubmit="event.preventDefault();this.querySelector('[data-out]').textContent='Válido — '+JSON.stringify(Object.fromEntries(new FormData(this)))"
+                >
+                  <go-field
+                    label="Palavra-passe"
+                    for="fm-pwd"
+                    description="Mínimo 8 caracteres."
+                    error="Tem de ter pelo menos 8 caracteres."
+                  >
+                    <go-input
+                      id="fm-pwd"
+                      name="password"
+                      type="password"
+                      required
+                      minlength="8"
+                      placeholder="••••••••"
+                      autocomplete="off"
+                    ></go-input>
+                  </go-field>
+                  <go-button type="submit">Submeter</go-button>
+                  <pre class="fm-out" data-out>{}</pre>
+                </form>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-field
+  label="Palavra-passe"
+  for="password"
+  description="Mínimo 8 caracteres."
+  error="Tem de ter pelo menos 8 caracteres."
+&gt;
+  &lt;go-input id="password" name="password" type="password"
+    required minlength="8"&gt;&lt;/go-input&gt;
+&lt;/go-field&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <h3 id="submit-formdata">Submit com FormData</h3>
+          <p class="tx">
+            No <code>submit</code>, a validação nativa já correu — só chegas ao
+            handler com dados válidos. Lê tudo de uma vez com
+            <code>new FormData(form)</code> e envia para o servidor (por
+            <code>fetch</code>, por exemplo). Sem serialização manual.
+          </p>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <form
+                  class="fm-form"
+                  onsubmit="event.preventDefault();var d=new FormData(event.target);this.querySelector('[data-out]').textContent=JSON.stringify(Object.fromEntries(d),null,2)"
+                >
+                  <go-field label="Nome completo" for="fm-s-name">
+                    <go-input
+                      id="fm-s-name"
+                      name="name"
+                      placeholder="Gonçalo Saraiva"
+                      required
+                      autocomplete="off"
+                    ></go-input>
+                  </go-field>
+                  <go-field label="Mensagem" for="fm-s-msg">
+                    <go-textarea
+                      id="fm-s-msg"
+                      name="message"
+                      placeholder="Escreve a tua mensagem aqui."
+                      required
+                    ></go-textarea>
+                  </go-field>
+                  <go-checkbox name="copy">Enviar-me uma cópia</go-checkbox>
+                  <go-button type="submit">Enviar</go-button>
+                  <pre class="fm-out" data-out>{}</pre>
+                </form>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="ts">const form = document.querySelector('form')
+
+form.addEventListener('submit', async (e) =&gt; {
+  e.preventDefault()
+  // Constraints nativas já validadas pelo navegador.
+  const data = new FormData(form)
+
+  await fetch('/api/contact', { method: 'POST', body: data })
+  // data.get('name') / data.get('message') / data.get('copy')
+})</pre>
+              </div>
+            </div>
+          </div>
+
+          <nav class="docs-pager">
+            <a class="prev" href="field.html"
+              ><span>Anterior</span>Field</a
+            >
+            <a class="next" href="input-otp.html"
+              ><span>Seguinte</span>Input OTP</a
+            >
+          </nav>
+        </div>
+
+        <aside class="docs-toc" id="toc" aria-label="Nesta página"></aside>
+      </div>
+
+      <style>
+        /* Composição local à página de Form — só agrupa um <form> nativo com
+           inputs go-* FACE reais e mostra o FormData submetido. Usa os tokens
+           da skin. Só esta página precisa deste layout. */
+        .fm-form {
+          display: flex;
+          flex-direction: column;
+          align-items: stretch;
+          gap: 1.25rem;
+          max-width: 22rem;
+          width: 100%;
+        }
+        .fm-form go-button {
+          align-self: flex-start;
+        }
+        .fm-native {
+          height: 2.25rem;
+          padding: 0 0.75rem;
+          font-size: 0.875rem;
+          color: var(--foreground, #0a0a0a);
+          background: var(--background, #fff);
+          border: 1px solid var(--border, #d4d4d8);
+          border-radius: 0.5rem;
+          outline: none;
+          width: 100%;
+        }
+        .fm-native:focus-visible {
+          border-color: var(--ring, #0a0a0a);
+          box-shadow: 0 0 0 3px
+            color-mix(in srgb, var(--ring, #0a0a0a) 25%, transparent);
+        }
+        .fm-out {
+          margin: 0;
+          font-size: 0.8125rem;
+          color: var(--muted-foreground, #6b7280);
+          font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+          white-space: pre-wrap;
+          word-break: break-word;
+        }
+      </style>
+    </main>
+  </body>
+</html>
