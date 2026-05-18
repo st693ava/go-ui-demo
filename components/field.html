@@ -1,0 +1,936 @@
+<!doctype html>
+<html lang="pt-PT">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Field — go-ui</title>
+    <link rel="icon" href="/dist/favicon.svg" />
+    <script>
+      window.__SITE_BASE__ = '../'
+      ;(function () {
+        var m = localStorage.getItem('go-ui-theme') || 'system'
+        var dark =
+          m === 'dark' ||
+          (m === 'system' &&
+            window.matchMedia('(prefers-color-scheme: dark)').matches)
+        document.documentElement.classList.toggle('dark', dark)
+      })()
+    </script>
+    <link rel="stylesheet" href="../go-ui.css" />
+    <script type="module" src="../go-ui.js"></script>
+    <link rel="stylesheet" href="../docs.css" />
+    <script type="module" src="../site-chrome.js"></script>
+    <script type="module" src="../docs.js"></script>
+  </head>
+  <body>
+    <go-toaster position="bottom-right"></go-toaster>
+    <main data-site-main>
+      <div class="docs">
+        <go-sidebar
+          mode="nav"
+          active="field.html"
+          class="docs-nav"
+          aria-label="Navegação de componentes"
+        >
+          <section title="Começar">
+            <option value="../index.html">Introdução</option>
+            <option value="../installation.html">Instalação</option>
+            <option value="../components.html">Componentes</option>
+            <option value="../blocks.html">Blocks</option>
+            <option value="../charts.html">Charts</option>
+            <option value="../create.html">Create</option>
+          </section>
+          <section title="Form-inputs (FACE)">
+            <option value="checkbox.html">go-checkbox</option>
+            <option value="switch.html">go-switch</option>
+            <option value="input.html">go-input</option>
+            <option value="textarea.html">go-textarea</option>
+            <option value="slider.html">go-slider</option>
+            <option value="radio-group.html">go-radio-group</option>
+            <option value="select.html">go-select</option>
+            <option value="number-field.html">go-number-field</option>
+            <option value="pin-input.html">go-pin-input</option>
+            <option value="tags-input.html">go-tags-input</option>
+            <option value="native-select.html">go-native-select</option>
+            <option value="field.html">go-field</option>
+            <option value="input-otp.html">Input OTP</option>
+          </section>
+          <section title="Layout &amp; apresentação">
+            <option value="card.html">go-card</option>
+            <option value="alert.html">go-alert</option>
+            <option value="badge.html">go-badge</option>
+            <option value="avatar.html">go-avatar</option>
+            <option value="aspect-ratio.html">go-aspect-ratio</option>
+            <option value="separator.html">go-separator</option>
+            <option value="skeleton.html">go-skeleton</option>
+            <option value="button.html">go-button</option>
+            <option value="label.html">go-label</option>
+            <option value="input-group.html">go-input-group</option>
+            <option value="scroll-area.html">go-scroll-area</option>
+            <option value="table.html">go-table</option>
+            <option value="progress.html">go-progress</option>
+            <option value="button-group.html">go-button-group</option>
+            <option value="spinner.html">go-spinner</option>
+            <option value="kbd.html">go-kbd</option>
+            <option value="empty.html">go-empty</option>
+            <option value="item.html">go-item</option>
+          </section>
+          <section title="Disclosure">
+            <option value="accordion.html">go-accordion</option>
+            <option value="collapsible.html">go-collapsible</option>
+            <option value="tabs.html">go-tabs</option>
+            <option value="stepper.html">go-stepper</option>
+          </section>
+          <section title="Overlays">
+            <option value="dialog.html">go-dialog</option>
+            <option value="alert-dialog.html">go-alert-dialog</option>
+            <option value="drawer.html">go-drawer</option>
+            <option value="sheet.html">go-sheet</option>
+            <option value="popover.html">go-popover</option>
+            <option value="hover-card.html">go-hover-card</option>
+            <option value="tooltip.html">go-tooltip</option>
+          </section>
+          <section title="Navegação &amp; menus">
+            <option value="breadcrumb.html">go-breadcrumb</option>
+            <option value="dropdown-menu.html">go-dropdown-menu</option>
+            <option value="context-menu.html">go-context-menu</option>
+            <option value="menubar.html">go-menubar</option>
+            <option value="navigation-menu.html">go-navigation-menu</option>
+            <option value="command.html">go-command</option>
+            <option value="pagination.html">go-pagination</option>
+          </section>
+          <section title="Especiais">
+            <option value="carousel.html">go-carousel</option>
+            <option value="calendar.html">go-calendar</option>
+            <option value="resizable.html">go-resizable</option>
+            <option value="toggle.html">go-toggle</option>
+            <option value="toggle-group.html">go-toggle-group</option>
+            <option value="toaster.html">go-toaster</option>
+            <option value="sidebar.html">go-sidebar</option>
+          </section>
+        </go-sidebar>
+
+        <div class="docs-content">
+          <p class="docs-bc">
+            <a href="../index.html">Docs</a>
+            <span aria-hidden="true">/</span>
+            <a href="../components.html">Componentes</a>
+            <span aria-hidden="true">/</span>
+            <b>Field</b>
+          </p>
+          <h1 class="doc-h1">Field</h1>
+          <p class="doc-lead">
+            Combina etiquetas, controlos e texto de ajuda para compor campos de
+            formulário acessíveis e grupos de campos.
+          </p>
+          <div class="docs-actions">
+            <button type="button" data-copy-page>Copiar página</button>
+            <span class="sp"></span>
+            <a href="empty.html"><span>Anterior</span> Empty</a>
+            <a href="input-group.html">Seguinte <span>Input Group</span></a>
+          </div>
+
+          <!-- ── Preview/Code principal ──────────────────────────────── -->
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <go-field as="set" legend="Perfil">
+                  <span slot="description"
+                    >Isto aparece em faturas e e-mails.</span
+                  >
+                  <go-field as="group">
+                    <go-field
+                      label="Nome completo"
+                      for="profile-name"
+                      description="Isto aparece em faturas e e-mails."
+                    >
+                      <go-input
+                        id="profile-name"
+                        name="name"
+                        autocomplete="off"
+                        placeholder="Evil Rabbit"
+                      ></go-input>
+                    </go-field>
+                    <go-field
+                      label="Nome de utilizador"
+                      for="profile-username"
+                      error="Escolhe outro nome de utilizador."
+                    >
+                      <go-input
+                        id="profile-username"
+                        name="username"
+                        autocomplete="off"
+                      ></go-input>
+                    </go-field>
+                    <go-field orientation="horizontal">
+                      <go-switch name="newsletter"
+                        >Subscrever a newsletter</go-switch
+                      >
+                    </go-field>
+                  </go-field>
+                </go-field>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-field as="set" legend="Perfil"&gt;
+  &lt;span slot="description"&gt;Isto aparece em faturas e e-mails.&lt;/span&gt;
+  &lt;go-field as="group"&gt;
+    &lt;go-field
+      label="Nome completo"
+      for="name"
+      description="Isto aparece em faturas e e-mails."
+    &gt;
+      &lt;go-input id="name" name="name" placeholder="Evil Rabbit"&gt;&lt;/go-input&gt;
+    &lt;/go-field&gt;
+    &lt;go-field
+      label="Nome de utilizador"
+      for="username"
+      error="Escolhe outro nome de utilizador."
+    &gt;
+      &lt;go-input id="username" name="username"&gt;&lt;/go-input&gt;
+    &lt;/go-field&gt;
+    &lt;go-field orientation="horizontal"&gt;
+      &lt;go-switch name="newsletter"&gt;Subscrever a newsletter&lt;/go-switch&gt;
+    &lt;/go-field&gt;
+  &lt;/go-field&gt;
+&lt;/go-field&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── Instalação ──────────────────────────────────────────── -->
+          <h2 id="instalacao">Instalação</h2>
+          <div class="tabs" data-tabs>
+            <div class="tabs-bar">
+              <button data-tab="npm" aria-selected="true">npm</button>
+              <button data-tab="pnpm" aria-selected="false">pnpm</button>
+              <button data-tab="yarn" aria-selected="false">yarn</button>
+              <button data-tab="bun" aria-selected="false">bun</button>
+              <button data-tab="manual" aria-selected="false">Manual</button>
+            </div>
+            <div class="tabs-panel" data-panel="npm" data-active>
+              <pre class="code" data-lang="bash">npm i github:st693ava/go-ui-web-components</pre>
+            </div>
+            <div class="tabs-panel" data-panel="pnpm">
+              <pre class="code" data-lang="bash">pnpm add github:st693ava/go-ui-web-components</pre>
+            </div>
+            <div class="tabs-panel" data-panel="yarn">
+              <pre class="code" data-lang="bash">yarn add github:st693ava/go-ui-web-components</pre>
+            </div>
+            <div class="tabs-panel" data-panel="bun">
+              <pre class="code" data-lang="bash">bun add github:st693ava/go-ui-web-components</pre>
+            </div>
+            <div class="tabs-panel" data-panel="manual">
+              <p class="tx">
+                Importa o registo uma vez no teu entry-point — regista todos os
+                Custom Elements, <code>&lt;go-field&gt;</code> incluído:
+              </p>
+              <pre class="code" data-lang="ts">// main.ts / app.js
+import '@st693ava/go-ui'
+import '@st693ava/go-ui/style.css'</pre>
+            </div>
+          </div>
+
+          <!-- ── Uso ─────────────────────────────────────────────────── -->
+          <h2 id="uso">Uso</h2>
+          <p class="tx">
+            Uma única convenção declarativa cobre toda a família. O atributo
+            <code>as</code> escolhe o papel:
+            <code>field</code> (default, um campo único),
+            <code>set</code> (<code>&lt;fieldset&gt;</code> semântico com
+            <code>legend</code>), <code>group</code> (empilha campos) e
+            <code>separator</code> (divisor). A etiqueta, descrição, erro e
+            legenda são atributos ou slots nomeados de texto estático
+            (<code>label</code>/<code>description</code>/<code>error</code>/<code>legend</code>);
+            o controlo interativo (<code>go-input</code>,
+            <code>go-checkbox</code>, etc.) vai no slot por defeito.
+          </p>
+          <pre class="code" data-lang="html">&lt;go-field label="Etiqueta" for="input-id" description="Texto de ajuda opcional."&gt;
+  &lt;go-input id="input-id" name="campo"&gt;&lt;/go-input&gt;
+&lt;/go-field&gt;</pre>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <go-field
+                  label="Etiqueta"
+                  for="uso-input"
+                  description="Texto de ajuda opcional."
+                >
+                  <go-input
+                    id="uso-input"
+                    name="campo"
+                    placeholder="Escreve aqui"
+                  ></go-input>
+                </go-field>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-field label="Etiqueta" for="input-id" description="Texto de ajuda opcional."&gt;
+  &lt;go-input id="input-id" name="campo"&gt;&lt;/go-input&gt;
+&lt;/go-field&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── Exemplos ────────────────────────────────────────────── -->
+          <h2 id="exemplos">Exemplos</h2>
+
+          <h3 id="input">Input</h3>
+          <p class="tx">
+            Campos de texto empilhados dentro de um <code>as="group"</code>,
+            cada um com etiqueta e descrição.
+          </p>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <go-field as="group">
+                  <go-field
+                    label="Nome de utilizador"
+                    for="in-username"
+                    description="Escolhe um nome de utilizador único para a tua conta."
+                  >
+                    <go-input
+                      id="in-username"
+                      name="username"
+                      type="text"
+                      placeholder="Max Leiter"
+                    ></go-input>
+                  </go-field>
+                  <go-field
+                    label="Palavra-passe"
+                    for="in-password"
+                    description="Tem de ter pelo menos 8 caracteres."
+                  >
+                    <go-input
+                      id="in-password"
+                      name="password"
+                      type="password"
+                      placeholder="********"
+                    ></go-input>
+                  </go-field>
+                </go-field>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-field as="group"&gt;
+  &lt;go-field
+    label="Nome de utilizador"
+    for="username"
+    description="Escolhe um nome de utilizador único para a tua conta."
+  &gt;
+    &lt;go-input id="username" name="username" type="text" placeholder="Max Leiter"&gt;&lt;/go-input&gt;
+  &lt;/go-field&gt;
+  &lt;go-field
+    label="Palavra-passe"
+    for="password"
+    description="Tem de ter pelo menos 8 caracteres."
+  &gt;
+    &lt;go-input id="password" name="password" type="password" placeholder="********"&gt;&lt;/go-input&gt;
+  &lt;/go-field&gt;
+&lt;/go-field&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <h3 id="textarea">Textarea</h3>
+          <p class="tx">
+            Combina uma <code>go-textarea</code> com etiqueta e texto de ajuda.
+          </p>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <go-field
+                  label="Comentários"
+                  for="ta-feedback"
+                  description="Partilha a tua opinião sobre o nosso serviço."
+                >
+                  <go-textarea
+                    id="ta-feedback"
+                    name="feedback"
+                    placeholder="A tua opinião ajuda-nos a melhorar..."
+                  ></go-textarea>
+                </go-field>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-field
+  label="Comentários"
+  for="feedback"
+  description="Partilha a tua opinião sobre o nosso serviço."
+&gt;
+  &lt;go-textarea id="feedback" name="feedback" placeholder="A tua opinião ajuda-nos a melhorar..."&gt;&lt;/go-textarea&gt;
+&lt;/go-field&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <h3 id="select">Select</h3>
+          <p class="tx">
+            Um <code>go-select</code> envolvido por um campo com etiqueta e
+            descrição.
+          </p>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <go-field
+                  label="Departamento"
+                  description="Seleciona o teu departamento ou área de trabalho."
+                >
+                  <go-select name="department" placeholder="Escolhe o departamento">
+                    <option value="engineering">Engenharia</option>
+                    <option value="design">Design</option>
+                    <option value="marketing">Marketing</option>
+                    <option value="sales">Vendas</option>
+                    <option value="support">Apoio ao cliente</option>
+                    <option value="hr">Recursos humanos</option>
+                    <option value="finance">Finanças</option>
+                    <option value="operations">Operações</option>
+                  </go-select>
+                </go-field>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-field
+  label="Departamento"
+  description="Seleciona o teu departamento ou área de trabalho."
+&gt;
+  &lt;go-select name="department" placeholder="Escolhe o departamento"&gt;
+    &lt;option value="engineering"&gt;Engenharia&lt;/option&gt;
+    &lt;option value="design"&gt;Design&lt;/option&gt;
+    &lt;option value="marketing"&gt;Marketing&lt;/option&gt;
+    &lt;option value="sales"&gt;Vendas&lt;/option&gt;
+    &lt;option value="support"&gt;Apoio ao cliente&lt;/option&gt;
+  &lt;/go-select&gt;
+&lt;/go-field&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <h3 id="slider">Slider</h3>
+          <p class="tx">
+            Usa <code>title</code> para o título do campo e
+            <code>go-slider</code> como controlo.
+          </p>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <go-field
+                  title="Intervalo de preço"
+                  description="Define o teu orçamento ($200 - $800)."
+                >
+                  <go-slider
+                    name="price"
+                    min="0"
+                    max="1000"
+                    step="10"
+                    value="200"
+                    aria-label="Intervalo de preço"
+                  ></go-slider>
+                </go-field>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-field
+  title="Intervalo de preço"
+  description="Define o teu orçamento ($200 - $800)."
+&gt;
+  &lt;go-slider name="price" min="0" max="1000" step="10" value="200" aria-label="Intervalo de preço"&gt;&lt;/go-slider&gt;
+&lt;/go-field&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <h3 id="fieldset">Fieldset</h3>
+          <p class="tx">
+            <code>as="set"</code> renderiza um <code>&lt;fieldset&gt;</code>
+            semântico com <code>legend</code> e descrição, agrupando campos
+            relacionados.
+          </p>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <go-field
+                  as="set"
+                  legend="Informação de morada"
+                  description="Precisamos da tua morada para entregar a encomenda."
+                >
+                  <go-field as="group">
+                    <go-field label="Rua" for="fs-street">
+                      <go-input
+                        id="fs-street"
+                        name="street"
+                        type="text"
+                        placeholder="Rua Principal 123"
+                      ></go-input>
+                    </go-field>
+                    <go-field label="Cidade" for="fs-city">
+                      <go-input
+                        id="fs-city"
+                        name="city"
+                        type="text"
+                        placeholder="Lisboa"
+                      ></go-input>
+                    </go-field>
+                    <go-field label="Código postal" for="fs-zip">
+                      <go-input
+                        id="fs-zip"
+                        name="zip"
+                        type="text"
+                        placeholder="1000-001"
+                      ></go-input>
+                    </go-field>
+                  </go-field>
+                </go-field>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-field
+  as="set"
+  legend="Informação de morada"
+  description="Precisamos da tua morada para entregar a encomenda."
+&gt;
+  &lt;go-field as="group"&gt;
+    &lt;go-field label="Rua" for="street"&gt;
+      &lt;go-input id="street" name="street" placeholder="Rua Principal 123"&gt;&lt;/go-input&gt;
+    &lt;/go-field&gt;
+    &lt;go-field label="Cidade" for="city"&gt;
+      &lt;go-input id="city" name="city" placeholder="Lisboa"&gt;&lt;/go-input&gt;
+    &lt;/go-field&gt;
+  &lt;/go-field&gt;
+&lt;/go-field&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <h3 id="checkbox">Checkbox</h3>
+          <p class="tx">
+            Cada <code>go-checkbox</code> traz a sua própria etiqueta; agrupa-os
+            num <code>as="set"</code> com legenda e descrição.
+          </p>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <go-field as="group">
+                  <go-field
+                    as="set"
+                    legend="Mostrar estes itens no ambiente de trabalho"
+                    legend-variant="label"
+                    description="Seleciona os itens que queres mostrar no ambiente de trabalho."
+                  >
+                    <go-field as="group">
+                      <go-field orientation="horizontal">
+                        <go-checkbox name="hard-disks">Discos rígidos</go-checkbox>
+                      </go-field>
+                      <go-field orientation="horizontal">
+                        <go-checkbox name="external-disks"
+                          >Discos externos</go-checkbox
+                        >
+                      </go-field>
+                      <go-field orientation="horizontal">
+                        <go-checkbox name="cds-dvds"
+                          >CDs, DVDs e iPods</go-checkbox
+                        >
+                      </go-field>
+                      <go-field orientation="horizontal">
+                        <go-checkbox name="servers"
+                          >Servidores ligados</go-checkbox
+                        >
+                      </go-field>
+                    </go-field>
+                  </go-field>
+                  <go-field as="separator"></go-field>
+                  <go-field orientation="horizontal">
+                    <go-checkbox name="sync-folders" checked
+                      >Sincronizar pastas Ambiente de trabalho e
+                      Documentos</go-checkbox
+                    >
+                    <span slot="description"
+                      >As tuas pastas estão a ser sincronizadas com o iCloud
+                      Drive. Podes aceder-lhes noutros dispositivos.</span
+                    >
+                  </go-field>
+                </go-field>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-field as="group"&gt;
+  &lt;go-field
+    as="set"
+    legend="Mostrar estes itens no ambiente de trabalho"
+    legend-variant="label"
+    description="Seleciona os itens que queres mostrar no ambiente de trabalho."
+  &gt;
+    &lt;go-field as="group"&gt;
+      &lt;go-field orientation="horizontal"&gt;
+        &lt;go-checkbox name="hard-disks"&gt;Discos rígidos&lt;/go-checkbox&gt;
+      &lt;/go-field&gt;
+      &lt;go-field orientation="horizontal"&gt;
+        &lt;go-checkbox name="external-disks"&gt;Discos externos&lt;/go-checkbox&gt;
+      &lt;/go-field&gt;
+    &lt;/go-field&gt;
+  &lt;/go-field&gt;
+  &lt;go-field as="separator"&gt;&lt;/go-field&gt;
+  &lt;go-field orientation="horizontal"&gt;
+    &lt;go-checkbox name="sync-folders" checked&gt;Sincronizar pastas&lt;/go-checkbox&gt;
+    &lt;span slot="description"&gt;As tuas pastas estão a ser sincronizadas com o iCloud Drive.&lt;/span&gt;
+  &lt;/go-field&gt;
+&lt;/go-field&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <h3 id="radio">Radio</h3>
+          <p class="tx">
+            Combina um <code>go-radio-group</code> com legenda e descrição num
+            <code>as="set"</code>.
+          </p>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <go-field
+                  as="set"
+                  legend="Plano de subscrição"
+                  legend-variant="label"
+                  description="Os planos anuais e vitalícios oferecem poupanças significativas."
+                >
+                  <go-radio-group name="plan" value="monthly">
+                    <option value="monthly">Mensal (9,99 €/mês)</option>
+                    <option value="yearly">Anual (99,99 €/ano)</option>
+                    <option value="lifetime">Vitalício (299,99 €)</option>
+                  </go-radio-group>
+                </go-field>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-field
+  as="set"
+  legend="Plano de subscrição"
+  legend-variant="label"
+  description="Os planos anuais e vitalícios oferecem poupanças significativas."
+&gt;
+  &lt;go-radio-group name="plan" value="monthly"&gt;
+    &lt;option value="monthly"&gt;Mensal (9,99 €/mês)&lt;/option&gt;
+    &lt;option value="yearly"&gt;Anual (99,99 €/ano)&lt;/option&gt;
+    &lt;option value="lifetime"&gt;Vitalício (299,99 €)&lt;/option&gt;
+  &lt;/go-radio-group&gt;
+&lt;/go-field&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <h3 id="switch">Switch</h3>
+          <p class="tx">
+            Campo horizontal com descrição no slot
+            <code>content</code> e o <code>go-switch</code> ao lado.
+          </p>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <go-field orientation="horizontal">
+                  <go-switch name="2fa"
+                    >Autenticação multifator</go-switch
+                  >
+                  <span slot="description"
+                    >Ativa a autenticação multifator. Se não tiveres um
+                    dispositivo de dois fatores, podes usar um código único
+                    enviado para o teu e-mail.</span
+                  >
+                </go-field>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-field orientation="horizontal"&gt;
+  &lt;go-switch name="2fa"&gt;Autenticação multifator&lt;/go-switch&gt;
+  &lt;span slot="description"&gt;Ativa a autenticação multifator. Podes usar um código único enviado para o teu e-mail.&lt;/span&gt;
+&lt;/go-field&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <h3 id="choice-card">Choice Card</h3>
+          <p class="tx">
+            Compõe campos horizontais com <code>go-radio-group</code> para criar
+            grupos de campos selecionáveis em forma de cartão.
+          </p>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <go-field
+                  as="set"
+                  legend="Ambiente de computação"
+                  legend-variant="label"
+                  description="Seleciona o ambiente de computação para o teu cluster."
+                >
+                  <go-radio-group name="compute" value="kubernetes">
+                    <option value="kubernetes"
+                      >Kubernetes — Executa cargas GPU num cluster K8s</option
+                    >
+                    <option value="vm"
+                      >Máquina virtual — Acede a um cluster VM para cargas
+                      GPU</option
+                    >
+                  </go-radio-group>
+                </go-field>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-field
+  as="set"
+  legend="Ambiente de computação"
+  legend-variant="label"
+  description="Seleciona o ambiente de computação para o teu cluster."
+&gt;
+  &lt;go-radio-group name="compute" value="kubernetes"&gt;
+    &lt;option value="kubernetes"&gt;Kubernetes — Executa cargas GPU num cluster K8s&lt;/option&gt;
+    &lt;option value="vm"&gt;Máquina virtual — Acede a um cluster VM para cargas GPU&lt;/option&gt;
+  &lt;/go-radio-group&gt;
+&lt;/go-field&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <h3 id="field-group">Field Group</h3>
+          <p class="tx">
+            Empilha campos com <code>as="group"</code> e usa
+            <code>as="separator"</code> para os dividir.
+          </p>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <go-field as="group">
+                  <go-field
+                    as="set"
+                    legend="Respostas"
+                    legend-variant="label"
+                    description="Recebe notificação quando uma resposta demora, como pesquisa ou geração de imagem."
+                  >
+                    <go-field as="group">
+                      <go-field orientation="horizontal">
+                        <go-checkbox name="push" checked disabled
+                          >Notificações push</go-checkbox
+                        >
+                      </go-field>
+                    </go-field>
+                  </go-field>
+                  <go-field as="separator"></go-field>
+                  <go-field
+                    as="set"
+                    legend="Tarefas"
+                    legend-variant="label"
+                  >
+                    <span slot="description"
+                      >Recebe notificação quando as tuas tarefas têm
+                      atualizações. <a href="#">Gerir tarefas</a></span
+                    >
+                    <go-field as="group">
+                      <go-field orientation="horizontal">
+                        <go-checkbox name="push-tasks"
+                          >Notificações push</go-checkbox
+                        >
+                      </go-field>
+                      <go-field orientation="horizontal">
+                        <go-checkbox name="email-tasks"
+                          >Notificações por e-mail</go-checkbox
+                        >
+                      </go-field>
+                    </go-field>
+                  </go-field>
+                </go-field>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-field as="group"&gt;
+  &lt;go-field as="set" legend="Respostas" legend-variant="label"
+    description="Recebe notificação quando uma resposta demora."&gt;
+    &lt;go-field as="group"&gt;
+      &lt;go-field orientation="horizontal"&gt;
+        &lt;go-checkbox name="push" checked disabled&gt;Notificações push&lt;/go-checkbox&gt;
+      &lt;/go-field&gt;
+    &lt;/go-field&gt;
+  &lt;/go-field&gt;
+  &lt;go-field as="separator"&gt;&lt;/go-field&gt;
+  &lt;go-field as="set" legend="Tarefas" legend-variant="label"&gt;
+    &lt;span slot="description"&gt;Recebe notificação quando as tuas tarefas têm atualizações.&lt;/span&gt;
+    &lt;go-field as="group"&gt;
+      &lt;go-field orientation="horizontal"&gt;
+        &lt;go-checkbox name="push-tasks"&gt;Notificações push&lt;/go-checkbox&gt;
+      &lt;/go-field&gt;
+    &lt;/go-field&gt;
+  &lt;/go-field&gt;
+&lt;/go-field&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <h3 id="responsivo">Layout responsivo</h3>
+          <p class="tx">
+            Com <code>orientation="responsive"</code> o campo empilha em ecrãs
+            estreitos e alinha label e controlo lado a lado em ecrãs largos,
+            dentro de um <code>as="group"</code>.
+          </p>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <go-field
+                  as="set"
+                  legend="Perfil"
+                  description="Preenche a informação do teu perfil."
+                >
+                  <go-field as="separator"></go-field>
+                  <go-field as="group">
+                    <go-field orientation="responsive">
+                      <span slot="content"
+                        ><span
+                          data-slot="field-label"
+                          class="flex w-fit gap-2 leading-snug items-center text-sm font-medium"
+                          >Nome</span
+                        ><span
+                          class="text-muted-foreground text-sm leading-normal"
+                          >Indica o teu nome completo para
+                          identificação</span
+                        ></span
+                      >
+                      <go-input
+                        name="name"
+                        placeholder="Evil Rabbit"
+                      ></go-input>
+                    </go-field>
+                    <go-field as="separator"></go-field>
+                    <go-field orientation="responsive">
+                      <span slot="content"
+                        ><span
+                          data-slot="field-label"
+                          class="flex w-fit gap-2 leading-snug items-center text-sm font-medium"
+                          >Mensagem</span
+                        ><span
+                          class="text-muted-foreground text-sm leading-normal"
+                          >Escreve a tua mensagem aqui. Mantém-na curta,
+                          idealmente abaixo de 100 caracteres.</span
+                        ></span
+                      >
+                      <go-textarea
+                        name="message"
+                        placeholder="Olá, mundo!"
+                      ></go-textarea>
+                    </go-field>
+                  </go-field>
+                </go-field>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-field as="set" legend="Perfil" description="Preenche a informação do teu perfil."&gt;
+  &lt;go-field as="separator"&gt;&lt;/go-field&gt;
+  &lt;go-field as="group"&gt;
+    &lt;go-field orientation="responsive"&gt;
+      &lt;span slot="content"&gt;
+        &lt;span data-slot="field-label"&gt;Nome&lt;/span&gt;
+        &lt;span&gt;Indica o teu nome completo para identificação&lt;/span&gt;
+      &lt;/span&gt;
+      &lt;go-input name="name" placeholder="Evil Rabbit"&gt;&lt;/go-input&gt;
+    &lt;/go-field&gt;
+    &lt;go-field as="separator"&gt;&lt;/go-field&gt;
+    &lt;go-field orientation="responsive"&gt;
+      &lt;span slot="content"&gt;
+        &lt;span data-slot="field-label"&gt;Mensagem&lt;/span&gt;
+        &lt;span&gt;Escreve a tua mensagem aqui.&lt;/span&gt;
+      &lt;/span&gt;
+      &lt;go-textarea name="message" placeholder="Olá, mundo!"&gt;&lt;/go-textarea&gt;
+    &lt;/go-field&gt;
+  &lt;/go-field&gt;
+&lt;/go-field&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <h3 id="validacao-e-erros">Validação e erros</h3>
+          <p class="tx">
+            Adiciona <code>invalid</code> ao <code>go-field</code> para mudar o
+            bloco para estado de erro e usa <code>error</code> para a mensagem
+            de validação, renderizada a seguir ao controlo.
+          </p>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <go-field
+                  invalid
+                  label="E-mail"
+                  for="val-email"
+                  error="Introduz um endereço de e-mail válido."
+                >
+                  <go-input
+                    id="val-email"
+                    name="email"
+                    type="email"
+                    aria-invalid="true"
+                  ></go-input>
+                </go-field>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-field
+  invalid
+  label="E-mail"
+  for="email"
+  error="Introduz um endereço de e-mail válido."
+&gt;
+  &lt;go-input id="email" name="email" type="email" aria-invalid="true"&gt;&lt;/go-input&gt;
+&lt;/go-field&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <nav class="docs-pager">
+            <a class="prev" href="empty.html"><span>Anterior</span>Empty</a>
+            <a class="next" href="input-group.html"
+              ><span>Seguinte</span>Input Group</a
+            >
+          </nav>
+        </div>
+
+        <aside class="docs-toc" id="toc" aria-label="Nesta página"></aside>
+      </div>
+    </main>
+  </body>
+</html>
