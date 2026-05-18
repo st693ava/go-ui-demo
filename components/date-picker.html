@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Scroll Area — go-ui</title>
+    <title>Date Picker — go-ui</title>
     <link rel="icon" href="/dist/favicon.svg" />
     <script>
       window.__SITE_BASE__ = '../'
@@ -28,7 +28,7 @@
       <div class="docs">
         <go-sidebar
           mode="nav"
-          active="scroll-area.html"
+          active="date-picker.html"
           class="docs-nav"
           aria-label="Navegação de componentes"
         >
@@ -119,18 +119,18 @@
             <span aria-hidden="true">/</span>
             <a href="../components.html">Componentes</a>
             <span aria-hidden="true">/</span>
-            <b>Scroll Area</b>
+            <b>Date Picker</b>
           </p>
-          <h1 class="doc-h1">Scroll Area</h1>
+          <h1 class="doc-h1">Date Picker</h1>
           <p class="doc-lead">
-            Aumenta a funcionalidade de scroll nativa com estilo personalizado e
-            consistente entre browsers.
+            Seletor de data com presets, construído pela composição dos
+            componentes Popover e Calendar.
           </p>
           <div class="docs-actions">
             <button type="button" data-copy-page>Copiar página</button>
             <span class="sp"></span>
-            <a href="input-group.html"><span>Anterior</span> Input Group</a>
-            <a href="table.html">Seguinte <span>Table</span></a>
+            <a href="combobox.html"><span>Anterior</span> Combobox</a>
+            <a href="calendar.html">Seguinte <span>Calendar</span></a>
           </div>
 
           <!-- ── Preview/Code principal ──────────────────────────────── -->
@@ -141,28 +141,10 @@
             </div>
             <div class="pc-panels">
               <div class="pc-preview">
-                <go-scroll-area
-                  height="18rem"
-                  width="12rem"
-                  class="sa-border"
-                >
-                  <div class="sa-pad">
-                    <h4 class="sa-title">Tags</h4>
-                    <div data-sa-tags></div>
-                  </div>
-                </go-scroll-area>
+                <go-date-picker></go-date-picker>
               </div>
               <div class="pc-code">
-                <pre class="code" data-lang="html">&lt;go-scroll-area height="18rem" width="12rem"&gt;
-  &lt;div class="content"&gt;
-    &lt;h4&gt;Tags&lt;/h4&gt;
-    &lt;div&gt;v1.2.0-beta.50&lt;/div&gt;
-    &lt;hr /&gt;
-    &lt;div&gt;v1.2.0-beta.49&lt;/div&gt;
-    &lt;hr /&gt;
-    &lt;!-- … 50 tags --&gt;
-  &lt;/div&gt;
-&lt;/go-scroll-area&gt;</pre>
+                <pre class="code" data-lang="html">&lt;go-date-picker&gt;&lt;/go-date-picker&gt;</pre>
               </div>
             </div>
           </div>
@@ -192,7 +174,7 @@
             <div class="tabs-panel" data-panel="manual">
               <p class="tx">
                 Importa o registo uma vez no teu entry-point — regista todos os
-                Custom Elements, <code>&lt;go-scroll-area&gt;</code> incluído:
+                Custom Elements, <code>&lt;go-date-picker&gt;</code> incluído:
               </p>
               <pre class="code" data-lang="ts">// main.ts / app.js
 import '@st693ava/go-ui'
@@ -203,13 +185,21 @@ import '@st693ava/go-ui/style.css'</pre>
           <!-- ── Uso ─────────────────────────────────────────────────── -->
           <h2 id="uso">Uso</h2>
           <p class="tx">
-            O conteúdo entra no slot nativo do <code>&lt;go-scroll-area&gt;</code>
-            e é scrollável dentro do viewport. Define a caixa com os atributos
-            <code>height</code> e <code>width</code> (qualquer unidade CSS).
+            O Date Picker compõe internamente um Popover com um Calendar. O
+            botão mostra a data formatada em PT-PT ou o placeholder; ao
+            escolher um dia, o popover fecha e dispara o evento
+            <code>change</code> com a data em ISO
+            (<code>detail.value</code>).
           </p>
-          <pre class="code" data-lang="html">&lt;go-scroll-area height="200px" width="350px"&gt;
-  Conteúdo longo que ultrapassa a altura definida…
-&lt;/go-scroll-area&gt;</pre>
+          <pre class="code" data-lang="html">&lt;go-date-picker placeholder="Escolher data"&gt;&lt;/go-date-picker&gt;
+
+&lt;script&gt;
+  document
+    .querySelector('go-date-picker')
+    .addEventListener('change', (e) =&gt; {
+      console.log(e.detail.value) // "2026-05-20"
+    })
+&lt;/script&gt;</pre>
           <div class="pc" data-view="preview">
             <div class="pc-bar">
               <button data-view="preview" aria-selected="true">Preview</button>
@@ -217,26 +207,10 @@ import '@st693ava/go-ui/style.css'</pre>
             </div>
             <div class="pc-panels">
               <div class="pc-preview">
-                <go-scroll-area
-                  height="9rem"
-                  width="22rem"
-                  class="sa-border"
-                >
-                  <div class="sa-pad sa-prose">
-                    O Jokester começou a esgueirar-se para o castelo a meio da
-                    noite e a deixar piadas por todo o lado: debaixo da
-                    almofada do rei, na sopa, até na casa de banho real. O rei
-                    estava furioso, mas não conseguia parar o Jokester. E então,
-                    um dia, o rei tropeçou numa das almofadas-pum do Jokester e
-                    caiu no fosso. Ficou tão envergonhado que decidiu nomear o
-                    Jokester bobo oficial da corte.
-                  </div>
-                </go-scroll-area>
+                <go-date-picker placeholder="Escolher data"></go-date-picker>
               </div>
               <div class="pc-code">
-                <pre class="code" data-lang="html">&lt;go-scroll-area height="9rem" width="22rem"&gt;
-  &lt;div class="content"&gt;O Jokester começou a esgueirar-se…&lt;/div&gt;
-&lt;/go-scroll-area&gt;</pre>
+                <pre class="code" data-lang="html">&lt;go-date-picker placeholder="Escolher data"&gt;&lt;/go-date-picker&gt;</pre>
               </div>
             </div>
           </div>
@@ -244,11 +218,10 @@ import '@st693ava/go-ui/style.css'</pre>
           <!-- ── Exemplos ────────────────────────────────────────────── -->
           <h2 id="exemplos">Exemplos</h2>
 
-          <h3 id="vertical">Vertical</h3>
+          <h3 id="date-picker">Date Picker</h3>
           <p class="tx">
-            Lista vertical de 50 tags com um separador entre cada uma — scroll
-            na vertical quando o conteúdo ultrapassa a altura. Os itens são
-            gerados em JavaScript, tal como no demo original do shadcn-vue.
+            O exemplo base: um botão com ícone de calendário que abre o
+            Calendar dentro de um Popover alinhado ao início.
           </p>
           <div class="pc" data-view="preview">
             <div class="pc-bar">
@@ -257,39 +230,19 @@ import '@st693ava/go-ui/style.css'</pre>
             </div>
             <div class="pc-panels">
               <div class="pc-preview">
-                <go-scroll-area
-                  height="18rem"
-                  width="12rem"
-                  class="sa-border"
-                >
-                  <div class="sa-pad">
-                    <h4 class="sa-title">Tags</h4>
-                    <div data-sa-tags></div>
-                  </div>
-                </go-scroll-area>
+                <go-date-picker></go-date-picker>
               </div>
               <div class="pc-code">
-                <pre class="code" data-lang="html">&lt;go-scroll-area height="18rem" width="12rem"&gt;
-  &lt;div class="content"&gt;&lt;h4&gt;Tags&lt;/h4&gt;&lt;div id="list"&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;/go-scroll-area&gt;
-
-&lt;script&gt;
-  const list = document.getElementById('list')
-  for (let i = 50; i &gt;= 1; i--) {
-    const item = document.createElement('div')
-    item.className = 'sa-item'
-    item.textContent = `v1.2.0-beta.${i}`
-    list.append(item, document.createElement('hr'))
-  }
-&lt;/script&gt;</pre>
+                <pre class="code" data-lang="html">&lt;go-date-picker&gt;&lt;/go-date-picker&gt;</pre>
               </div>
             </div>
           </div>
 
-          <h3 id="horizontal">Horizontal</h3>
+          <h3 id="valor-inicial">Valor inicial</h3>
           <p class="tx">
-            Conteúdo numa única linha mais larga do que a caixa — scroll na
-            horizontal.
+            Usa o atributo <code>value</code> com uma data ISO
+            (<code>AAAA-MM-DD</code>) para pré-selecionar uma data; o botão
+            mostra-a logo formatada.
           </p>
           <div class="pc" data-view="preview">
             <div class="pc-bar">
@@ -298,132 +251,81 @@ import '@st693ava/go-ui/style.css'</pre>
             </div>
             <div class="pc-panels">
               <div class="pc-preview">
-                <go-scroll-area
-                  height="9rem"
-                  width="22rem"
-                  class="sa-border"
-                >
-                  <div class="sa-hrow">
-                    <figure class="sa-fig">
-                      <div class="sa-thumb">01</div>
-                      <figcaption>Fotografia por A.</figcaption>
-                    </figure>
-                    <figure class="sa-fig">
-                      <div class="sa-thumb">02</div>
-                      <figcaption>Fotografia por B.</figcaption>
-                    </figure>
-                    <figure class="sa-fig">
-                      <div class="sa-thumb">03</div>
-                      <figcaption>Fotografia por C.</figcaption>
-                    </figure>
-                    <figure class="sa-fig">
-                      <div class="sa-thumb">04</div>
-                      <figcaption>Fotografia por D.</figcaption>
-                    </figure>
-                    <figure class="sa-fig">
-                      <div class="sa-thumb">05</div>
-                      <figcaption>Fotografia por E.</figcaption>
-                    </figure>
-                  </div>
-                </go-scroll-area>
+                <go-date-picker value="2026-01-20"></go-date-picker>
               </div>
               <div class="pc-code">
-                <pre class="code" data-lang="html">&lt;go-scroll-area height="9rem" width="22rem"&gt;
-  &lt;div class="row"&gt;
-    &lt;figure&gt;…&lt;/figure&gt;
-    &lt;figure&gt;…&lt;/figure&gt;
-    &lt;!-- … --&gt;
-  &lt;/div&gt;
-&lt;/go-scroll-area&gt;</pre>
+                <pre class="code" data-lang="html">&lt;go-date-picker value="2026-01-20"&gt;&lt;/go-date-picker&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <h3 id="presets">Presets</h3>
+          <p class="tx">
+            Adiciona <code>&lt;option value="AAAA-MM-DD"&gt;Etiqueta&lt;/option&gt;</code>
+            como filhos para oferecer atalhos rápidos por cima do calendário.
+            Cada preset é um botão real que define a data e fecha o popover.
+          </p>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <go-date-picker placeholder="Selecionar data">
+                  <option value="2026-05-18">Hoje</option>
+                  <option value="2026-05-19">Amanhã</option>
+                  <option value="2026-05-25">Daqui a uma semana</option>
+                  <option value="2026-06-17">Daqui a um mês</option>
+                </go-date-picker>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-date-picker placeholder="Selecionar data"&gt;
+  &lt;option value="2026-05-18"&gt;Hoje&lt;/option&gt;
+  &lt;option value="2026-05-19"&gt;Amanhã&lt;/option&gt;
+  &lt;option value="2026-05-25"&gt;Daqui a uma semana&lt;/option&gt;
+  &lt;option value="2026-06-17"&gt;Daqui a um mês&lt;/option&gt;
+&lt;/go-date-picker&gt;</pre>
+              </div>
+            </div>
+          </div>
+
+          <h3 id="locale">Locale</h3>
+          <p class="tx">
+            O atributo <code>locale</code> controla os nomes de meses/dias do
+            calendário e o formato da data no botão. Default
+            <code>pt</code>; usa <code>en</code> para inglês.
+          </p>
+          <div class="pc" data-view="preview">
+            <div class="pc-bar">
+              <button data-view="preview" aria-selected="true">Preview</button>
+              <button data-view="code" aria-selected="false">Code</button>
+            </div>
+            <div class="pc-panels">
+              <div class="pc-preview">
+                <go-date-picker
+                  locale="en"
+                  value="2026-03-14"
+                ></go-date-picker>
+              </div>
+              <div class="pc-code">
+                <pre class="code" data-lang="html">&lt;go-date-picker locale="en" value="2026-03-14"&gt;&lt;/go-date-picker&gt;</pre>
               </div>
             </div>
           </div>
 
           <nav class="docs-pager">
-            <a class="prev" href="input-group.html"
-              ><span>Anterior</span>Input Group</a
+            <a class="prev" href="combobox.html"
+              ><span>Anterior</span>Combobox</a
             >
-            <a class="next" href="table.html"
-              ><span>Seguinte</span>Table</a
+            <a class="next" href="calendar.html"
+              ><span>Seguinte</span>Calendar</a
             >
           </nav>
         </div>
 
         <aside class="docs-toc" id="toc" aria-label="Nesta página"></aside>
       </div>
-
-      <style>
-        /* Conteúdo projetado no slot nativo do go-scroll-area. Só estilo de
-           conteúdo (a moldura/scrollbar vêm da skin do componente). */
-        .sa-border {
-          border: 1px solid var(--border, #d4d4d8);
-          border-radius: 0.5rem;
-        }
-        .sa-pad {
-          padding: 1rem;
-        }
-        .sa-title {
-          margin: 0 0 0.75rem;
-          font-size: 0.875rem;
-          font-weight: 600;
-          line-height: 1;
-        }
-        .sa-item {
-          font-size: 0.875rem;
-          padding: 0.1rem 0;
-        }
-        /* Separador entre tags — equivale ao <Separator class="my-2"/> do demo
-           shadcn-vue. A skin/scrollbar vêm todas do go-scroll-area. */
-        [data-sa-tags] hr {
-          border: 0;
-          border-top: 1px solid var(--border, #e4e4e7);
-          margin: 0.5rem 0;
-        }
-        .sa-prose {
-          font-size: 0.875rem;
-          line-height: 1.55;
-          color: var(--foreground, #0a0a0a);
-        }
-        .sa-hrow {
-          display: flex;
-          gap: 1rem;
-          padding: 1rem;
-          width: max-content;
-        }
-        .sa-fig {
-          margin: 0;
-          font-size: 0.75rem;
-          color: var(--muted-foreground, #6b7280);
-        }
-        .sa-thumb {
-          width: 7rem;
-          height: 5rem;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background: var(--muted, #f4f4f5);
-          border-radius: 0.4rem;
-          font-size: 1.25rem;
-          font-weight: 600;
-          color: var(--muted-foreground, #6b7280);
-          margin-bottom: 0.4rem;
-        }
-      </style>
-      <script type="module">
-        // Gera as 50 tags + separadores, idêntico ao ScrollAreaDemo do
-        // shadcn-vue (Array.from({ length: 50 }) → v1.2.0-beta.N + Separator).
-        for (const host of document.querySelectorAll('[data-sa-tags]')) {
-          const frag = document.createDocumentFragment()
-          for (let i = 50; i >= 1; i--) {
-            const item = document.createElement('div')
-            item.className = 'sa-item'
-            item.textContent = `v1.2.0-beta.${i}`
-            frag.append(item)
-            if (i > 1) frag.append(document.createElement('hr'))
-          }
-          host.append(frag)
-        }
-      </script>
     </main>
   </body>
 </html>
